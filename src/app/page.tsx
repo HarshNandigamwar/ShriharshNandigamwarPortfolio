@@ -2,6 +2,8 @@
 import { motion } from "framer-motion";
 import { Download, Mail, Github, Linkedin, Twitter } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
+import Skills from "@/components/Skills";
+import Certifications from "@/components/Certifications";
 
 export default function Home() {
   return (
@@ -21,7 +23,7 @@ export default function Home() {
           transition={{ delay: 0.1 }}
           className="text-6xl md:text-8xl font-bold mb-6"
         >
-          Shriharsh N.
+          Shriharsh
         </motion.h1>
         <motion.p 
           className="max-w-xl text-lg opacity-70 mb-8"
@@ -72,6 +74,12 @@ export default function Home() {
           }} />
         </div>
       </section>
+
+{/* skills */}
+<Skills/>
+{/* Certification */}
+<Certifications/>
+
     </main>
   );
 }
