@@ -32,6 +32,7 @@ export default function AboutPage() {
               <img
                 src="/images/harsh.png"
                 alt="Shriharsh Nandigamwar"
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
