@@ -62,12 +62,18 @@ const HomePage = () => {
         </motion.p>
         {/* Project & Connect button */}
         <div className="flex gap-4 flex-wrap mb-8 justify-center md:justify-start ">
-          <button className="bg-brand text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer">
+          <a
+            href="#projects"
+            className="bg-brand text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
+          >
             My Projects
-          </button>
-          <button className="border border-brand/30 hover:bg-brand/10 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer">
+          </a>
+          <a
+            href="#contact"
+            className="border border-brand/30 hover:bg-brand/10 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
+          >
             Let's Connect
-          </button>
+          </a>
         </div>
         <div className="md:flex gap-4 flex-wrap">
           {/* Social Button */}
