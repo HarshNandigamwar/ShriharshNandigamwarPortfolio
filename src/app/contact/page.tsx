@@ -189,23 +189,11 @@ function ContactInfo({ icon, label, value }: any) {
     <div className="flex items-center gap-4">
       <div className="p-3 bg-brand/10 text-brand rounded-lg">{icon}</div>
       <div>
-        <p className="text-xs text-white/40 font-mono uppercase tracking-widest">
+        <p className="text-xs text-brand font-mono uppercase tracking-widest">
           {label}
         </p>
         <p className="font-medium">{value}</p>
       </div>
     </div>
-  );
-}
-
-function SocialIcon({ icon, href }: any) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      className="p-3 bg-white/5 border border-white/10 rounded-full text-white/60 hover:text-brand hover:border-brand/50 transition-all"
-    >
-      {icon}
-    </a>
   );
 }
