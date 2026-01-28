@@ -5,6 +5,7 @@ import ExperiencePage from "./experience/page";
 import SkillsPage from "./skills/page";
 import ProjectsPage from "./projects/page";
 import GitHubStatsPage from "./github/page";
+import ContactPage from "./contact/page";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <SkillsPage/>
       <ProjectsPage/>
       <GitHubStatsPage/>
+      <ContactPage/>
     </main>
   );
 }

@@ -3,6 +3,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SmoothScroll>
             <Navbar />
             {children}
-            <Toaster position="bottom-right" richColors />
+            <Toaster position="top-right" richColors />
+            <Footer/>
           </SmoothScroll>
         </ThemeProvider>
       </body>
