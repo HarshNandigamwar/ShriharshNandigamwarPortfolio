@@ -8,7 +8,7 @@ export default function ExperiencePage() {
       <div className=" mx-auto px-6">
         {/* Section Heading */}
         <div className="flex items-center gap-4 mb-16">
-          <h2 className="text-4xl font-bold">Experience</h2>
+          <h2 className="text-4xl font-bold text-brand">Experience</h2>
           <div className="h-[1px] bg-brand/20 flex-grow" />
         </div>
 

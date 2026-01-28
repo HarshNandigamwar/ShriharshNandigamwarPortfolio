@@ -14,7 +14,7 @@ export default function AboutPage() {
       <div className="mx-auto px-6">
         {/* Section Header */}
         <div className="flex items-center gap-4 mb-16">
-          <h2 className="text-4xl font-bold">About Me</h2>
+          <h2 className="text-4xl font-bold text-brand">About Me</h2>
           <div className="h-[1px] bg-brand/20 flex-grow" />
         </div>
 
@@ -71,7 +71,7 @@ export default function AboutPage() {
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{duration: 0.6, delay: i * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     key={i}
