@@ -94,15 +94,13 @@ export default function SkillsPage() {
                 {cat.icon}
               </div>
               <h3 className="text-2xl font-bold mb-3">{cat.title}</h3>
-              <p className="text-white/60 text-sm mb-6 leading-relaxed">
-                {cat.description}
-              </p>
+              <p className="text-sm mb-6 leading-relaxed">{cat.description}</p>
 
               <div className="flex flex-wrap gap-2 mt-auto">
                 {cat.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 text-xs font-mono bg-black/40 border border-white/5 rounded-full text-white/80 group-hover:text-brand group-hover:border-brand/30 transition-colors"
+                    className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full group-hover:text-brand group-hover:border-brand/30 transition-colors"
                   >
                     {skill}
                   </span>
@@ -134,7 +132,7 @@ function TechFeature({
   return (
     <div className="flex items-center gap-3 p-4 rounded-2xl bg-brand/10 border border-brand/30 transition-colors group">
       <div className="text-brand ">{icon}</div>
-      <span className="font-medium text-sm text-white/70">{label}</span>
+      <span className="font-medium text-sm">{label}</span>
     </div>
   );
 }
