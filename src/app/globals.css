@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #22c55e; /* Emerald Green */
+  --color-brand: #22c55e; 
   --color-brand-dark: #166534;
 }
 
@@ -19,4 +19,32 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 1. Standard for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #22c55e #0a0a0a;
+}
+
+/* 2. Webkit Engines (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Slightly thin for a modern look */
+}
+
+/* Track (The background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: #0a0a0a; /* Matches your dark background */
+}
+
+/* Thumb (The moving part) */
+::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 10px;
+  border: 2px solid #0a0a0a; /* Creates a small gap around the thumb */
+}
+
+/* Thumb on Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a; /* A slightly darker green on hover */
 }
