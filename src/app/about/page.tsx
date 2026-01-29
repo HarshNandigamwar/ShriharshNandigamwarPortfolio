@@ -3,9 +3,19 @@ import { motion } from "framer-motion";
 import { Code, GraduationCap, BadgeCheck } from "lucide-react";
 
 const stats = [
-  { label: "Experience", value: "Internship", icon: GraduationCap },
-  { label: "Projects", value: "3+", icon: Code },
-  { label: "Certificates", value: "won", icon: BadgeCheck },
+  {
+    label: "Experience",
+    value: "Internship",
+    icon: GraduationCap,
+    link: "#experience",
+  },
+  { label: "Projects", value: "3+", icon: Code, link: "#projects" },
+  {
+    label: "Certificates",
+    value: "won",
+    icon: BadgeCheck,
+    link: "#certificates",
+  },
 ];
 
 export default function AboutPage() {
@@ -65,18 +75,19 @@ export default function AboutPage() {
 
             {/* Quick Stats Grid */}
             <div className="grid grid-cols-3 gap-4">
-              {stats.map((stat, i) => {
+              {stats.map((stat, idx) => {
                 const Icon = stat.icon;
                 return (
-                  <motion.div
+                  <motion.a
+                    href={stat.link}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{duration: 0.6, delay: i * 0.1 }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    key={i}
+                    key={idx}
                     title={`Explore ${stat.label}`}
-                    className="p-2 md:p-4 rounded-xl bg-brand/10 border border-white/10 text-center hover:border-brand/50 transition-colors cursor-pointer "
+                    className="p-2 md:p-4 rounded-xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-white/10 text-center hover:border-brand/50 transition-colors cursor-pointer "
                   >
                     <Icon className="text-brand mx-auto mb-2" size={20} />
                     <div className="md:text-xl text-center font-bold">
@@ -85,7 +96,7 @@ export default function AboutPage() {
                     <div className="text-[10px] uppercase tracking-widest opacity-50">
                       {stat.label}
                     </div>
-                  </motion.div>
+                  </motion.a>
                 );
               })}
             </div>

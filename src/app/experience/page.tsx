@@ -46,7 +46,7 @@ export default function ExperiencePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 text-brand font-mono text-sm bg-brand/10 px-3 py-1 rounded-full"
+                  className="flex items-center gap-2 text-brand font-mono text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm px-3 py-1 rounded-full"
                 >
                   <Calendar size={14} />
                   Feb 2025 – Mar 2025
@@ -87,7 +87,7 @@ export default function ExperiencePage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="max-w-2xl mt-6 p-6 rounded-2xl bg-brand/10 border border-white/10 flex flex-col md:flex-row items-center gap-8 group"
+              className="max-w-2xl mt-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 flex flex-col md:flex-row items-center gap-8 group"
             >
               {/* Certificate Image Preview */}
               <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden border border-white/10">
@@ -120,7 +120,7 @@ export default function ExperiencePage() {
                     whileTap={{ scale: 0.95 }}
                     href="/documents/SkillCraft Tecnology Certificate & Letter of Recommendation.pdf"
                     download="SkillCraft Tecnology Certificate & Letter of Recommendation.pdf"
-                    className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-brand/10 transition-all"
+                    className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
                   >
                     <span>Download Letter</span>
                     <motion.div
