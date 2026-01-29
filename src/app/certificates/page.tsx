@@ -66,7 +66,6 @@ export default function CertificationsPage() {
           A collection of professional certifications and simulation programs
           that have helped me sharpen my technical expertise.
         </p>
-
         {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {certifications.map((cert, idx) => (
