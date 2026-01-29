@@ -20,14 +20,15 @@ export default function Footer() {
   return (
     <footer className="py-12 px-6 border-t border-brand ">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-        {/* Brand & Copyright */}
+        {/* Copyright */}
         <div className="flex flex-col items-center md:items-start gap-2">
           <div className="flex items-center gap-2 text-brand font-bold text-xl">
             <Terminal size={20} />
             <span>Shriharsh.dev</span>
           </div>
           <p className=" text-sm font-mono">
-            © 2026 Designed & Built by Shriharsh Nandigamwar
+            © {new Date().getFullYear()} Designed & Built by Shriharsh
+            Nandigamwar
           </p>
         </div>
 
@@ -41,8 +42,9 @@ export default function Footer() {
                 href={item.link}
                 target="_blank"
                 whileHover={{ y: -3, color: "#22c55e" }}
+                className="border-b border-b-2 cursor-pointer p-2"
               >
-                <Icon size={22} className="text-brand" />
+                <Icon size={22} className="text-brand " />
               </motion.a>
             );
           })}
@@ -51,10 +53,10 @@ export default function Footer() {
         {/* Back to Top */}
         <button
           onClick={scrollToTop}
-          className="group flex items-center gap-2 hover:text-brand transition-colors text-sm font-mono"
+          className="group flex items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer"
         >
           Back to top
-          <div className="p-2 rounded-full border border-brand/30 group-hover:border-brand/50 transition-all">
+          <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
             <ArrowUp size={16} />
           </div>
         </button>
