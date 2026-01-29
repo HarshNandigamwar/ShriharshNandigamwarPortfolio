@@ -50,7 +50,7 @@ export default function ResumeButton() {
           download="ShriharshNandigamwar_FullstackDeveloper.pdf"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors hover:bg-black hover:border-brand"
+          className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm hover:bg-black hover:border-brand"
         >
           <span>Download Resume</span>
           <motion.div

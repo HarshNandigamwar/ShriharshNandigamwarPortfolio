@@ -70,7 +70,7 @@ const HomePage = () => {
           </a>
           <a
             href="#contact"
-            className="border border-brand/30 hover:bg-brand/10 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
+            className="border border-brand/30 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
           >
             Let's Connect
           </a>
@@ -78,7 +78,7 @@ const HomePage = () => {
         <div className="md:flex gap-4 flex-wrap">
           {/* Social Button */}
           <div className="flex gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
-            {social.map((item) => {
+            {social.map((item, idx) => {
               return (
                 <motion.a
                   whileHover={{ scale: 1.05 }}
@@ -87,7 +87,7 @@ const HomePage = () => {
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-15 w-15 p-3 rounded-full flex items-center justify-center border border-brand/30 hover:bg-brand/10 font-bold transition-transform duration-300 cursor-pointer hover:text-brand "
+                  className="h-15 w-15 p-3 rounded-full flex items-center justify-center border border-brand/30 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm font-bold transition-transform duration-300 cursor-pointer hover:text-brand "
                 >
                   {item.logo}
                 </motion.a>
@@ -101,7 +101,7 @@ const HomePage = () => {
               download="ShriharshNandigamwar_FullstackDeveloper.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors hover:bg-black hover:border-brand"
+              className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm hover:bg-black hover:border-brand"
             >
               <span>Download Resume</span>
               <motion.div
