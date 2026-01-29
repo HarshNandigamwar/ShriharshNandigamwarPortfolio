@@ -3,35 +3,54 @@ import { motion } from "framer-motion";
 import { Calendar, ExternalLink, ShieldCheck, Download } from "lucide-react";
 
 export default function ExperiencePage() {
+  const Experience = [
+    {
+      work: "Developed and optimized responsive front-end components using HTML and CSS.",
+    },
+    {
+      work: "Collaborated on version control and deployment workflows using Git and Vercel.",
+    },
+    {
+      work: "Ensured high performance and accessibility standards across multiple devices.",
+    },
+    {
+      work: "The project is successfully deployed and accessible online.",
+    },
+  ];
   return (
     <section id="experience" className="py-24 bg-transparent">
       <div className=" mx-auto px-6">
-        {/* Section Heading */}
+        {/*Heading */}
         <div className="flex items-center gap-4 mb-16">
           <h2 className="text-4xl font-bold text-brand">Experience</h2>
           <div className="h-[1px] bg-brand/20 flex-grow" />
         </div>
 
-        <div className="relative border-l-2 border-brand/20 ml-4 md:ml-8 pl-8 pb-12">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative border-l-2 border-brand/20 ml-4 md:ml-8 pl-8 pb-12"
+        >
           {/* Timeline Dot */}
           <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand shadow-[0_0_10px_#22c55e]" />
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             {/* Header Info */}
             <div>
               <div className="flex flex-wrap justify-between items-start gap-4 mb-2">
                 <h3 className="text-2xl font-bold text-white">
                   Web Development Intern
                 </h3>
-                <span className="flex items-center gap-2 text-brand font-mono text-sm bg-brand/10 px-3 py-1 rounded-full">
+                <motion.span
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-2 text-brand font-mono text-sm bg-brand/10 px-3 py-1 rounded-full"
+                >
                   <Calendar size={14} />
                   Feb 2025 – Mar 2025
-                </span>
+                </motion.span>
               </div>
               <p className="text-xl text-brand/90 font-medium">
                 SkillCraft Technology
@@ -48,22 +67,28 @@ export default function ExperiencePage() {
                 responsiveness, usability, and efficiency.
               </p>
               <ul className="grid gap-3">
-                {[
-                  "Developed and optimized responsive front-end components using HTML and CSS.",
-                  "Collaborated on version control and deployment workflows using Git and Vercel.",
-                  "Ensured high performance and accessibility standards across multiple devices.",
-                  "The project is successfully deployed and accessible online.",
-                ].map((task, i) => (
-                  <li key={i} className="flex gap-3">
+                {Experience.map((task, idx) => (
+                  <motion.li
+                    key={idx}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    className="flex gap-3 cursor-default"
+                  >
                     <span className="text-brand mt-1.5">▹</span>
-                    {task}
-                  </li>
+                    {task.work}
+                  </motion.li>
                 ))}
               </ul>
             </div>
 
             {/* Certificate Box */}
-            <div className="max-w-2xl mt-6 p-6 rounded-2xl bg-brand/10 border border-white/10 flex flex-col md:flex-row items-center gap-8 group">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="max-w-2xl mt-6 p-6 rounded-2xl bg-brand/10 border border-white/10 flex flex-col md:flex-row items-center gap-8 group"
+            >
               {/* Certificate Image Preview */}
               <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden border border-white/10">
                 <img
@@ -107,9 +132,9 @@ export default function ExperiencePage() {
                   </motion.a>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
