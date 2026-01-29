@@ -41,7 +41,7 @@ export default function ContactPage() {
         toast.success("Message sent! I'll get back to you soon.");
         (e.target as HTMLFormElement).reset();
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.warning("Something went wrong. Please try again.");
       }
     } catch (error) {
       toast.error("Network error. Please check your connection.");
