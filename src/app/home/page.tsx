@@ -22,7 +22,7 @@ const HomePage = () => {
       logo: <Twitter />,
     },
   ];
-  return ( 
+  return (
     <section
       id="home"
       className="flex flex-col-reverse md:flex-row md:items-center justify-between "
@@ -129,7 +129,10 @@ const HomePage = () => {
             src="/images/ShriharshImageWBG.png"
             alt="N/A"
             width={500}
-            height={0}
+            height={500}
+            loading="eager"
+            className="w-full h-auto"
+            style={{ height: "auto" }}
           />
         </div>
       </motion.div>
@@ -138,8 +141,9 @@ const HomePage = () => {
           src="/images/Shriharsh.jpg"
           alt="N/A"
           width={300}
-          height={0}
-          className="rounded-2xl"
+          height={500}
+          className="w-full h-auto rounded-2xl"
+          style={{ height: "auto", width: "auto" }}
         />
       </div>
     </section>
