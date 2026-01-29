@@ -22,7 +22,7 @@ const HomePage = () => {
       logo: <Twitter />,
     },
   ];
-  return (
+  return ( 
     <section
       id="home"
       className="flex flex-col-reverse md:flex-row md:items-center justify-between "
