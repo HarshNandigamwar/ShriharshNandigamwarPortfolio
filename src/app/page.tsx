@@ -15,7 +15,7 @@ export default function Home() {
     printConsoleSignature();
   }, []);
   return (
-    <main className="max-w-7xl mx-auto px-3 md:px-6 py-20 ">
+    <main className="max-w-7xl mx-auto px-3 md:px-6 py-20 overflow-x-hidden ">
       <HomePage />
       <AboutPage />
       <ExperiencePage />
