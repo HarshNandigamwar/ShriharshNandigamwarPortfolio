@@ -85,7 +85,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Button */}
-            <div className="flex gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
+            <div className="ml-1 flex gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
               {social.map((item) => {
                 return (
                   <motion.a
@@ -95,7 +95,7 @@ export default function ContactPage() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-15 w-15 p-3 rounded-full flex items-center justify-center border border-brand/30 hover:bg-brand/10 font-bold transition-transform duration-300 cursor-pointer hover:text-brand "
+                    className="h-15 w-15 p-3 rounded-full flex items-center justify-center border border-brand/30 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm font-bold transition-transform duration-300 cursor-pointer hover:text-brand "
                   >
                     {item.logo}
                   </motion.a>
@@ -108,7 +108,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="bg-brand/10 border border-brand/30 p-4 md:p-8 rounded-2xl backdrop-blur-sm"
+            className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 p-4 md:p-8 rounded-2xl backdrop-blur-sm"
           >
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid md:grid-cols-2 gap-5">
@@ -117,12 +117,14 @@ export default function ContactPage() {
                   name="name"
                   type="text"
                   placeholder="Enter name"
+                  title="Enter name"
                 />
                 <InputGroup
                   label="Email"
                   name="email"
                   type="email"
                   placeholder="Enter email"
+                  title="Enter email 📧 "
                 />
               </div>
               <InputGroup
@@ -130,6 +132,7 @@ export default function ContactPage() {
                 name="subject"
                 type="text"
                 placeholder="Enter subject"
+                title="Enter subject "
               />
 
               <div className="flex flex-col gap-2">
@@ -141,10 +144,11 @@ export default function ContactPage() {
                   required
                   rows={5}
                   placeholder="Tell me about your project..."
-                  className="w-full bg-black/40 border border-white/10 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none"
+                  title="Enter Message 💬"
+                  className="w-full bg-brand/10 border border-brand/30 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none"
                 />
               </div>
-
+              {/* Submit button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -167,7 +171,8 @@ export default function ContactPage() {
 }
 
 /* Helper Components */
-function InputGroup({ label, name, type, placeholder }: any) {
+// Input : Name, Email, Subject.
+function InputGroup({ label, name, type, placeholder, title }: any) {
   return (
     <div className="flex flex-col gap-2">
       <label className="text-xs font-mono uppercase text-brand tracking-widest ml-1">
@@ -178,12 +183,13 @@ function InputGroup({ label, name, type, placeholder }: any) {
         type={type}
         name={name}
         placeholder={placeholder}
-        className="bg-black/40 border border-white/10 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all"
+        title={title}
+        className="bg-brand/10 border border-brand/30 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all"
       />
     </div>
   );
 }
-
+// Contact info
 function ContactInfo({ icon, label, value }: any) {
   return (
     <div className="flex items-center gap-4">
@@ -192,7 +198,9 @@ function ContactInfo({ icon, label, value }: any) {
         <p className="text-xs text-brand font-mono uppercase tracking-widest">
           {label}
         </p>
-        <p className="font-medium">{value}</p>
+        <a href={`mailto:${value}`} className="font-medium">
+          {value}
+        </a>
       </div>
     </div>
   );
