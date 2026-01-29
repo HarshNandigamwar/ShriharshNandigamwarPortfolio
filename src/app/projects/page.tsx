@@ -64,7 +64,6 @@ export default function ProjectsPage() {
   return (
     <section id="projects" className="py-24">
       <div className=" mx-auto">
-        {/* Simple Heading */}
         <div className="flex items-center gap-4 mb-16">
           <h2 className="text-4xl font-bold text-brand">Projects</h2>
           <div className="h-[1px] bg-brand/20 flex-grow" />
@@ -76,9 +75,8 @@ export default function ProjectsPage() {
               key={idx}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative bg-brand/10 border border-brand/30 rounded-2xl overflow-hidden "
+              className="group relative bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl overflow-hidden "
             >
               {/* Image Container */}
               <div className="relative h-64 w-full overflow-hidden">
@@ -99,6 +97,7 @@ export default function ProjectsPage() {
                     <a
                       href={project.github}
                       target="_blank"
+                      title="view code"
                       className="hover:text-brand transition-colors"
                     >
                       <Github size={20} />
@@ -106,6 +105,7 @@ export default function ProjectsPage() {
                     <a
                       href={project.live}
                       target="_blank"
+                      title="live demo"
                       className=" hover:text-brand transition-colors"
                     >
                       <ExternalLink size={20} />
@@ -119,13 +119,17 @@ export default function ProjectsPage() {
 
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
+                  {project.tech.map((t, idx) => (
+                    <motion.span
                       key={t}
-                      className="text-[10px] uppercase tracking-wider font-mono px-3 py-1 rounded-full bg-brand/5 border border-brand/20 text-brand"
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="text-[10px] uppercase tracking-wider font-mono px-3 py-1 rounded-full bg-brand/5 border border-brand/20 text-brand cursor-default"
                     >
                       {t}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
@@ -136,14 +140,18 @@ export default function ProjectsPage() {
         {/* GitHub Call to Action */}
         <div className="mt-20 text-center">
           <p className="mb-4">Want to see more?</p>
-          <a
+          <motion.a
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            whileHover={{ scale: 1.05 }}
             href="https://github.com/HarshNandigamwar"
             target="_blank"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-brand/30 hover:border-brand/50 hover:bg-brand/10 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-brand/30 hover:border-brand/50 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
           >
             <Code2 size={18} className="text-brand" />
             <span>Archive on GitHub</span>
-          </a>
+          </motion.a>
         </div>
       </div>
     </section>

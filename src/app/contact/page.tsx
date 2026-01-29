@@ -89,6 +89,9 @@ export default function ContactPage() {
               {social.map((item) => {
                 return (
                   <motion.a
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: item.id * 0.1 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     key={item.id}
