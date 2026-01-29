@@ -33,12 +33,7 @@ export default function GitHubStatsPage() {
         <span className="text-4xl font-bold text-brand">GitHub</span>
         <div className="h-[1px] bg-brand/20 flex-grow" />
       </motion.h2>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl p-4 md:p-12 relative overflow-hidden"
-      >
+      <div className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl p-4 md:p-12 relative overflow-hidden">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
           <div>
             <h2 className="text-3xl font-bold flex items-center gap-3 justify-center md:justify-start ">
@@ -95,7 +90,7 @@ export default function GitHubStatsPage() {
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

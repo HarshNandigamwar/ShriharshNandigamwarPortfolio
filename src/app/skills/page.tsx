@@ -100,8 +100,8 @@ export default function SkillsPage() {
           {skillCategories.map((cat, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
               className={`relative overflow-hidden p-8 rounded-2xl border border-brand/30 bg-gradient-to-br ${cat.color} backdrop-blur-sm `}
             >

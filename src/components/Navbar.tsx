@@ -27,23 +27,31 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
           onClick={scrollToTop}
           className="text-brand font-bold text-2xl flex items-center gap-2 cursor-pointer"
         >
           <Terminal size={28} />
           <span>Shriharsh.dev</span>
-        </div>
+        </motion.div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="hidden md:flex items-center gap-2"
+        >
           {/* Resume Button */}
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="/documents/Shriharsh_Nandigamwar_Fullstack_resume.pdf"
             download="ShriharshNandigamwar_FullstackDeveloper.pdf"
-            className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-brand/10 transition-all"
+            className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
           >
             <span>Download Resume</span>
             <motion.div
@@ -54,12 +62,17 @@ export default function Navbar() {
             </motion.div>
           </motion.a>
           <ThemeToggle />
-        </div>
+        </motion.div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center">
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
+          className="md:hidden flex items-center"
+        >
           <ThemeToggle />
-        </div>
+        </motion.div>
       </div>
     </nav>
   );
