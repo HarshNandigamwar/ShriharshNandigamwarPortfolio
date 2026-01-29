@@ -56,12 +56,28 @@ const skillCategories = [
   },
 ];
 
+const TechFeature = [
+  {
+    icon: <Terminal />,
+    text: "Clean Code",
+  },
+  {
+    icon: <Zap />,
+    text: "Performance",
+  },
+  {
+    icon: <Globe />,
+    text: "SEO Ready",
+  },
+  {
+    icon: <Cpu />,
+    text: "Scalability",
+  },
+];
+
 export default function SkillsPage() {
   return (
     <section className="py-24 bg-transparent relative">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-0 right-0 -z-10 w-[500px] h-[500px] bg-brand/5 rounded-full blur-[120px]" />
-
       <div className="mx-auto px-6">
         {/* Header */}
         <div className="mb-16">
@@ -87,23 +103,27 @@ export default function SkillsPage() {
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className={`relative overflow-hidden p-8 rounded-3xl border border-white/10 bg-gradient-to-br ${cat.color} backdrop-blur-sm group hover:border-brand/50 transition-all duration-500`}
+              className={`relative overflow-hidden p-8 rounded-2xl border border-brand/30 bg-gradient-to-br ${cat.color} backdrop-blur-sm `}
             >
-              <div className="mb-6 p-3 w-fit rounded-2xl bg-white/5 border border-white/10 group-hover:scale-110 transition-transform">
+              <div className="mb-6 p-3 w-fit rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30">
                 {cat.icon}
               </div>
               <h3 className="text-2xl font-bold mb-3">{cat.title}</h3>
               <p className="text-sm mb-6 leading-relaxed">{cat.description}</p>
 
               <div className="flex flex-wrap gap-2 mt-auto">
-                {cat.skills.map((skill) => (
-                  <span
+                {cat.skills.map((skill, idx) => (
+                  <motion.span
                     key={skill}
-                    className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full group-hover:text-brand group-hover:border-brand/30 transition-colors"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    title={skill}
+                    className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full group-hover:text-brand group-hover:border-brand/30 transition-colors cursor-default"
                   >
                     {skill}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
@@ -112,27 +132,22 @@ export default function SkillsPage() {
 
         {/* Featured Tech Highlight */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <TechFeature icon={<Terminal />} label="Clean Code" />
-          <TechFeature icon={<Zap />} label="Performance" />
-          <TechFeature icon={<Globe />} label="SEO Ready" />
-          <TechFeature icon={<Cpu />} label="Scalability" />
+          {TechFeature.map((data, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: idx * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              title={data.text}
+              className="flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 transition-colors group"
+            >
+              <div className="text-brand ">{data.icon}</div>
+              <span className="font-medium text-sm">{data.text}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function TechFeature({
-  icon,
-  label,
-}: {
-  icon: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <div className="flex items-center gap-3 p-4 rounded-2xl bg-brand/10 border border-brand/30 transition-colors group">
-      <div className="text-brand ">{icon}</div>
-      <span className="font-medium text-sm">{label}</span>
-    </div>
   );
 }
