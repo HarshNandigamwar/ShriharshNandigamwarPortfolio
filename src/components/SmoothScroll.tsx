@@ -6,5 +6,21 @@ export default function SmoothScroll({
 }: {
   children: React.ReactNode;
 }) {
-  return <ReactLenis root>{children}</ReactLenis>;
+  return (
+    <ReactLenis
+      root
+      options={{
+        duration: 1.2,
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        // Mobile optimization:
+        touchMultiplier: 1.5,
+        wheelMultiplier: 1,
+        infinite: false,
+      }}
+    >
+      {children}
+    </ReactLenis>
+  );
 }

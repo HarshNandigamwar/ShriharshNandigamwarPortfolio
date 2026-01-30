@@ -86,7 +86,7 @@ export default function AboutPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     key={idx}
-                    title={`Explore ${stat.label}`}
+                    title={`Click to explore ${stat.label}`}
                     className="p-2 md:p-4 rounded-xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-white/10 text-center hover:border-brand/50 transition-colors cursor-pointer "
                   >
                     <Icon className="text-brand mx-auto mb-2" size={20} />
