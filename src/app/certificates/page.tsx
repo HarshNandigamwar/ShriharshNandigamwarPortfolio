@@ -71,7 +71,7 @@ export default function CertificationsPage() {
           {certifications.map((cert, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
               className="group relative bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl overflow-hidden hover:border-brand/40 transition-all duration-500"
