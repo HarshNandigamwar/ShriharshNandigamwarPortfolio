@@ -1,7 +1,8 @@
 "use client";
 import { GitHubCalendar } from "react-github-calendar";
-import { motion } from "framer-motion";
-import { Github } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function GitHubStatsPage() {
   const greenTheme = {
@@ -22,6 +23,11 @@ export default function GitHubStatsPage() {
       description: "Public Repos",
     },
   ];
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="py-24 mx-auto">
@@ -61,15 +67,39 @@ export default function GitHubStatsPage() {
           </motion.div>
         </div>
 
-        {/* The GitHub Chart */}
+        {/* GitHub Chart */}
         <div className="flex justify-center overflow-x-auto p-4 bg-black/5 rounded-xl border border-brand/30">
-          <GitHubCalendar
-            username="HarshNandigamwar"
-            blockSize={12}
-            blockMargin={4}
-            theme={greenTheme}
-            fontSize={14}
-          />
+          {isLoading ? (
+            <div className="flex flex-col items-center gap-4 w-full animate-pulse">
+              <Loader2 className="animate-spin text-brand" size={32} />
+              <div className="flex gap-1 w-full justify-center">
+                {/* Fake blocks representing the calendar */}
+                {[...Array(25)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="h-3 w-3 bg-white/10 rounded-sm block"
+                  />
+                ))}
+              </div>
+              <p className="text-xs text-brand/50">
+                Fetching contribution data...
+              </p>
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="w-full flex justify-center"
+            >
+              <GitHubCalendar
+                username="HarshNandigamwar"
+                blockSize={12}
+                blockMargin={4}
+                theme={greenTheme}
+                fontSize={14}
+              />
+            </motion.div>
+          )}
         </div>
 
         {/* Git Cards */}
