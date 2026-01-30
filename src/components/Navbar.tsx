@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 import { Download } from "lucide-react";
 
 export default function Navbar() {
@@ -38,41 +37,26 @@ export default function Navbar() {
           <span>Shriharsh.dev</span>
         </motion.div>
 
-        {/* Desktop Links */}
-        <motion.div
+        {/* Resume Button */}
+        <motion.a
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.1 }}
-          className="hidden md:flex items-center gap-2"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          title="Download Resume"
+          href="/documents/Shriharsh_Nandigamwar_Fullstack_resume.pdf"
+          download="ShriharshNandigamwar_FullstackDeveloper.pdf"
+          className="flex gap-3 px-2 md:px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
         >
-          {/* Resume Button */}
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            href="/documents/Shriharsh_Nandigamwar_Fullstack_resume.pdf"
-            download="ShriharshNandigamwar_FullstackDeveloper.pdf"
-            className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
+          <span className="hidden md:block ">Download Resume</span>
+          <motion.div
+            animate={{ y: [0, 2, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
           >
-            <span>Download Resume</span>
-            <motion.div
-              animate={{ y: [0, 2, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5 }}
-            >
-              <Download size={18} className="text-brand" />
-            </motion.div>
-          </motion.a>
-          <ThemeToggle />
-        </motion.div>
-
-        {/* Mobile Toggle */}
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="md:hidden flex items-center"
-        >
-          <ThemeToggle />
-        </motion.div>
+            <Download size={18} className="text-brand" />
+          </motion.div>
+        </motion.a>
       </div>
     </nav>
   );
