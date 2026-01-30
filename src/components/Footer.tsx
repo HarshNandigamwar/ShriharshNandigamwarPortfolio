@@ -53,14 +53,19 @@ export default function Footer() {
           })}
         </div>
 
-        {/* Back to Top */}
+        {/* Back to Top Button */}
         <button
           onClick={scrollToTop}
           className="group flex items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer"
         >
           Back to top
           <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
-            <ArrowUp size={16} />
+            <motion.div
+              animate={{ y: [0, -3, 0] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            >
+              <ArrowUp size={16} />
+            </motion.div>
           </div>
         </button>
       </div>

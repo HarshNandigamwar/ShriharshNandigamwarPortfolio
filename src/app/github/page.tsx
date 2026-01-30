@@ -1,6 +1,6 @@
 "use client";
 import { GitHubCalendar } from "react-github-calendar";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Github, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 
