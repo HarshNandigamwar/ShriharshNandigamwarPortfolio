@@ -27,7 +27,7 @@ export default function ExperiencePage() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           className="relative border-l-2 border-brand/20 ml-4 md:ml-8 pl-8 pb-12"
@@ -42,7 +42,7 @@ export default function ExperiencePage() {
                   Web Development Intern
                 </h3>
                 <motion.span
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.1 }}
                   whileHover={{ scale: 1.05 }}
@@ -70,7 +70,7 @@ export default function ExperiencePage() {
                 {Experience.map((task, idx) => (
                   <motion.li
                     key={idx}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: idx * 0.1 }}
                     className="flex gap-3 cursor-default"
@@ -84,7 +84,7 @@ export default function ExperiencePage() {
 
             {/* Certificate Box */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
               className="max-w-2xl mt-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 flex flex-col md:flex-row items-center gap-8 group"
@@ -124,8 +124,12 @@ export default function ExperiencePage() {
                   >
                     <span>Download Letter</span>
                     <motion.div
-                      animate={{ y: [0, 2, 0] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
+                      animate={{ y: [0, 3, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 2,
+                        ease: "easeInOut",
+                      }}
                     >
                       <Download size={18} className="text-brand" />
                     </motion.div>

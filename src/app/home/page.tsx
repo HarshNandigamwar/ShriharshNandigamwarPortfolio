@@ -61,7 +61,7 @@ const HomePage = () => {
           project that could use my skills.
         </motion.p>
         {/* Project & Connect button */}
-        <div className="flex gap-4 flex-wrap mb-8 justify-center md:justify-start ">
+        <div className="flex gap-4 flex-wrap md:p-[2px] mb-8 justify-center md:justify-start ">
           <a
             href="#projects"
             className="bg-brand text-black px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
