@@ -35,7 +35,7 @@ export default function RootLayout({
           <SmoothScroll>
             <Navbar />
             {children}
-            <Toaster position="top-right" richColors />
+            <Toaster position="top-right" richColors theme="dark" />
             <Footer />
           </SmoothScroll>
         </ThemeProvider>
