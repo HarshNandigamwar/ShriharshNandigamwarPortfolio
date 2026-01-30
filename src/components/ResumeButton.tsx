@@ -54,8 +54,8 @@ export default function ResumeButton() {
         >
           <span>Download Resume</span>
           <motion.div
-            animate={{ y: [0, 2, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+            animate={{ y: [0, 3, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
             <Download size={18} className="text-brand" />
           </motion.div>

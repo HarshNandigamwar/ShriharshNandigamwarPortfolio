@@ -80,7 +80,7 @@ export default function AboutPage() {
                 return (
                   <motion.a
                     href={stat.link}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: idx * 0.1 }}
                     whileHover={{ scale: 1.05 }}
