@@ -45,7 +45,7 @@ export default function GitHubStatsPage() {
             </p>
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
             whileHover={{ scale: 1.05 }}
@@ -77,7 +77,7 @@ export default function GitHubStatsPage() {
           {gitCard.map((data, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
               whileHover={{ scale: 1.05 }}
