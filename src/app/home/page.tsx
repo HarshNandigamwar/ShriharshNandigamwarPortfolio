@@ -29,7 +29,7 @@ const HomePage = () => {
     >
       {/* Hero Section */}
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
+        initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         className="mt-2 md:mt-0"
@@ -78,7 +78,7 @@ const HomePage = () => {
         <div className="md:flex gap-4 flex-wrap">
           {/* Social Button */}
           <div className="flex gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
-            {social.map((item, idx) => {
+            {social.map((item) => {
               return (
                 <motion.a
                   whileHover={{ scale: 1.05 }}
@@ -105,8 +105,12 @@ const HomePage = () => {
             >
               <span>Download Resume</span>
               <motion.div
-                animate={{ y: [0, 2, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
+                animate={{ y: [0, 3, 0] }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 2,
+                  ease: "easeInOut",
+                }}
               >
                 <Download size={18} className="text-brand" />
               </motion.div>
@@ -117,7 +121,7 @@ const HomePage = () => {
       </motion.div>
       {/* Images */}
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         className="hidden md:flex "

@@ -31,7 +31,7 @@ export default function AboutPage() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             className="relative hidden md:flex justify-center"
@@ -50,7 +50,7 @@ export default function AboutPage() {
 
           {/* Right Side: Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >

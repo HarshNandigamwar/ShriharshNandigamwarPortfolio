@@ -1,17 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Terminal } from "lucide-react";
-import { Download } from "lucide-react";
+import { Terminal, Download } from "lucide-react";
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  const [scrolled, setScrolled] = useState(false);
   // Handle background change on scroll
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -20,30 +19,30 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-md py-4"
+          ? "backdrop-blur-[2px] md:backdrop-blur-md py-3 shadow-lg"
           : "bg-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           onClick={scrollToTop}
-          className="text-brand font-bold text-2xl flex items-center gap-2 cursor-pointer"
+          className="text-brand font-bold text-xl md:text-2xl flex items-center gap-2 cursor-pointer"
         >
-          <Terminal size={28} />
+          <Terminal size={26} />
           <span>Shriharsh.dev</span>
         </motion.div>
 
         {/* Resume Button */}
         <motion.a
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           title="Download Resume"
           href="/documents/Shriharsh_Nandigamwar_Fullstack_resume.pdf"
           download="ShriharshNandigamwar_FullstackDeveloper.pdf"
@@ -51,8 +50,8 @@ export default function Navbar() {
         >
           <span className="hidden md:block ">Download Resume</span>
           <motion.div
-            animate={{ y: [0, 2, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+            animate={{ y: [0, 3, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           >
             <Download size={18} className="text-brand" />
           </motion.div>
