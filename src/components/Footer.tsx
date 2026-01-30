@@ -41,7 +41,7 @@ export default function Footer() {
                 key={item.id}
                 href={item.link}
                 target="_blank"
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: item.id * 0.1 }}
                 whileHover={{ scale: 1.05 }}
