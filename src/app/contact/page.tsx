@@ -61,7 +61,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Left Side: Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="space-y-8"
           >
@@ -89,7 +89,7 @@ export default function ContactPage() {
               {social.map((item) => {
                 return (
                   <motion.a
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: item.id * 0.1 }}
                     whileHover={{ scale: 1.05 }}
@@ -109,7 +109,7 @@ export default function ContactPage() {
 
           {/* Right Side: Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 p-4 md:p-8 rounded-2xl backdrop-blur-sm"
           >
