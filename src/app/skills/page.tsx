@@ -100,7 +100,7 @@ export default function SkillsPage() {
           {skillCategories.map((cat, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
               className={`relative overflow-hidden p-8 rounded-2xl border border-brand/30 bg-gradient-to-br ${cat.color} backdrop-blur-sm `}
@@ -115,7 +115,7 @@ export default function SkillsPage() {
                 {cat.skills.map((skill, idx) => (
                   <motion.span
                     key={skill}
-                    initial={{ opacity: 0, y: 50 }}
+                    initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: idx * 0.1 }}
                     whileHover={{ scale: 1.05 }}
@@ -135,7 +135,7 @@ export default function SkillsPage() {
           {TechFeature.map((data, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: idx * 0.1 }}
               whileHover={{ scale: 1.05 }}
