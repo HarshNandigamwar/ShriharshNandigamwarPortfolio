@@ -54,7 +54,6 @@ export default function GitHubStatsPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            whileHover={{ scale: 1.05 }}
             className="flex items-center justify-center md:justify-end w-full"
           >
             <a

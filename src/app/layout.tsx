@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from "sonner";
 import Navbar from "@/components/Navbar";
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
+import { Toaster } from "sonner";
 import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <SmoothScroll>
+            <CustomCursor/>
             <Navbar />
             {children}
             <Toaster position="top-right" richColors theme="dark" />
