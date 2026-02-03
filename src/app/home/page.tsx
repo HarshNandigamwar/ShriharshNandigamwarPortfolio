@@ -70,7 +70,7 @@ const HomePage = () => {
           </a>
           <a
             href="#contact"
-            className="border border-brand/30 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
+            className="border border-brand/30 px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform cursor-pointer"
           >
             Let's Connect
           </a>
