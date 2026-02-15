@@ -4,6 +4,29 @@ import { Github, ExternalLink, Code2 } from "lucide-react";
 
 const projects = [
   {
+    title: "CodeMates",
+    description:
+      "CodeMates is a high-performance, responsive social networking platform tailored for developers. Built with Next.js 15, it offers a seamless experience for sharing technical insights, networking with peers, and real-time collaboration.",
+    tech: [
+      "NextJS",
+      "Tailwind CSS",
+      "TypeScript",
+      "Redux Toolkit",
+      "Socket.io",
+      "Axios",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Cloudinary",
+      "Mongoose",
+    ],
+    github: "https://github.com/HarshNandigamwar/CodeMates-Frontend",
+    githubbackend: "https://github.com/HarshNandigamwar/CodeMates-Backend",
+    live: "https://codematesapp.vercel.app",
+    image:
+      "https://res.cloudinary.com/darmatnf2/image/upload/v1771158619/STR_Dating_apps_blog_post_2024_V.1.0_hhuvbq.webp",
+  },
+  {
     title: "Sigma AI",
     description:
       "Sigma-AI is an advanced AI-powered chatbot web application built using NextJS, TypeScript and Gemini API . Designed with a modern UI Sigma-AI delivers smart, responsive, and context-aware conversations all in a fast, beautifully styled web app.",
@@ -102,6 +125,17 @@ export default function ProjectsPage() {
                     >
                       <Github size={20} />
                     </a>
+                    {project.githubbackend && (
+                      <a
+                        href={project.githubbackend}
+                        target="_blank"
+                        title="view code"
+                        className="hover:text-brand transition-colors"
+                      >
+                        <Github size={20} />
+                      </a>
+                    )}
+
                     <a
                       href={project.live}
                       target="_blank"
