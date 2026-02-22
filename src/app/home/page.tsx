@@ -5,6 +5,7 @@ import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
 import GithubIcon from "@/components/github-icon";
 import LinkedinIcon from "@/components/linkedin-icon";
+import TwitterXIcon from "@/components/twitter-x-icon";
 
 const HomePage = () => {
   const social = [
@@ -21,7 +22,7 @@ const HomePage = () => {
     {
       id: 3,
       link: "https://x.com/Harsh477011?s=09",
-      logo: <Twitter />,
+      logo: <TwitterXIcon />,
     },
   ];
   return (
