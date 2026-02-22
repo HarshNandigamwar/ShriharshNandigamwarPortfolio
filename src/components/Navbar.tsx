@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
 import DownloadIcon from "./download-icon";
+import TerminalIcon from "./terminal-icon";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +34,7 @@ export default function Navbar() {
           onClick={scrollToTop}
           className="text-brand font-bold text-xl md:text-2xl flex items-center gap-2 cursor-pointer"
         >
-          <Terminal size={26} />
+          <TerminalIcon size={26} />
           <span>Shriharsh.dev</span>
         </motion.div>
 
@@ -50,7 +51,7 @@ export default function Navbar() {
           className="flex gap-3 px-2 md:px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
         >
           <span className="hidden md:block ">Download Resume</span>
-          <DownloadIcon />
+          <DownloadIcon size={18} />
         </motion.a>
       </div>
     </nav>
