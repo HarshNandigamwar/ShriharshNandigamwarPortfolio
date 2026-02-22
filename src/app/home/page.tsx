@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
+import GithubIcon from "@/components/github-icon";
 
 const HomePage = () => {
   const social = [
     {
       id: 1,
       link: "https://github.com/HarshNandigamwar",
-      logo: <Github />,
+      logo: <GithubIcon />,
     },
     {
       id: 2,
