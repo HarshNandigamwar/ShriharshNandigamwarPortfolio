@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Terminal, Download } from "lucide-react";
+import { Terminal } from "lucide-react";
+import DownloadIcon from "./download-icon";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,12 +50,7 @@ export default function Navbar() {
           className="flex gap-3 px-2 md:px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
         >
           <span className="hidden md:block ">Download Resume</span>
-          <motion.div
-            animate={{ y: [0, 3, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <Download size={18} className="text-brand" />
-          </motion.div>
+          <DownloadIcon />
         </motion.a>
       </div>
     </nav>
