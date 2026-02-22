@@ -4,6 +4,7 @@ import { Download, Github, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
 import GithubIcon from "@/components/github-icon";
+import LinkedinIcon from "@/components/linkedin-icon";
 
 const HomePage = () => {
   const social = [
@@ -15,7 +16,7 @@ const HomePage = () => {
     {
       id: 2,
       link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      logo: <Linkedin />,
+      logo: <LinkedinIcon/>,
     },
     {
       id: 3,
