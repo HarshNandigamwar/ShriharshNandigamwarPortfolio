@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Download } from "lucide-react";
 import React, { useRef } from "react";
+import DownloadIcon from "./download-icon";
 
 export default function ResumeButton() {
   const ref = useRef<HTMLDivElement>(null);
@@ -53,12 +53,7 @@ export default function ResumeButton() {
           className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm hover:bg-black hover:border-brand"
         >
           <span>Download Resume</span>
-          <motion.div
-            animate={{ y: [0, 3, 0] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          >
-            <Download size={18} className="text-brand" />
-          </motion.div>
+          <DownloadIcon size={18} className="text-brand" />
 
           {/* Shiny Shimmer Effect */}
           <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">

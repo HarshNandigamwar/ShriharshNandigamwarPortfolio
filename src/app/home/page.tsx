@@ -1,11 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Twitter } from "lucide-react";
 import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
 import GithubIcon from "@/components/github-icon";
 import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
+import DownloadIcon from "@/components/download-icon";
 
 const HomePage = () => {
   const social = [
@@ -17,7 +17,7 @@ const HomePage = () => {
     {
       id: 2,
       link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      logo: <LinkedinIcon/>,
+      logo: <LinkedinIcon />,
     },
     {
       id: 3,
@@ -107,16 +107,7 @@ const HomePage = () => {
               className="relative flex items-center gap-3 px-8 py-4 border border-brand/30 rounded-full font-medium transition-colors bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm hover:bg-black hover:border-brand"
             >
               <span>Download Resume</span>
-              <motion.div
-                animate={{ y: [0, 3, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 2,
-                  ease: "easeInOut",
-                }}
-              >
-                <Download size={18} className="text-brand" />
-              </motion.div>
+              <DownloadIcon size={18} className="text-brand" />
             </motion.a>
           </div>
           <ResumeButton />

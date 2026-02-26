@@ -1,6 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
 import { Code, GraduationCap, BadgeCheck } from "lucide-react";
+import CodeIcon from "@/components/code-icon";
+import RosetteDiscountCheckIcon from "@/components/rosette-discount-check-icon";
 
 const stats = [
   {
@@ -9,11 +11,11 @@ const stats = [
     icon: GraduationCap,
     link: "#experience",
   },
-  { label: "Projects", value: "3+", icon: Code, link: "#projects" },
+  { label: "Projects", value: "3+", icon: CodeIcon, link: "#projects" },
   {
     label: "Certificates",
     value: "won",
-    icon: BadgeCheck,
+    icon: RosetteDiscountCheckIcon,
     link: "#certificates",
   },
 ];

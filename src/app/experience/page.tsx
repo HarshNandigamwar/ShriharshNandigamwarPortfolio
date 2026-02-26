@@ -1,7 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import { Calendar, ExternalLink, ShieldCheck, Download } from "lucide-react";
-
+import { Calendar } from "lucide-react";
+import ShieldCheck from "@/components/shield-check";
+import DownloadIcon from "@/components/download-icon";
+import ExternalLinkIcon from "@/components/external-link-icon";
 export default function ExperiencePage() {
   const Experience = [
     {
@@ -101,7 +103,7 @@ export default function ExperiencePage() {
                   href="https://res.cloudinary.com/darmatnf2/image/upload/v1761029277/certificate_u1uqqd.png"
                   className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  <ExternalLink className="text-blue-400" size={24} />
+                  <ExternalLinkIcon className="text-brand" size={24} />
                 </a>
               </div>
 
@@ -123,16 +125,7 @@ export default function ExperiencePage() {
                     className="flex gap-3 px-5 py-2 border border-brand/30 text-brand rounded-md text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm transition-all"
                   >
                     <span>Download Letter</span>
-                    <motion.div
-                      animate={{ y: [0, 3, 0] }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 2,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <Download size={18} className="text-brand" />
-                    </motion.div>
+                    <DownloadIcon size={18} className="text-brand" />
                   </motion.a>
                 </div>
               </div>

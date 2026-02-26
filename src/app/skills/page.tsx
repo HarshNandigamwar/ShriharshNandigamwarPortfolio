@@ -1,19 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
-import {
-  Terminal,
-  Database,
-  Wrench,
-  Cpu,
-  Layers,
-  Globe,
-  Zap,
-} from "lucide-react";
+import {  Wrench, Cpu, Globe, Zap } from "lucide-react";
+import TerminalIcon from "@/components/terminal-icon";
+import StackIcon from "@/components/stack-icon";
+import Cloud3Icon from "@/components/cloud-3-icon";
 
 const skillCategories = [
   {
     title: "Frontend Development",
-    icon: <Layers className="text-brand" />,
+    icon: <StackIcon className="text-brand" />,
     description: "Crafting responsive, high-performance user interfaces.",
     skills: [
       "Next.js",
@@ -28,7 +23,7 @@ const skillCategories = [
   },
   {
     title: "Backend & Database",
-    icon: <Database className="text-brand" />,
+    icon: <Cloud3Icon className="text-brand" />,
     description: "Building scalable server-side logic and managing data.",
     skills: [
       "Node.js",
@@ -58,7 +53,7 @@ const skillCategories = [
 
 const TechFeature = [
   {
-    icon: <Terminal />,
+    icon: <TerminalIcon />,
     text: "Clean Code",
   },
   {

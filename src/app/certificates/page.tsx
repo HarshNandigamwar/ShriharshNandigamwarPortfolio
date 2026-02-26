@@ -1,6 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import { Award, ExternalLink, ShieldCheck, Calendar } from "lucide-react";
+import { Award, Calendar } from "lucide-react";
+import ShieldCheck from "@/components/shield-check";
+import ExternalLinkIcon from "@/components/external-link-icon";
 
 const certifications = [
   {
@@ -115,7 +117,7 @@ export default function CertificationsPage() {
                       href={cert.image}
                       className="p-2 rounded-full bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm text-brand transition-all cursor-pointer"
                     >
-                      <ExternalLink size={16} />
+                      <ExternalLinkIcon size={16} />
                     </a>
                   </div>
                 </div>
