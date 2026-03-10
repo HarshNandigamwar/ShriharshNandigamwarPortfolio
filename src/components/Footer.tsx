@@ -1,15 +1,18 @@
 "use client";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, ArrowUp, Terminal } from "lucide-react";
+import GithubIcon from "@/components/github-icon";
+import LinkedinIcon from "@/components/linkedin-icon";
+import TwitterXIcon from "@/components/twitter-x-icon";
 
 const socialLinks = [
-  { id: 1, icon: Github, link: "https://github.com/HarshNandigamwar" },
+  { id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar" },
   {
     id: 2,
-    icon: Linkedin,
+    icon: LinkedinIcon,
     link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
-  { id: 3, icon: Twitter, link: "https://x.com/Harsh477011?s=09" },
+  { id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09" },
 ];
 
 export default function Footer() {
@@ -45,7 +48,7 @@ export default function Footer() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: item.id * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="border-b border-b-2 cursor-pointer p-2"
+                className="border-b border-b-2 cursor-pointer p-2 hover:border-brand"
               >
                 <Icon size={22} className="text-brand " />
               </motion.a>

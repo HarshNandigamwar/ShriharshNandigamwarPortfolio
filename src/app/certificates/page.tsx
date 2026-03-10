@@ -117,7 +117,10 @@ export default function CertificationsPage() {
                       href={cert.image}
                       className="p-2 rounded-full bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm text-brand transition-all cursor-pointer"
                     >
-                      <ExternalLinkIcon size={16} />
+                      <ExternalLinkIcon
+                        size={16}
+                        className="hover:text-blue-500"
+                      />
                     </a>
                   </div>
                 </div>

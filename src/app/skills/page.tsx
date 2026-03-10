@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import {  Wrench, Cpu, Globe, Zap } from "lucide-react";
+import { Wrench, Cpu, Globe, Zap } from "lucide-react";
 import TerminalIcon from "@/components/terminal-icon";
 import StackIcon from "@/components/stack-icon";
 import Cloud3Icon from "@/components/cloud-3-icon";
@@ -70,6 +70,8 @@ const TechFeature = [
   },
 ];
 
+const duplicatedFeatures = [...TechFeature, ...TechFeature];
+
 export default function SkillsPage() {
   return (
     <section className="py-24 bg-transparent relative">
@@ -126,7 +128,7 @@ export default function SkillsPage() {
         </div>
 
         {/* Featured Tech Highlight */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
           {TechFeature.map((data, idx) => (
             <motion.div
               key={idx}
@@ -141,6 +143,34 @@ export default function SkillsPage() {
               <span className="font-medium text-sm">{data.text}</span>
             </motion.div>
           ))}
+        </div>
+
+        <div className="hidden md:block relative w-full overflow-hidden">
+          {/*The Animated Container */}
+          <motion.div
+            className="flex gap-4 w-max"
+            animate={{
+              x: ["0%", "-50%"],
+            }}
+            transition={{
+              duration: 20,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          >
+            {duplicatedFeatures.map((data, idx) => (
+              <motion.div
+                key={idx}
+                title={data.text}
+                className="flex items-center gap-3 p-4 min-w-[200px] rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 transition-colors group shrink-0"
+              >
+                <div className="text-brand">{data.icon}</div>
+                <span className="font-medium text-sm whitespace-nowrap">
+                  {data.text}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

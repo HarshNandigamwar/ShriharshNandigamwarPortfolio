@@ -1,12 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Code2 } from "lucide-react";
+import ExternalLinkIcon from "@/components/external-link-icon";
+import GithubIcon from "@/components/github-icon";
 
 const projects = [
   {
     title: "CodeMates",
     description:
-      "CodeMates is a high-performance, responsive social networking platform tailored for developers. Built with Next.js 15, it offers a seamless experience for sharing technical insights, networking with peers, and real-time collaboration.",
+      "CodeMates is a high-performance, responsive social networking platform tailored for developers. Built with Next.js, it offers a seamless experience for sharing technical insights, networking with peers, and real-time collaboration.",
     tech: [
       "NextJS",
       "Tailwind CSS",
@@ -116,14 +118,14 @@ export default function ProjectsPage() {
                   <h3 className="text-2xl font-bold group-hover:text-brand transition-colors">
                     {project.title}
                   </h3>
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 items-center">
                     <a
                       href={project.github}
                       target="_blank"
                       title="view code"
                       className="hover:text-brand transition-colors"
                     >
-                      <Github size={20} />
+                      <GithubIcon size={20} />
                     </a>
                     {project.githubbackend && (
                       <a
@@ -132,7 +134,7 @@ export default function ProjectsPage() {
                         title="view code"
                         className="hover:text-brand transition-colors"
                       >
-                        <Github size={20} />
+                        <GithubIcon size={20} />
                       </a>
                     )}
 
@@ -142,7 +144,10 @@ export default function ProjectsPage() {
                       title="live demo"
                       className=" hover:text-brand transition-colors"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLinkIcon
+                        size={20}
+                        className="hover:text-blue-500"
+                      />
                     </a>
                   </div>
                 </div>

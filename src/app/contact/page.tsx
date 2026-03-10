@@ -1,29 +1,53 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, Mail, MapPin, Github, Linkedin, Twitter } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Send, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import GithubIcon from "@/components/github-icon";
+import LinkedinIcon from "@/components/linkedin-icon";
+import TwitterXIcon from "@/components/twitter-x-icon";
 
 export default function ContactPage() {
   const social = [
     {
       id: 1,
       link: "https://github.com/HarshNandigamwar",
-      logo: <Github />,
+      logo: <GithubIcon />,
     },
     {
       id: 2,
       link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      logo: <Linkedin />,
+      logo: <LinkedinIcon />,
     },
     {
       id: 3,
       link: "https://x.com/Harsh477011?s=09",
-      logo: <Twitter />,
+      logo: <TwitterXIcon />,
     },
   ];
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Placeholder Messages
+  const [index, setIndex] = useState(0);
+  const [isFocused, setIsFocused] = useState(false);
+  const [val, setVal] = useState("");
+  const PlaceholderMessages = [
+    "Tell me about your project...",
+    "What are we building together?",
+    "Need help with a new design?",
+    "Got a big idea to share?",
+    "Let's start a conversation...",
+    "What's on your mind?",
+  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % PlaceholderMessages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+  const showPlaceholder = !isFocused && val === "";
+
+  // Submit form
+  const [isSubmitting, setIsSubmitting] = useState(false);
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsSubmitting(true);
@@ -142,14 +166,34 @@ export default function ContactPage() {
                 <label className="text-xs font-mono uppercase text-brand tracking-widest ml-1">
                   Message
                 </label>
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="Tell me about your project..."
-                  title="Enter Message 💬"
-                  className="w-full bg-brand/10 border border-brand/30 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none"
-                />
+                <div className="relative w-full">
+                  <AnimatePresence mode="wait">
+                    {showPlaceholder && (
+                      <motion.div
+                        key={PlaceholderMessages[index]}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="absolute top-4 left-4 pointer-events-none text-gray-500"
+                      >
+                        {PlaceholderMessages[index]}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <textarea
+                    name="message"
+                    required
+                    rows={5}
+                    value={val}
+                    onChange={(e) => setVal(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    title="Enter Message 💬"
+                    className="w-full bg-brand/10 border border-brand/30 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none block"
+                  />
+                </div>
               </div>
               {/* Submit button */}
               <button

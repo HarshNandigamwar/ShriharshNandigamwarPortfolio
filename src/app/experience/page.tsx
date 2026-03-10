@@ -103,7 +103,7 @@ export default function ExperiencePage() {
                   href="https://res.cloudinary.com/darmatnf2/image/upload/v1761029277/certificate_u1uqqd.png"
                   className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
                 >
-                  <ExternalLinkIcon className="text-brand" size={24} />
+                  <ExternalLinkIcon className="text-blue-500" size={24} />
                 </a>
               </div>
 
