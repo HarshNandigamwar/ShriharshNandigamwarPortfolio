@@ -68,7 +68,7 @@ export default function ExperiencePage() {
                 web-based tools that can be used in everyday tasks, focusing on
                 responsiveness, usability, and efficiency.
               </p>
-              <ul className="grid gap-3">
+              <ul className="hidden md:block grid gap-3">
                 {Experience.map((task, idx) => (
                   <motion.li
                     key={idx}
@@ -80,6 +80,14 @@ export default function ExperiencePage() {
                     <span className="text-brand mt-1.5">▹</span>
                     {task.work}
                   </motion.li>
+                ))}
+              </ul>
+              <ul className="md:hidden block grid gap-3">
+                {Experience.map((task, idx) => (
+                  <li key={idx} className="flex gap-3 cursor-default">
+                    <span className="text-brand mt-1.5">▹</span>
+                    {task.work}
+                  </li>
                 ))}
               </ul>
             </div>

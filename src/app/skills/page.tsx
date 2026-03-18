@@ -17,7 +17,8 @@ const skillCategories = [
       "TypeScript",
       "Tailwind CSS",
       "Redux Toolkit",
-      "HTML5/CSS3",
+      "HTML5",
+      "CSS3",
     ],
     color: "from-green-500/20 to-transparent",
   },
@@ -39,14 +40,7 @@ const skillCategories = [
     title: "DevOps & Tools",
     icon: <Wrench className="text-brand" />,
     description: "Streamlining development and deployment workflows.",
-    skills: [
-      "Git",
-      "GitHub",
-      "Postman",
-      "Vercel",
-      "Netlify",
-      "Docker (Learning)",
-    ],
+    skills: ["Git", "GitHub", "Postman", "Vercel", "Netlify", "Render"],
     color: "from-green-600/20 to-transparent",
   },
 ];
@@ -108,7 +102,7 @@ export default function SkillsPage() {
               <h3 className="text-2xl font-bold mb-3">{cat.title}</h3>
               <p className="text-sm mb-6 leading-relaxed">{cat.description}</p>
 
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="hidden md:flex flex-wrap gap-2 mt-auto">
                 {cat.skills.map((skill, idx) => (
                   <motion.span
                     key={skill}
@@ -123,6 +117,18 @@ export default function SkillsPage() {
                   </motion.span>
                 ))}
               </div>
+
+              <div className="md:hidden flex flex-wrap gap-2 mt-auto">
+                {cat.skills.map((skill, idx) => (
+                  <span
+                    key={skill}
+                    title={skill}
+                    className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full group-hover:text-brand group-hover:border-brand/30 transition-colors cursor-default"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
@@ -130,18 +136,14 @@ export default function SkillsPage() {
         {/* Featured Tech Highlight */}
         <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-4">
           {TechFeature.map((data, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.05 }}
               title={data.text}
               className="flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 transition-colors group"
             >
               <div className="text-brand ">{data.icon}</div>
               <span className="font-medium text-sm">{data.text}</span>
-            </motion.div>
+            </div>
           ))}
         </div>
 

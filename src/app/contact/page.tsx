@@ -98,7 +98,6 @@ export default function ContactPage() {
                 hi, my inbox is always open. I'll do my best to get back to you!
               </p>
             </div>
-
             <div className="space-y-6">
               <ContactInfo
                 icon={<Mail />}
@@ -109,7 +108,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Button */}
-            <div className="ml-1 flex gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
+            <div className="hidden md:flex ml-1 gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
               {social.map((item) => {
                 return (
                   <motion.a
@@ -126,6 +125,22 @@ export default function ContactPage() {
                   >
                     {item.logo}
                   </motion.a>
+                );
+              })}
+            </div>
+
+            <div className="md:hidden flex ml-1 gap-4 flex-wrap justify-center md:justify-start mb-8 md:mb-0 ">
+              {social.map((item) => {
+                return (
+                  <a
+                    key={item.id}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-15 w-15 p-3 rounded-full flex items-center justify-center border border-brand/30 hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm font-bold transition-transform duration-300 cursor-pointer hover:text-brand "
+                  >
+                    {item.logo}
+                  </a>
                 );
               })}
             </div>

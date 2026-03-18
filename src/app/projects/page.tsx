@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Code2 } from "lucide-react";
+import { Code2 } from "lucide-react";
 import ExternalLinkIcon from "@/components/external-link-icon";
 import GithubIcon from "@/components/github-icon";
 
@@ -157,7 +157,7 @@ export default function ProjectsPage() {
                 </p>
 
                 {/* Tech Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="hidden md:flex flex-wrap gap-2">
                   {project.tech.map((t, idx) => (
                     <motion.span
                       key={t}
@@ -169,6 +169,16 @@ export default function ProjectsPage() {
                     >
                       {t}
                     </motion.span>
+                  ))}
+                </div>
+                <div className="md:hidden flex flex-wrap gap-2">
+                  {project.tech.map((t, idx) => (
+                    <span
+                      key={t}
+                      className="text-[10px] uppercase tracking-wider font-mono px-3 py-1 rounded-full bg-brand/5 border border-brand/20 text-brand cursor-default"
+                    >
+                      {t}
+                    </span>
                   ))}
                 </div>
               </div>
