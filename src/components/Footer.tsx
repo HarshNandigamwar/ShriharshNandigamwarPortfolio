@@ -9,23 +9,29 @@ import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
 
 const socialLinks = [
-  { id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar" },
+  { id: 1, 
+    icon: GithubIcon, 
+    link: "https://github.com/HarshNandigamwar" },
   {
     id: 2,
     icon: LinkedinIcon,
     link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
-  { id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09" },
+  { id: 3, 
+    icon: TwitterXIcon,
+     link: "https://x.com/Harsh477011?s=09" },
 ];
 
 export default function Footer() {
+  // Scroll on top
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
+//system
   const [clickCount, setClickCount] = useState(0);
   const [socialLinksIcon, setSocialLinksIcon] = useState(false);
   const [password, setPassword] = useState("");
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
   const handleTextClick = () => {
     const newCount = clickCount + 1;
@@ -45,47 +51,53 @@ export default function Footer() {
       setClickCount(0);
     };
     try {
+      setLoader(true);
       const response = await fetch("/api/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
       });
       const data = await response.json();
-
       if (!response.ok) {
+        setLoader(false);
         toast.warning(data.message || "Access Denied");
-
         const formData = new FormData();
         formData.append("access_key", process.env.NEXT_PUBLIC_WEB3KEY!);
         formData.append("subject", "🚨 Portfolio Intruder Alert!");
         formData.append("from_name", "Portfolio Security System");
-
-        // Collected Information
         formData.append("Attempted_Password", password);
         formData.append("Browser_Info", navigator.userAgent);
         formData.append("Platform", navigator.platform);
         formData.append("Language", navigator.language);
-        formData.append(
-          "Screen_Resolution",
-          `${window.screen.width}x${window.screen.height}`,
-        );
+        formData.append("Screen_Resolution",`${window.screen.width}x${window.screen.height}`,);
         formData.append("Timestamp", new Date().toLocaleString());
-        await fetch("https://api.web3forms.com/submit", {
-          method: "POST",
-          body: formData,
-        });
+        try {
+          setLoader(true);
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+          });
+          if (response.ok) {
+            console.log("Portfolio intruder alert send to server");
+          }
+        } catch (error) {
+          setLoader(false);
+          console.log("Error while sending intruder alert to server");
+          console.log(error);
+        }
         resetInterface();
         return;
       }
-
       toast.success("Identity verified. Redirecting...");
       resetInterface();
       setTimeout(() => {
         router.push("/system");
-      }, 2000);
+      }, 4000);
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       console.error("Auth Error:", error);
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -114,8 +126,9 @@ export default function Footer() {
               placeholder="Enter Secret Code"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-black border border-brand p-2 rounded text-white outline-none "
+              className={`  bg-black border border-brand p-2 rounded text-white outline-none ${loader && " animate-spin h-5 w-5 rounded-full"} `}
               autoFocus
+              disabled={loader}
             />
           </form>
         ) : (
@@ -123,6 +136,7 @@ export default function Footer() {
             {socialLinks.map((item) => {
               const Icon = item.icon;
               return (
+                <div>
                 <motion.a
                   key={item.id}
                   href={item.link}
@@ -131,10 +145,19 @@ export default function Footer() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: item.id * 0.1 }}
                   whileHover={{ scale: 1.05 }}
-                  className="border-b border-b-2 cursor-pointer p-2 hover:border-brand"
+                  className="hidden md:block border-b border-b-2 cursor-pointer p-2 hover:border-brand"
                 >
                   <Icon size={22} className="text-brand " />
                 </motion.a>
+                <a
+                  key={item.id}
+                  href={item.link}
+                  target="_blank"
+                  className="block md:hidden border-b border-b-2 cursor-pointer p-2 hover:border-brand"
+                >
+                  <Icon size={22} className="text-brand " />
+                </a>
+                </div>
               );
             })}
           </div>
@@ -142,7 +165,7 @@ export default function Footer() {
         {/* Back to Top Button */}
         <button
           onClick={scrollToTop}
-          className="group flex items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer"
+          className="hidden md:flex group items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer"
         >
           Back to top
           <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
@@ -152,6 +175,17 @@ export default function Footer() {
             >
               <ArrowUp size={16} />
             </motion.div>
+          </div>
+        </button>
+        <button
+          onClick={scrollToTop}
+          className="flex md:hidden group items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer"
+        >
+          Back to top
+          <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
+            <div>
+              <ArrowUp size={16} />
+            </div>
           </div>
         </button>
       </div>

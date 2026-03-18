@@ -120,7 +120,7 @@ export default function PrankPage() {
         transition={{ delay: 1.5 }}
         className="absolute bottom-6 text-gray-600 text-xs tracking-widest uppercase"
       >
-        Admin's Portfolio • Secret Menu v1.0
+        Shriharsh's Portfolio • Secret Menu v1.0
       </motion.footer>
     </div>
   );
