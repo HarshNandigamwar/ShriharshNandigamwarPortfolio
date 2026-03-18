@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Terminal } from "lucide-react";
 import DownloadIcon from "./download-icon";
 import TerminalIcon from "./terminal-icon";
 
@@ -32,11 +31,18 @@ export default function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           onClick={scrollToTop}
-          className="text-brand font-bold text-xl md:text-2xl flex items-center gap-2 cursor-pointer"
+          className="hidden md:flex text-brand font-bold text-xl md:text-2xl items-center gap-2 cursor-pointer"
         >
           <TerminalIcon size={26} />
           <span>Shriharsh.dev</span>
         </motion.div>
+        <div
+          onClick={scrollToTop}
+          className="flex md:hidden text-brand font-bold text-xl md:text-2xl items-center gap-2 cursor-pointer"
+        >
+          <TerminalIcon size={26} />
+          <span>Shriharsh.dev</span>
+        </div>
 
         {/* Resume Button */}
         <motion.a
