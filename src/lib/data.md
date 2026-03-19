@@ -52,7 +52,13 @@
 
 - DESC: Real-time weather dashboard.
 - TECH: JavaScript, OpenWeather API.
-- LINKS: [Live](https://weather-app-shriharsh.netlify.app/)
+- LINKS: [Live](https://weather-app-shriharsh.netlify.app/), [Code](https://github.com/HarshNandigamwar/Weather-App)
+
+### PROJECT_5: Currency Converter app
+
+- DESC: Quickly convert currencies on-the-go Get up-to-date exchange rates for countries worldwide.
+- TECH: HTML, Tailwind CSS, JavaScript, Currency API.
+- LINKS: [Live](https://shriharsh-currency-converter.netlify.app/), [Code](https://github.com/HarshNandigamwar/Currency-Converter)
 
 ## SECTION: CERTIFICATIONS
 

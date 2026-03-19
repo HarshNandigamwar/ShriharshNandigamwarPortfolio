@@ -86,7 +86,7 @@ export default function ChatBot() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[380px] md:w-[390px] h-[600px] md:h-[500px] bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl transition-all flex flex-col overflow-hidden"
+            className="mb-4 w-[350px] md:w-[390px] h-[600px] md:h-[500px] bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl transition-all flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 bg-zinc-800/50 border-b border-brand/50 flex justify-between items-center">
