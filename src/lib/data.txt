@@ -1,0 +1,40 @@
+# BIOGRAPHY
+Name: Shriharsh Nandigamwar
+Role: Fullstack Developer & IT Student (3rd Year)
+Education: Pursuing a degree in Information Technology.
+Focus: Building scalable web applications and performance-oriented tools.
+
+# TECHNICAL SKILLS
+Frontend: React, Next.js, TypeScript, Tailwind CSS.
+Backend: Node.js, Express, Firebase (Auth & Firestore), MongoDB.
+Tools & Utilities: Electron (for Desktop GUIs), React Native (Mobile), npkill, JWT Authentication.
+Hardware/System: System performance monitoring, thermal management, custom dashboard UI/UX.
+
+# PROJECTS
+1. SigmaMart
+- Description: A modern serverless e-commerce platform.
+- Tech Stack: React, Firebase.
+- Key Features: Secure data persistence, real-time backend services, and a dynamic frontend.
+
+2. CodeMates
+- Description: A full-stack social media platform specifically for developers.
+- Tech Stack: React, Node.js, Express, MongoDB, JWT.
+- Key Features: Real-time chat functionality, post management, and secure user authentication.
+
+3. Intellex
+- Description: An AI-powered chatbot integrated into the professional portfolio.
+- Features: Fully responsive design, interactive conversational interface.
+
+4. Scrcpy GUI
+- Description: A desktop utility built with Electron to provide a graphical interface for Scrcpy.
+- Purpose: Simplifies Android screen mirroring and control.
+
+# EXPERIENCE & ACHIEVEMENTS
+- Ported personal portfolio from React.js to Next.js for better SEO and performance.
+- Conducted a technical seminar on the "Working of UPI" (Unified Payments Interface) at college.
+- Experience in optimizing gaming performance (specifically for Hogwarts Legacy) and laptop thermal management.
+
+# CONTACT & LINKS
+- Goal: Seeking opportunities to build impactful software and collaborate on open-source projects.
+- Portfolio: (Insert your URL here)
+- GitHub: (Insert your GitHub profile link)

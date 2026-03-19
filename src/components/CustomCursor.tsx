@@ -20,7 +20,7 @@ export default function CustomCursor() {
 
     const attachListeners = () => {
       const elements = document.querySelectorAll(
-        "a, button, .cursor-pointer, input, textarea"
+        "a, button, .cursor-pointer, input, textarea",
       );
       elements.forEach((el) => {
         el.addEventListener("mouseenter", mouseOver);
@@ -63,7 +63,7 @@ export default function CustomCursor() {
     <>
       {/* Inner Dot*/}
       <div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-brand rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-brand rounded-full pointer-events-none z-[100000]"
         style={{
           left: `${mousePosition.x}px`,
           top: `${mousePosition.y}px`,
@@ -74,7 +74,7 @@ export default function CustomCursor() {
 
       {/* Outer Ring*/}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 rounded-full pointer-events-none z-[100000] -translate-x-1/2 -translate-y-1/2"
         variants={variants}
         animate={cursorVariant}
         style={{

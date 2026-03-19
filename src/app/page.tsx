@@ -11,7 +11,7 @@ import { printConsoleSignature } from "@/Utils/printConsoleSignature";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
+  useEffect(() => { 
     printConsoleSignature();
   }, []);
   return (

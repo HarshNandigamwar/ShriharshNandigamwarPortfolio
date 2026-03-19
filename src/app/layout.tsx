@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
 import { Toaster } from "sonner";
+import RAGPage from "./chat/page";
 import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
@@ -34,10 +35,11 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <SmoothScroll>
-            <CustomCursor/>
+            <CustomCursor />
             <Navbar />
             {children}
             <Toaster position="top-right" richColors theme="dark" />
+            <RAGPage />
             <Footer />
           </SmoothScroll>
         </ThemeProvider>
