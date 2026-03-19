@@ -133,12 +133,12 @@ export default function Footer() {
           </form>
         ) : (
           <div className="flex gap-6">
-            {socialLinks.map((item) => {
+            {socialLinks.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <div>
                 <motion.a
-                  key={item.id}
+                  key={idx}
                   href={item.link}
                   target="_blank"
                   initial={{ opacity: 0, y: 10 }}

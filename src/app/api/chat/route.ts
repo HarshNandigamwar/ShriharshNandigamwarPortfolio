@@ -9,16 +9,20 @@ export async function POST(req: Request) {
   try {
     const { message } = await req.json();
 
-    // 1. Read your local data
-    const filePath = path.join(process.cwd(), "/src/lib/data.txt");
+    // Read your local data
+    const filePath = path.join(process.cwd(), "/src/lib/data.md");
+    if (!fs.existsSync(filePath)) {
+      console.error("❌ File not found at:", filePath);
+      return new Response(JSON.stringify({ error: "Data file missing" }), {
+        status: 404,
+      });
+    }
     const fileContent = fs.readFileSync(filePath, "utf8");
 
-    // 2. Simple Retrieval (Context matching)
-    // For a basic version, we pass the relevant text sections.
-    // If the file is small (< 4000 words), you can pass the whole thing as context.
+    // Simple Retrieval (Context matching)
     const context = fileContent;
 
-    // 3. Call Groq with System Prompting
+    // Call Groq with System Prompting
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {
@@ -30,7 +34,7 @@ export async function POST(req: Request) {
           content: message,
         },
       ],
-      model: "llama-3.3-70b-versatile", // Or your preferred Groq model
+      model: "llama-3.3-70b-versatile",
     });
 
     const response =
