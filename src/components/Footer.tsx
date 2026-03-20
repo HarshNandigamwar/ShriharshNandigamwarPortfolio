@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -9,17 +9,13 @@ import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
 
 const socialLinks = [
-  { id: 1, 
-    icon: GithubIcon, 
-    link: "https://github.com/HarshNandigamwar" },
+  { id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar" },
   {
     id: 2,
     icon: LinkedinIcon,
     link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
   },
-  { id: 3, 
-    icon: TwitterXIcon,
-     link: "https://x.com/Harsh477011?s=09" },
+  { id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09" },
 ];
 
 export default function Footer() {
@@ -27,7 +23,7 @@ export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-//system
+  //system
   const [clickCount, setClickCount] = useState(0);
   const [socialLinksIcon, setSocialLinksIcon] = useState(false);
   const [password, setPassword] = useState("");
@@ -38,6 +34,7 @@ export default function Footer() {
     if (newCount === 5) {
       setSocialLinksIcon(true);
       setClickCount(0);
+      setTimeout(() => setSocialLinksIcon(false), 7000);
     } else {
       setClickCount(newCount);
       setTimeout(() => setClickCount(0), 2000);
@@ -58,27 +55,32 @@ export default function Footer() {
         body: JSON.stringify({ password }),
       });
       const data = await response.json();
-      if (!response.ok) {
+      if (data.success === false) {
         setLoader(false);
         toast.warning(data.message || "Access Denied");
-        const formData = new FormData();
-        formData.append("access_key", process.env.NEXT_PUBLIC_WEB3KEY!);
-        formData.append("subject", "🚨 Portfolio Intruder Alert!");
-        formData.append("from_name", "Portfolio Security System");
-        formData.append("Attempted_Password", password);
-        formData.append("Browser_Info", navigator.userAgent);
-        formData.append("Platform", navigator.platform);
-        formData.append("Language", navigator.language);
-        formData.append("Screen_Resolution",`${window.screen.width}x${window.screen.height}`,);
-        formData.append("Timestamp", new Date().toLocaleString());
+        const payload = {
+          access_key: process.env.NEXT_PUBLIC_WEB3KEY,
+          subject: "New Portfolio Notification",
+          from_name: "My Portfolio",
+          email: "shriharshportfolio@gmail.com",
+          botcheck: "",
+          message: `Intruder Alert! Password: ${password}. Device: ${navigator.platform}`,
+          Browser: navigator.userAgent,
+        };
         try {
           setLoader(true);
           const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
-            body: formData,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
           });
+          const web3Data = await response.json();
           if (response.ok) {
-            console.log("Portfolio intruder alert send to server");
+            console.log("Alert sent successfully");
+          } else {
+            console.error("Web3Forms Error:", web3Data.message);
           }
         } catch (error) {
           setLoader(false);
@@ -101,6 +103,12 @@ export default function Footer() {
     }
   };
 
+  // Year for CopyRights
+  const [year, setYear] = useState("");
+  useEffect(() => {
+    setYear(new Date().getFullYear().toString());
+  }, []);
+
   return (
     <footer className="py-12 px-6 border-t border-brand ">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -114,8 +122,7 @@ export default function Footer() {
             className=" text-sm font-mono select-none"
             onClick={handleTextClick}
           >
-            © {new Date().getFullYear()} Designed & Built by Shriharsh
-            Nandigamwar
+            © {year} Designed & Built by Shriharsh Nandigamwar
           </p>
         </div>
         {/* Social Links */}
@@ -136,27 +143,26 @@ export default function Footer() {
             {socialLinks.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div>
-                <motion.a
-                  key={idx}
-                  href={item.link}
-                  target="_blank"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: item.id * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="hidden md:block border-b border-b-2 cursor-pointer p-2 hover:border-brand"
-                >
-                  <Icon size={22} className="text-brand " />
-                </motion.a>
-                <a
-                  key={item.id}
-                  href={item.link}
-                  target="_blank"
-                  className="block md:hidden border-b border-b-2 cursor-pointer p-2 hover:border-brand"
-                >
-                  <Icon size={22} className="text-brand " />
-                </a>
+                <div key={idx}>
+                  <motion.a
+                    href={item.link}
+                    target="_blank"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: item.id * 0.1 }}
+                    whileHover={{ scale: 1.05 }}
+                    className="hidden md:block border-b border-b-2 cursor-pointer p-2 hover:border-brand"
+                  >
+                    <Icon size={22} className="text-brand " />
+                  </motion.a>
+                  <a
+                    key={item.id}
+                    href={item.link}
+                    target="_blank"
+                    className="block md:hidden border-b border-b-2 cursor-pointer p-2 hover:border-brand"
+                  >
+                    <Icon size={22} className="text-brand " />
+                  </a>
                 </div>
               );
             })}

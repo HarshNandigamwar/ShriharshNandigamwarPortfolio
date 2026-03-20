@@ -83,13 +83,13 @@ export default function ChatBot() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="mb-4 w-[350px] md:w-[390px] h-[600px] md:h-[500px] bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl transition-all flex flex-col overflow-hidden"
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            className="mb-4 w-[350px] md:w-[390px] h-[600px] md:h-[500px] bg-zinc-800 md:bg-zinc-800/80 border border-brand/30 rounded-2xl transition-all flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="p-4 bg-zinc-800/50 border-b border-brand/50 flex justify-between items-center">
+            <div className="p-4 bg-zinc-800/80 border-b border-brand/30 flex justify-between items-center">
               <div className="flex items-center gap-3">
                 {/* Logo */}
                 <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -137,7 +137,7 @@ export default function ChatBot() {
                     </div>
                     {/* Messages */}
                     <div
-                      className={` p-3 rounded-2xl text-[13px] leading-relaxed bg-brand/20 border border-brand/30 text-white ${
+                      className={` p-3 rounded-2xl text-[13px] leading-relaxed bg-brand/35 border border-brand/30 text-white ${
                         msg.role === "user"
                           ? "rounded-tr-none"
                           : "rounded-tl-none "
@@ -158,7 +158,7 @@ export default function ChatBot() {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-zinc-800/50 border-t border-brand/50">
+            <div className="p-4 bg-zinc-800/80 border-t border-brand/50">
               <div className="relative flex items-center">
                 <AnimatePresence mode="wait">
                   {showPlaceholder && (
@@ -168,7 +168,7 @@ export default function ChatBot() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute top-2 left-4 pointer-events-none text-gray-500"
+                      className="absolute top-2 left-4 pointer-events-none text-white/50"
                     >
                       {PlaceholderMessages[index]}
                     </motion.div>
@@ -180,7 +180,7 @@ export default function ChatBot() {
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
                   onFocus={() => setIsFocused(true)}
                   onBlur={() => setIsFocused(false)}
-                  className="w-full bg-brand/10 border border-brand/30 text-sm rounded-xl pl-4 pr-12 py-3 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none block"
+                  className="w-full bg-brand/20 border border-brand/30 text-sm rounded-xl pl-4 pr-12 py-3 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none block"
                 />
                 <button
                   onClick={handleSend}
