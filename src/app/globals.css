@@ -1,79 +1,79 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #22c55e;
-  --color-brand-dark: #166534;
+    --color-brand: #22c55e;
+    --color-brand-dark: #166534;
 }
 
 :root {
-  --background: #050505;
-  --foreground: #ededed;
+    --background: #050505;
+    --foreground: #ededed;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
 }
 html,
 body {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* globals.css */
 html.lenis,
 html.lenis body {
-  height: auto;
+    height: auto;
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+    scroll-behavior: auto !important;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+    overscroll-behavior: contain;
 }
 
 .lenis.lenis-stopped {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .lenis.lenis-scrolling iframe {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 @media (min-width: 769px) {
-  body {
-    cursor: none;
-  }
-  a,
-  button,
-  .cursor-pointer {
-    cursor: none;
-  }
+    body {
+        cursor: none;
+    }
+    a,
+    button,
+    .cursor-pointer {
+        cursor: none;
+    }
 }
 
 /* For Webkit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-  width: 6px; /* very thin */
-  height: 6px; /* horizontal scrollbar if any */
+    width: 6px; /* very thin */
+    height: 6px; /* horizontal scrollbar if any */
 }
 ::-webkit-scrollbar-track {
-  background: transparent; /* hide the track */
+    background: transparent; /* hide the track */
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1); /* almost invisible */
-  border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1); /* almost invisible */
+    border-radius: 10px;
 }
 /* Optional: hover effect */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
 }
 /* For Firefox */
 * {
-  scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
 }

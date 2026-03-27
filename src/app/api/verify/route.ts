@@ -1,14 +1,11 @@
-import { NextResponse } from "next/server";
+import {NextResponse} from "next/server";
 
 export async function POST(request: Request) {
-  const { password } = await request.json();
+    const {password} = await request.json();
 
-  if (password === process.env.ADMIN_KEY) {
-    return NextResponse.json({ success: true }, { status: 200 });
-  }
+    if (password === process.env.ADMIN_KEY) {
+        return NextResponse.json({success: true}, {status: 200});
+    }
 
-  return NextResponse.json(
-    { success: false, message: "Unauthorized access denied." },
-    { status: 401 },
-  );
+    return NextResponse.json({success: false, message: "Unauthorized access denied."}, {status: 401});
 }

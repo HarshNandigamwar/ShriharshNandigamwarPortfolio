@@ -1,125 +1,102 @@
 "use client";
-import { GitHubCalendar } from "react-github-calendar";
-import { motion } from "framer-motion";
-import { Github, Loader2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import {GitHubCalendar} from "react-github-calendar";
+import {motion} from "framer-motion";
+import {Github, Loader2} from "lucide-react";
+import {useState, useEffect} from "react";
 
 export default function GitHubStatsPage() {
-  const greenTheme = {
-    light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
-    dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
-  };
-  const gitCard = [
-    {
-      title: "Consistency",
-      description: "Daily Updates",
-    },
-    {
-      title: "Commitment",
-      description: "Real-time Sync",
-    },
-    {
-      title: "Transparency",
-      description: "Public Repos",
-    },
-  ];
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    const greenTheme = {
+        light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
+        dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+    };
+    const gitCard = [
+        {
+            title: "Consistency",
+            description: "Daily Updates",
+        },
+        {
+            title: "Commitment",
+            description: "Real-time Sync",
+        },
+        {
+            title: "Transparency",
+            description: "Public Repos",
+        },
+    ];
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
-  return (
-    <section className="py-24 mx-auto">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        className="text-5xl font-bold flex items-center gap-4 mb-14"
-      >
-        <span className="text-4xl font-bold text-brand">GitHub</span>
-        <div className="h-[1px] bg-brand/20 flex-grow" />
-      </motion.h2>
-      <div className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl p-4 md:p-12 relative overflow-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
-          <div>
-            <h2 className="text-3xl font-bold flex items-center gap-3 justify-center md:justify-start ">
-              <Github className="hidden md:block text-brand" size={32} />
-              GitHub Activity
-            </h2>
-            <p className="text-center md:text-start mt-2">
-              My daily contributions and coding consistency on GitHub.
-            </p>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-            className="flex items-center justify-center md:justify-end w-full"
-          >
-            <a
-              href="https://github.com/HarshNandigamwar"
-              target="_blank"
-              className="px-6 py-2 bg-brand/10 border border-brand/20 text-brand rounded-full text-sm font-bold hover:bg-brand hover:text-black transition-all"
-            >
-              Visit Profile
-            </a>
-          </motion.div>
-        </div>
+    return (
+        <section className="py-24 mx-auto">
+            <motion.h2 initial={{opacity: 0, y: 20}} whileInView={{opacity: 1, y: 0}} className="text-5xl font-bold flex items-center gap-4 mb-14">
+                <span className="text-4xl font-bold text-brand">GitHub</span>
+                <div className="h-[1px] bg-brand/20 flex-grow" />
+            </motion.h2>
+            <div className="bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 rounded-2xl p-4 md:p-12 relative overflow-hidden">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+                    <div>
+                        <h2 className="text-3xl font-bold flex items-center gap-3 justify-center md:justify-start ">
+                            <Github className="hidden md:block text-brand" size={32} />
+                            GitHub Activity
+                        </h2>
+                        <p className="text-center md:text-start mt-2">My daily contributions and coding consistency on GitHub.</p>
+                    </div>
+                    <motion.div
+                        initial={{opacity: 0, y: 20}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 0.3, delay: 0.1}}
+                        className="flex items-center justify-center md:justify-end w-full"
+                    >
+                        <a
+                            href="https://github.com/HarshNandigamwar"
+                            target="_blank"
+                            className="px-6 py-2 bg-brand/10 border border-brand/20 text-brand rounded-full text-sm font-bold hover:bg-brand hover:text-black transition-all"
+                        >
+                            Visit Profile
+                        </a>
+                    </motion.div>
+                </div>
 
-        {/* GitHub Chart */}
-        <div className="flex justify-center overflow-x-auto p-4 bg-black/5 rounded-xl border border-brand/30">
-          {isLoading ? (
-            <div className="flex flex-col items-center gap-4 w-full animate-pulse">
-              <Loader2 className="animate-spin text-brand" size={32} />
-              <div className="flex gap-1 w-full justify-center">
-                {/* Fake blocks representing the calendar */}
-                {[...Array(25)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-3 w-3 bg-white/10 rounded-sm block"
-                  />
-                ))}
-              </div>
-              <p className="text-xs text-brand/50">
-                Fetching contribution data...
-              </p>
+                {/* GitHub Chart */}
+                <div className="flex justify-center overflow-x-auto p-4 bg-black/5 rounded-xl border border-brand/30">
+                    {isLoading ? (
+                        <div className="flex flex-col items-center gap-4 w-full animate-pulse">
+                            <Loader2 className="animate-spin text-brand" size={32} />
+                            <div className="flex gap-1 w-full justify-center">
+                                {/* Fake blocks representing the calendar */}
+                                {[...Array(25)].map((_, i) => (
+                                    <div key={i} className="h-3 w-3 bg-white/10 rounded-sm block" />
+                                ))}
+                            </div>
+                            <p className="text-xs text-brand/50">Fetching contribution data...</p>
+                        </div>
+                    ) : (
+                        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className="w-full flex justify-center">
+                            <GitHubCalendar username="HarshNandigamwar" blockSize={12} blockMargin={4} theme={greenTheme} fontSize={14} />
+                        </motion.div>
+                    )}
+                </div>
+
+                {/* Git Cards */}
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                    {gitCard.map((data, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{opacity: 0, y: 20}}
+                            whileInView={{opacity: 1, y: 0}}
+                            transition={{duration: 0.3, delay: idx * 0.1}}
+                            whileHover={{scale: 1.05}}
+                            className="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30"
+                        >
+                            <p className="text-brand font-bold text-xl uppercase">{data.title}</p>
+                            <p className="text-xs text-white/40">{data.description}</p>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="w-full flex justify-center"
-            >
-              <GitHubCalendar
-                username="HarshNandigamwar"
-                blockSize={12}
-                blockMargin={4}
-                theme={greenTheme}
-                fontSize={14}
-              />
-            </motion.div>
-          )}
-        </div>
-
-        {/* Git Cards */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-          {gitCard.map((data, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: idx * 0.1 }}
-              whileHover={{ scale: 1.05 }}
-              className="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30"
-            >
-              <p className="text-brand font-bold text-xl uppercase">
-                {data.title}
-              </p>
-              <p className="text-xs text-white/40">{data.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
