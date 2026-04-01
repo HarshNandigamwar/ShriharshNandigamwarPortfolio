@@ -37,16 +37,10 @@ export default function ExperiencePage() {
                         <div>
                             <div className="flex flex-wrap justify-between items-start gap-4 mb-2">
                                 <h3 className="text-2xl font-bold text-white">Web Development Intern</h3>
-                                <motion.span
-                                    initial={{opacity: 0, y: 20}}
-                                    whileInView={{opacity: 1, y: 0}}
-                                    transition={{duration: 0.3, delay: 0.1}}
-                                    whileHover={{scale: 1.05}}
-                                    className="flex items-center gap-2 text-brand font-mono text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm px-3 py-1 rounded-full"
-                                >
+                                <span className="flex items-center gap-2 text-brand font-mono text-sm bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm px-3 py-1 rounded-full">
                                     <Calendar size={14} />
                                     Feb 2025 – Mar 2025
-                                </motion.span>
+                                </span>
                             </div>
                             <p className="text-xl text-brand/90 font-medium">SkillCraft Technology</p>
                         </div>

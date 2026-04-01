@@ -7,6 +7,14 @@ import Image from "next/image";
 
 const certifications = [
     {
+        name: "Web Development Fundamentals",
+        issuer: "IBM SkillsBuild",
+        date: "2023",
+        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029055/IBM_yyzqdd.png",
+        description: "Core web technologies and fundamental development principles.",
+        category: "Development",
+    },
+    {
         name: "Accenture Developer Program",
         issuer: "Accenture",
         date: "2024",
@@ -21,14 +29,6 @@ const certifications = [
         image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029051/AWS_yu4vat.png",
         description: "Focusing on scalable hosting architectures and cloud infrastructure.",
         category: "Cloud Computing",
-    },
-    {
-        name: "Web Development Fundamentals",
-        issuer: "IBM SkillsBuild",
-        date: "2023",
-        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029055/IBM_yyzqdd.png",
-        description: "Core web technologies and fundamental development principles.",
-        category: "Development",
     },
     {
         name: "Hackhazards '25",
