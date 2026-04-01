@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import {ReactLenis} from "lenis/react";
 
 export default function SmoothScroll({children}: {children: React.ReactNode}) {

@@ -172,7 +172,7 @@ export default function ContactPage() {
                                         onChange={(e) => setVal(e.target.value)}
                                         onFocus={() => setIsFocused(true)}
                                         onBlur={() => setIsFocused(false)}
-                                        title="Enter Message 💬"
+                                        title="Enter Message"
                                         className="w-full bg-brand/10 border border-brand/30 rounded-xl p-4 focus:border-brand/50 focus:ring-1 focus:ring-brand/50 outline-none transition-all resize-none block"
                                     />
                                 </div>

@@ -6,8 +6,13 @@ import GithubIcon from "@/components/github-icon";
 import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
 import DownloadIcon from "@/components/download-icon";
+import {printConsoleSignature} from "@/Utils/printConsoleSignature";
+import {useEffect} from "react";
 
 const HomePage = () => {
+    useEffect(() => {
+        printConsoleSignature();
+    }, []);
     const social = [
         {
             id: 1,
