@@ -17,7 +17,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "backdrop-blur-[2px] md:backdrop-blur-md py-3 shadow-lg" : "bg-transparent py-6"}`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 backdrop-blur-[5px] bg-black md:bg-transparent ${scrolled ? "py-3 shadow-lg" : " py-6"}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <motion.div

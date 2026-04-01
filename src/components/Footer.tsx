@@ -3,26 +3,21 @@ import {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {motion} from "framer-motion";
-import {ArrowUp, Terminal} from "lucide-react";
+import {Terminal} from "lucide-react";
 import GithubIcon from "@/components/github-icon";
 import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
 
-const socialLinks = [
-    {id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar"},
-    {
-        id: 2,
-        icon: LinkedinIcon,
-        link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    },
-    {id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09"},
-];
-
 export default function Footer() {
-    // Scroll on top
-    const scrollToTop = () => {
-        window.scrollTo({top: 0, behavior: "smooth"});
-    };
+    const socialLinks = [
+        {id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar"},
+        {
+            id: 2,
+            icon: LinkedinIcon,
+            link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+        },
+        {id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09"},
+    ];
     //system
     const [clickCount, setClickCount] = useState(0);
     const [socialLinksIcon, setSocialLinksIcon] = useState(false);
@@ -160,23 +155,6 @@ export default function Footer() {
                         })}
                     </div>
                 )}
-                {/* Back to Top Button */}
-                <button onClick={scrollToTop} className="hidden md:flex group items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer">
-                    Back to top
-                    <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
-                        <motion.div animate={{y: [0, -3, 0]}} transition={{repeat: Infinity, duration: 2, ease: "easeInOut"}}>
-                            <ArrowUp size={16} />
-                        </motion.div>
-                    </div>
-                </button>
-                <button onClick={scrollToTop} className="flex md:hidden group items-center gap-2 hover:text-brand transition-colors text-sm font-mono cursor-pointer">
-                    Back to top
-                    <div className="p-2 rounded-full hover:bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 group-hover:border-brand/50 transition-all">
-                        <div>
-                            <ArrowUp size={16} />
-                        </div>
-                    </div>
-                </button>
             </div>
         </footer>
     );
