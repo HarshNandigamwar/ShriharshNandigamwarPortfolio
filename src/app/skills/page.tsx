@@ -86,7 +86,7 @@ export default function SkillsPage() {
                                         transition={{duration: 0.3, delay: idx * 0.1}}
                                         whileHover={{scale: 1.05}}
                                         title={skill}
-                                        className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full group-hover:text-brand group-hover:border-brand/30 transition-colors cursor-default"
+                                        className="px-3 py-1 text-xs font-mono bg-brand/30 border border-white/5 rounded-full hover:text-brand group-hover:border-brand/30 transition-colors"
                                     >
                                         {skill}
                                     </motion.span>

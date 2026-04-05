@@ -80,23 +80,25 @@ export default function ExperiencePage() {
                             initial={{opacity: 0, y: 20}}
                             whileInView={{opacity: 1, y: 0}}
                             transition={{duration: 0.3, delay: 0.1}}
-                            className="max-w-2xl mt-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 flex flex-col md:flex-row items-center gap-8 group"
+                            className="max-w-xl mt-6 p-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-brand/30 flex flex-col md:flex-row items-center gap-8"
                         >
                             {/* Certificate Image Preview */}
-                            <div className="relative w-full md:w-48 h-32 rounded-lg overflow-hidden border border-white/10">
-                                <Image
-                                    src="https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029277/certificate_u1uqqd.png"
-                                    alt="Shriharsh Nandigamwar"
-                                    width={500}
-                                    height={500}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <a
-                                    href="https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029277/certificate_u1uqqd.png"
-                                    className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                >
-                                    <ExternalLinkIcon className="text-blue-500" size={24} />
-                                </a>
+                            <div className="w-full md:w-48 h-32 rounded-lg overflow-hidden border border-white/10">
+                                <div className="relative group">
+                                    <Image
+                                        src="https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029277/certificate_u1uqqd.png"
+                                        alt="Shriharsh Nandigamwar"
+                                        width={500}
+                                        height={500}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    />
+                                    <a
+                                        href="https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029277/certificate_u1uqqd.png"
+                                        className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <ExternalLinkIcon className="text-blue-500" size={24} />
+                                    </a>
+                                </div>
                             </div>
 
                             {/* Certificate Details */}

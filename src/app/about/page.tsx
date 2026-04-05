@@ -4,7 +4,7 @@ import {GraduationCap} from "lucide-react";
 import CodeIcon from "@/components/code-icon";
 import RosetteDiscountCheckIcon from "@/components/rosette-discount-check-icon";
 import Image from "next/image";
-
+ 
 const stats = [
     {
         label: "Experience",

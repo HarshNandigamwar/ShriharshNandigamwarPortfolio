@@ -72,14 +72,7 @@ export default function ProjectsPage() {
                         >
                             {/* Image Container */}
                             <div className="relative h-64 w-full overflow-hidden">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    width={500}
-                                    height={500}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                                />
+                                <Image src={project.image} alt={project.title} loading="lazy" width={500} height={500} className="w-full h-full object-cover " />
                             </div>
                             {/* Content */}
                             <div className="p-4 md:p-8">
