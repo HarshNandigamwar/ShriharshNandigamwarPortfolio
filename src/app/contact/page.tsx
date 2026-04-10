@@ -6,6 +6,7 @@ import {toast} from "sonner";
 import GithubIcon from "@/components/github-icon";
 import LinkedinIcon from "@/components/linkedin-icon";
 import TwitterXIcon from "@/components/twitter-x-icon";
+import ThinkingDots from "@/components/ThinkingDots";
 
 export default function ContactPage() {
     const social = [
@@ -141,10 +142,10 @@ export default function ContactPage() {
                     >
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="grid md:grid-cols-2 gap-5">
-                                <InputGroup label="Name" name="name" type="text" placeholder="Enter name" title="Enter name" />
-                                <InputGroup label="Email" name="email" type="email" placeholder="Enter email" title="Enter email 📧 " />
+                                <InputGroup label="Name" name="name" type="text" placeholder="Enter name" title="Enter name" v={isSubmitting} />
+                                <InputGroup label="Email" name="email" type="email" placeholder="Enter email" title="Enter email 📧 " v={isSubmitting} />
                             </div>
-                            <InputGroup label="Subject" name="subject" type="text" placeholder="Enter subject" title="Enter subject " />
+                            <InputGroup label="Subject" name="subject" type="text" placeholder="Enter subject" title="Enter subject " v={isSubmitting} />
 
                             <div className="flex flex-col gap-2">
                                 <label className="text-xs font-mono uppercase text-brand tracking-widest ml-1">Message</label>
@@ -167,6 +168,7 @@ export default function ContactPage() {
                                     <textarea
                                         name="message"
                                         required
+                                        disabled={isSubmitting}
                                         rows={5}
                                         value={val}
                                         onChange={(e) => setVal(e.target.value)}
@@ -181,10 +183,10 @@ export default function ContactPage() {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-4 bg-brand text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                                className={`w-full py-4 text-black font-bold rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer ${isSubmitting ? "" : "bg-brand"} `}
                             >
                                 {isSubmitting ? (
-                                    "Sending..."
+                                    <ThinkingDots />
                                 ) : (
                                     <>
                                         Send Message <Send size={18} />
@@ -201,12 +203,13 @@ export default function ContactPage() {
 
 /* Helper Components */
 // Input : Name, Email, Subject.
-function InputGroup({label, name, type, placeholder, title}: any) {
+function InputGroup({label, name, type, placeholder, title, v}: any) {
     return (
         <div className="flex flex-col gap-2">
             <label className="text-xs font-mono uppercase text-brand tracking-widest ml-1">{label}</label>
             <input
                 required
+                disabled={v}
                 type={type}
                 name={name}
                 placeholder={placeholder}
