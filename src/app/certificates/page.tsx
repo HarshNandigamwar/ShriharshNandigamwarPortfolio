@@ -42,7 +42,7 @@ export default function CertificationsPage() {
         },
     ];
 
-    const techStack = ["HTML", "CSS", "Tailwind", "JavaScript", "React.js", "Redux", "Node.js", "Express", "MongoDB", "Mongoose", "Next.js", "Deployment (Vercel)"];
+    const techStack = ["HTML", "CSS", "Tailwind", "JavaScript", "Git", "Github", "React.js", "Redux", "Node.js", "Express", "MongoDB", "Mongoose", "Next.js", "Deployment (Vercel)"];
 
     const highlights = [
         {
