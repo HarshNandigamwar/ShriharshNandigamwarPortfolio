@@ -1,8 +1,9 @@
 "use client";
 import {GitHubCalendar} from "react-github-calendar";
 import {motion} from "framer-motion";
-import {Github, Loader2} from "lucide-react";
+import {Github} from "lucide-react";
 import {useState, useEffect} from "react";
+import ThinkingDots from "@/components/ThinkingDots";
 
 export default function GitHubStatsPage() {
     const greenTheme = {
@@ -25,7 +26,7 @@ export default function GitHubStatsPage() {
     ];
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 1500);
+        const timer = setTimeout(() => setIsLoading(false), 2500);
         return () => clearTimeout(timer);
     }, []);
 
@@ -63,12 +64,12 @@ export default function GitHubStatsPage() {
                 {/* GitHub Chart */}
                 <div className="flex justify-center overflow-x-auto p-4 bg-black/5 rounded-xl border border-brand/30">
                     {isLoading ? (
-                        <div className="flex flex-col items-center gap-4 w-full animate-pulse">
-                            <Loader2 className="animate-spin text-brand" size={32} />
-                            <div className="flex gap-1 w-full justify-center">
-                                {/* Fake blocks representing the calendar */}
-                                {[...Array(25)].map((_, i) => (
-                                    <div key={i} className="h-3 w-3 bg-white/10 rounded-sm block" />
+                        <div className="flex flex-col items-center gap-4 w-full">
+                            <div className="flex gap-1 w-full justify-center animate-pulse">
+                                {[...Array(5)].map((_, i) => (
+                                    <span key={i}>
+                                        <ThinkingDots />
+                                    </span>
                                 ))}
                             </div>
                             <p className="text-xs text-brand/50">Fetching contribution data...</p>
