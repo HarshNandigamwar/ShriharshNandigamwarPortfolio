@@ -2,7 +2,7 @@
 
 import {motion, useMotionValue, useSpring} from "framer-motion";
 import React, {useRef} from "react";
-import DownloadIcon from "./download-icon";
+import DownloadIcon from "./icons/downloadIcon";
 
 export default function ResumeButton() {
     const ref = useRef<HTMLDivElement>(null);

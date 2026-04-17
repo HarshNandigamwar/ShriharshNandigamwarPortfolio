@@ -1,10 +1,10 @@
 "use client";
 import {motion} from "framer-motion";
 import {GraduationCap} from "lucide-react";
-import CodeIcon from "@/components/code-icon";
-import RosetteDiscountCheckIcon from "@/components/rosette-discount-check-icon";
+import CodeIcon from "@/components/icons/codeIcon";
+import RosetteDiscountCheckIcon from "@/components/icons/discountIcon";
 import Image from "next/image";
- 
+
 const stats = [
     {
         label: "Experience",
@@ -66,7 +66,7 @@ export default function AboutPage() {
                                         whileHover={{scale: 1.05}}
                                         whileTap={{scale: 0.95}}
                                         key={idx}
-                                        title={`Click to explore ${stat.label}`} 
+                                        title={`Click to explore ${stat.label}`}
                                         className="p-2 md:p-4 rounded-xl bg-gradient-to-br from-emerald-500/20 to-transparent backdrop-blur-sm border border-white/10 text-center hover:border-brand/50 transition-colors cursor-pointer "
                                     >
                                         <Icon className="text-brand mx-auto mb-2" size={20} />

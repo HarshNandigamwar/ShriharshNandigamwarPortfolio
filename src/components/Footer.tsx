@@ -4,9 +4,9 @@ import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {motion} from "framer-motion";
 import {Terminal} from "lucide-react";
-import GithubIcon from "@/components/github-icon";
-import LinkedinIcon from "@/components/linkedin-icon";
-import TwitterXIcon from "@/components/twitter-x-icon";
+import GithubIcon from "@/components/icons/githubIcon";
+import LinkedinIcon from "@/components/icons/linkIcon";
+import TwitterXIcon from "@/components/icons/twitterIcon";
 
 export default function Footer() {
     const socialLinks = [

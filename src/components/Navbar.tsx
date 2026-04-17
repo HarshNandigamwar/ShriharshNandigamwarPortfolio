@@ -1,8 +1,8 @@
 "use client";
 import {useState, useEffect} from "react";
 import {motion} from "framer-motion";
-import DownloadIcon from "./download-icon";
-import TerminalIcon from "./terminal-icon";
+import DownloadIcon from "./icons/downloadIcon";
+import TerminalIcon from "./icons/terminalIcon";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);

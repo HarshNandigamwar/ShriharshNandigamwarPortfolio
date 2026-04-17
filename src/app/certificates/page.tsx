@@ -1,8 +1,8 @@
 "use client";
 import {motion} from "framer-motion";
 import {Award, Calendar, CheckCircle2, Rocket, Globe} from "lucide-react";
-import ShieldCheck from "@/components/shield-check";
-import ExternalLinkIcon from "@/components/external-link-icon";
+import ShieldCheck from "@/components/icons/shieldIcon";
+import ExternalLinkIcon from "@/components/icons/linkIcon";
 import Image from "next/image";
 import Link from "next/link";
 

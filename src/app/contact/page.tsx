@@ -3,9 +3,9 @@ import {useState, useEffect} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {Send, Mail, MapPin} from "lucide-react";
 import {toast} from "sonner";
-import GithubIcon from "@/components/github-icon";
-import LinkedinIcon from "@/components/linkedin-icon";
-import TwitterXIcon from "@/components/twitter-x-icon";
+import GithubIcon from "@/components/icons/githubIcon";
+import LinkedinIcon from "@/components/icons/linkIcon";
+import TwitterXIcon from "@/components/icons/twitterIcon";
 import ThinkingDots from "@/components/ThinkingDots";
 
 export default function ContactPage() {

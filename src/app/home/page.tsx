@@ -2,10 +2,10 @@
 import {motion} from "framer-motion";
 import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
-import GithubIcon from "@/components/github-icon";
-import LinkedinIcon from "@/components/linkedin-icon";
-import TwitterXIcon from "@/components/twitter-x-icon";
-import DownloadIcon from "@/components/download-icon";
+import GithubIcon from "@/components/icons/githubIcon";
+import LinkedinIcon from "@/components/icons/linkIcon";
+import TwitterXIcon from "@/components/icons/twitterIcon";
+import DownloadIcon from "@/components/icons/downloadIcon";
 import {printConsoleSignature} from "@/Utils/printConsoleSignature";
 import {useEffect} from "react";
 

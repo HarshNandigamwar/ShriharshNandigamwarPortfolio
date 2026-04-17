@@ -1,8 +1,8 @@
 "use client";
 import {motion} from "framer-motion";
 import {Code2} from "lucide-react";
-import ExternalLinkIcon from "@/components/external-link-icon";
-import GithubIcon from "@/components/github-icon";
+import ExternalLinkIcon from "@/components/icons/linkIcon";
+import GithubIcon from "@/components/icons/githubIcon";
 import Image from "next/image";
 
 const projects = [

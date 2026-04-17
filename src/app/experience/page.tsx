@@ -1,9 +1,9 @@
 "use client";
 import {motion} from "framer-motion";
 import {Calendar} from "lucide-react";
-import ShieldCheck from "@/components/shield-check";
-import DownloadIcon from "@/components/download-icon";
-import ExternalLinkIcon from "@/components/external-link-icon";
+import ShieldCheck from "@/components/icons/shieldIcon";
+import DownloadIcon from "@/components/icons/downloadIcon";
+import ExternalLinkIcon from "@/components/icons/linkIcon";
 import Image from "next/image";
 export default function ExperiencePage() {
     const Experience = [

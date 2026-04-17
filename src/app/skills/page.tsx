@@ -1,9 +1,9 @@
 "use client";
 import {motion} from "framer-motion";
 import {Wrench, Cpu, Globe, Zap} from "lucide-react";
-import TerminalIcon from "@/components/terminal-icon";
-import StackIcon from "@/components/stack-icon";
-import Cloud3Icon from "@/components/cloud-3-icon";
+import TerminalIcon from "@/components/icons/terminalIcon";
+import StackIcon from "@/components/icons/stackIcon";
+import Cloud3Icon from "@/components/icons/cloudeIcon";
 
 const skillCategories = [
     {
