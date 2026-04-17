@@ -3,9 +3,9 @@ import {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
 import {motion} from "framer-motion";
-import {Terminal} from "lucide-react";
+import Terminal from "@/components/icons/terminalIcon";
 import GithubIcon from "@/components/icons/githubIcon";
-import LinkedinIcon from "@/components/icons/linkIcon";
+import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 
 export default function Footer() {

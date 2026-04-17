@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import Image from "next/image";
 import ResumeButton from "@/components/ResumeButton";
 import GithubIcon from "@/components/icons/githubIcon";
-import LinkedinIcon from "@/components/icons/linkIcon";
+import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 import DownloadIcon from "@/components/icons/downloadIcon";
 import {printConsoleSignature} from "@/Utils/printConsoleSignature";

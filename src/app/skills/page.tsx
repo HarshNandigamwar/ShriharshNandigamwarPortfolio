@@ -4,7 +4,7 @@ import {Wrench, Cpu, Globe, Zap} from "lucide-react";
 import TerminalIcon from "@/components/icons/terminalIcon";
 import StackIcon from "@/components/icons/stackIcon";
 import Cloud3Icon from "@/components/icons/cloudeIcon";
-
+ 
 const skillCategories = [
     {
         title: "Frontend Development",

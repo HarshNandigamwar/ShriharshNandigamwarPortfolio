@@ -4,7 +4,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import {Send, Mail, MapPin} from "lucide-react";
 import {toast} from "sonner";
 import GithubIcon from "@/components/icons/githubIcon";
-import LinkedinIcon from "@/components/icons/linkIcon";
+import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 import ThinkingDots from "@/components/ThinkingDots";
 
