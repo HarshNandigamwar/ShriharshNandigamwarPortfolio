@@ -1,4 +1,3 @@
-// "use client";
 import {ReactLenis} from "lenis/react";
 
 export default function SmoothScroll({children}: {children: React.ReactNode}) {
@@ -10,7 +9,6 @@ export default function SmoothScroll({children}: {children: React.ReactNode}) {
                 orientation: "vertical",
                 gestureOrientation: "vertical",
                 smoothWheel: true,
-                // Mobile optimization:
                 touchMultiplier: 1.5,
                 wheelMultiplier: 1,
                 infinite: false,
