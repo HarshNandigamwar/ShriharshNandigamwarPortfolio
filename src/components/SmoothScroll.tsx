@@ -5,13 +5,10 @@ export default function SmoothScroll({children}: {children: React.ReactNode}) {
         <ReactLenis
             root
             options={{
-                duration: 1.2,
+                lerp: 0.1,
+                duration: 1.4,
                 orientation: "vertical",
-                gestureOrientation: "vertical",
                 smoothWheel: true,
-                touchMultiplier: 1.5,
-                wheelMultiplier: 1,
-                infinite: false,
             }}
         >
             {children}
