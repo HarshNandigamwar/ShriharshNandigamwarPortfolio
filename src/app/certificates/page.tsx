@@ -79,7 +79,7 @@ export default function CertificationsPage() {
                             <div className="relative border border-brand/30 rounded-2xl overflow-hidden shadow-2xl">
                                 <Image
                                     src="https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1775371008/Udemy_web_dev_Certificate_c63gvt.avif"
-                                    alt="Web Development Certificate"
+                                    alt="Udemy Certificate"
                                     width={800}
                                     height={600}
                                     className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-500"
