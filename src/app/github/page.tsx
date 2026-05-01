@@ -117,7 +117,7 @@ export default function GitHubStatsPage() {
                         >
                             <div>
                                 <p className="text-brand font-bold text-xl uppercase">{s.label}</p>
-                                <p className="m-1">{loading ? <ThinkingDots /> : <p>{s.value}</p>}</p>
+                                <div className="m-1">{loading ? <ThinkingDots /> : <p>{s.value}</p>}</div>
                                 <p className="text-xs text-white/40">{s.sub}</p>
                             </div>
                         </motion.div>
