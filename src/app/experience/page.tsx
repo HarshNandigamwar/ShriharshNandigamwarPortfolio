@@ -39,7 +39,7 @@ const ResponsibilityItem = ({text, index}: {text: string; index: number}) => {
             transition={{delay: 0.15 + index * 0.1, duration: 0.5}}
             onHoverStart={() => setHovered(true)}
             onHoverEnd={() => setHovered(false)}
-            className="group flex items-start gap-3 cursor-default"
+            className="group flex items-start gap-3 "
         >
             <motion.span animate={{x: hovered ? 4 : 0, color: hovered ? "#22c55e" : "rgba(34,197,94,0.6)"}} transition={{duration: 0.2}} className="text-brand/60 mt-1 text-xs select-none shrink-0">
                 ▹

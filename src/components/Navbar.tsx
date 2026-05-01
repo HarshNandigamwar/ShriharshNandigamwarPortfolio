@@ -61,7 +61,7 @@ export default function Navbar() {
                 className={`fixed top-0 w-full z-50 transition-all duration-500
           ${scrolled ? "py-3 border-b border-white/[0.06] bg-black/80 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.4)]" : "py-5 bg-transparent"}`}
             >
-                <div className="max-w-6xl mx-auto px-6 flex justify-between items-center gap-8">
+                <div className="mx-auto px-6 flex justify-between items-center gap-8">
                     {/* Logo */}
                     <motion.button onClick={scrollToTop} whileHover={{scale: 1.03}} whileTap={{scale: 0.97}} className="flex items-center gap-2.5 group cursor-pointer">
                         <div

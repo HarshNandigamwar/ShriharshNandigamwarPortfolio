@@ -236,6 +236,19 @@ const SmallCard = ({project, index}: {project: (typeof projects)[0]; index: numb
                         >
                             <GithubIcon size={17} />
                         </motion.a>
+                        {project.githubbackend && (
+                            <motion.a
+                                href={project.githubbackend}
+                                target="_blank"
+                                whileHover={{scale: 1.15, color: "#22c55e"}}
+                                className="text-white/35 hover:text-brand transition-colors cursor-pointer"
+                                title="Backend source"
+                            >
+                                <span className="flex items-center gap-1">
+                                    <GithubIcon size={17} />
+                                </span>
+                            </motion.a>
+                        )}
                         <motion.a
                             href={project.live}
                             target="_blank"
@@ -315,7 +328,7 @@ export default function ProjectsPage() {
                 </motion.div>
 
                 {/* Featured Projects */}
-                <div className="flex flex-col gap-6 mb-10 md:mb-20">
+                <div className="hidden md:flex flex-col gap-6 mb-10 md:mb-20">
                     {featured.map((project, i) => (
                         <FeaturedCard key={project.title} project={project} index={i} />
                     ))}
@@ -328,8 +341,16 @@ export default function ProjectsPage() {
                     <span className="font-mono text-[10px] text-white/20">{others.length} projects</span>
                 </motion.div>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-24">
-                    {others.map((project, i) => (
+                <div className="hidden md:block">
+                    <div className=" grid md:grid-cols-3 gap-6 mb-24">
+                        {others.map((project, i) => (
+                            <SmallCard key={project.title} project={project} index={i} />
+                        ))}
+                    </div>
+                </div>
+
+                <div className="block md:hidden grid md:grid-cols-3 gap-6 mb-24">
+                    {projects.map((project, i) => (
                         <SmallCard key={project.title} project={project} index={i} />
                     ))}
                 </div>
