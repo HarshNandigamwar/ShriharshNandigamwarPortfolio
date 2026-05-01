@@ -4,7 +4,7 @@ import {motion} from "framer-motion";
 import {Github} from "lucide-react";
 import {useState, useEffect} from "react";
 import ThinkingDots from "@/components/ThinkingDots";
-
+ 
 interface GitHubData {
     public_repos: number;
     followers: number;

@@ -1,11 +1,11 @@
 import HomePage from "./home/page";
 import AboutPage from "./about/page";
 import ExperiencePage from "./experience/page";
+import CertificationsPage from "./certificates/page";
 import SkillsPage from "./skills/page";
 import ProjectsPage from "./projects/page";
 import GitHubStatsPage from "./github/page";
 import ContactPage from "./contact/page";
-import CertificationsPage from "./certificates/page";
 
 export default function Home() {
     return (

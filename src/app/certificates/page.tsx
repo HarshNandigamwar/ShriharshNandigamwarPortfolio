@@ -99,7 +99,7 @@ const HighlightCard = ({data, index}: {data: (typeof highlights)[0]; index: numb
             onHoverStart={() => setHovered(true)}
             onHoverEnd={() => setHovered(false)}
             className="relative p-5 rounded-2xl border border-white/10 bg-white/[0.03]
-                 backdrop-blur-sm overflow-hidden group cursor-default"
+                 backdrop-blur-sm overflow-hidden group"
         >
             <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
             <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
