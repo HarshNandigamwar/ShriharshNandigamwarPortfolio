@@ -117,15 +117,6 @@ const skills = ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "Mong
 
 /* Helpers */
 
-/* Animated section number / label */
-const SectionLabel = ({number, label}: {number: string; label: string}) => (
-    <div className="flex items-center gap-3 mb-4">
-        <span className="font-mono text-xs text-brand/60 tracking-[0.3em] uppercase">{number}</span>
-        <span className="w-6 h-px bg-brand/30" />
-        <span className="font-mono text-xs text-white/30 tracking-[0.25em] uppercase">{label}</span>
-    </div>
-);
-
 /* Scanline overlay — purely decorative */
 const Scanlines = () => (
     <div

@@ -13,8 +13,8 @@ export default function Home() {
         {/* <main className="max-w-7xl mx-auto px-3 md:px-6 py-20 overflow-x-hidden "> */}
             <HomePage />
             <AboutPage />
-            {/* <ExperiencePage /> */}
-            {/* <CertificationsPage /> */}
+            <ExperiencePage />
+            <CertificationsPage />
             {/* <SkillsPage /> */}
             {/* <ProjectsPage /> */}
             {/* <GitHubStatsPage /> */}
