@@ -1,5 +1,5 @@
 "use client";
-import {motion, useScroll, useTransform, useInView} from "framer-motion";
+import {motion, useScroll, useTransform} from "framer-motion";
 import Image from "next/image";
 import {useRef, useState} from "react";
 import ExternalLinkIcon from "@/components/icons/linkIcon";
@@ -271,7 +271,6 @@ const SmallCard = ({project, index}: {project: (typeof projects)[0]; index: numb
 /* MAIN COMPONENT */
 export default function ProjectsPage() {
     const sectionRef = useRef<HTMLElement>(null);
-    const ctaRef = useRef<HTMLDivElement>(null);
     const {scrollYProgress} = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"],
