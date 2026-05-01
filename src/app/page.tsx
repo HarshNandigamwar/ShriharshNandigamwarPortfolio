@@ -17,8 +17,8 @@ export default function Home() {
             <CertificationsPage />
             <SkillsPage />
             <ProjectsPage />
-            {/* <GitHubStatsPage /> */}
-            {/* <ContactPage /> */}
+            <GitHubStatsPage />
+            <ContactPage />
         </main>
     );
 }

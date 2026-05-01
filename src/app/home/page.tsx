@@ -154,6 +154,22 @@ const HomePage = () => {
             <GlowOrb className="w-[600px] h-[600px] bg-brand/8 -left-48 top-1/2 -translate-y-1/2" />
             <GlowOrb className="w-[400px] h-[400px] bg-emerald-300/5 right-0 top-0" />
 
+            {/* Mobile image */}
+            <motion.div initial={{opacity: 0, y: -20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.7}} className="flex md:hidden items-center justify-center relative z-10">
+                <div className="absolute w-48 h-48 rounded-full bg-brand/20 blur-[60px]" />
+                <div className="relative">
+                    <Image
+                        src="/images/Shriharsh.avif"
+                        priority
+                        alt="Shriharsh Nandigamwar"
+                        width={220}
+                        height={220}
+                        className="rounded-2xl object-cover border border-white/10"
+                        style={{height: "auto", width: "auto"}}
+                    />
+                </div>
+            </motion.div>
+
             {/* LEFT — Text content*/}
             <motion.div
                 initial={{opacity: 0, x: -40}}
@@ -199,7 +215,7 @@ const HomePage = () => {
                 </motion.p>
 
                 {/* Stats */}
-                <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.5}} className="flex gap-4 mb-10 flex-wrap justify-center md:justify-start">
+                <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.5}} className="hidden md:flex gap-4 mb-10 flex-wrap justify-center md:justify-start">
                     ​<StatChip value="∞" label="Scalability" delay={0.55} />
                     ​<StatChip value="∞" label="Optimization" delay={0.6} />
                     <StatChip value="∞" label="Curiosity" delay={0.65} />
@@ -326,22 +342,6 @@ const HomePage = () => {
                     />
                 </motion.div>
             </motion.div>
-
-            {/* Mobile image */}
-            {/* <motion.div initial={{opacity: 0, y: -20}} animate={{opacity: 1, y: 0}} transition={{duration: 0.7}} className="flex md:hidden items-center justify-center relative z-10">
-                <div className="absolute w-48 h-48 rounded-full bg-brand/20 blur-[60px]" />
-                <div className="relative">
-                    <Image
-                        src="/images/Shriharsh.avif"
-                        priority
-                        alt="Shriharsh Nandigamwar"
-                        width={220}
-                        height={220}
-                        className="rounded-2xl object-cover border border-white/10"
-                        style={{height: "auto", width: "auto"}}
-                    />
-                </div>
-            </motion.div> */}
         </section>
     );
 };
