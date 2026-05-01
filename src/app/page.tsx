@@ -10,7 +10,6 @@ import ContactPage from "./contact/page";
 export default function Home() {
     return (
         <main className="mx-auto py-20 overflow-x-hidden ">
-        {/* <main className="max-w-7xl mx-auto px-3 md:px-6 py-20 overflow-x-hidden "> */}
             <HomePage />
             <AboutPage />
             <ExperiencePage />
