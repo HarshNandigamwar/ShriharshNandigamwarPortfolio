@@ -5,96 +5,10 @@ import Image from "next/image";
 import {useRef, useState} from "react";
 import CodeIcon from "@/components/icons/codeIcon";
 import RosetteDiscountCheckIcon from "@/components/icons/discountIcon";
+import ScanLines from "@/components/UI/ScanLines";
+import SkillPill from "@/components/UI/SkillPill";
+import StatCard from "@/components/UI/StatCard";
 
-/* Data */
-const stats = [
-    {
-        label: "Experience",
-        value: "Internship",
-        icon: GraduationCap,
-        link: "#experience",
-    },
-    {
-        label: "Projects",
-        value: "4+",
-        icon: CodeIcon,
-        link: "#projects",
-    },
-    {
-        label: "Certificates",
-        value: "Won",
-        icon: RosetteDiscountCheckIcon,
-        link: "#certificates",
-    },
-];
-
-const skills = ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "MongoDB", "Express", "Tailwind", "Git", "Github"];
-
-/* Helpers */
-
-/* Scanline overlay — purely decorative */
-const Scanlines = () => (
-    <div
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.025]"
-        style={{
-            backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,1) 2px, rgba(255,255,255,1) 4px)",
-        }}
-    />
-);
-
-/* Skill pill */
-const SkillPill = ({name, index}: {name: string; index: number}) => (
-    <motion.span
-        initial={{opacity: 0, scale: 0.8}}
-        whileInView={{opacity: 1, scale: 1}}
-        viewport={{once: true}}
-        transition={{delay: 0.05 * index, type: "spring", stiffness: 260}}
-        whileHover={{scale: 1.08, backgroundColor: "rgba(34,197,94,0.15)"}}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
-               border border-white/10 bg-white/[0.04] text-white/60
-               font-mono text-xs tracking-wide transition-colors duration-200"
-    >
-        <span className="w-1.5 h-1.5 rounded-full bg-brand/60" />
-        {name}
-    </motion.span>
-);
-
-/* Stat card with hover glow */
-const StatCard = ({stat, index}: {stat: (typeof stats)[0]; index: number}) => {
-    const Icon = stat.icon;
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <motion.a
-            href={stat.link}
-            initial={{opacity: 0, y: 30}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.1 + index * 0.12, duration: 0.5, ease: "easeOut"}}
-            whileHover={{y: -4}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative group flex flex-col items-center gap-2 p-5 rounded-2xl
-                 border border-white/10 bg-white/[0.03] backdrop-blur-sm
-                 hover:border-brand/40 transition-colors duration-300 overflow-hidden cursor-pointer"
-        >
-            {/* Glow */}
-            <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
-            {/* Top accent line */}
-            <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
-
-            {/* Icon */}
-            <div>
-                <Icon className="text-brand" size={22} />
-            </div>
-
-            <div className="text-xl md:text-2xl font-bold text-white tracking-tight">{stat.value}</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-mono">{stat.label}</div>
-        </motion.a>
-    );
-};
-
-/* MAIN COMPONENT */
 export default function AboutPage() {
     const sectionRef = useRef<HTMLElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
@@ -104,11 +18,31 @@ export default function AboutPage() {
         offset: ["start end", "end start"],
     });
     const bgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
+    const stats = [
+        {
+            label: "Experience",
+            value: "Internship",
+            icon: GraduationCap,
+            link: "#experience",
+        },
+        {
+            label: "Projects",
+            value: "4+",
+            icon: CodeIcon,
+            link: "#projects",
+        },
+        {
+            label: "Certificates",
+            value: "Won",
+            icon: RosetteDiscountCheckIcon,
+            link: "#certificates",
+        },
+    ];
+    const skills = ["React", "Next.js", "Node.js", "JavaScript", "TypeScript", "MongoDB", "Express", "Tailwind", "Git", "Github"];
     return (
         <section ref={sectionRef} id="about" className="relative py-10 md:py-16 overflow-hidden">
             {/* Background atmosphere */}
-            <Scanlines />
+            <ScanLines />
 
             {/* Moving gradient blob */}
             <motion.div
@@ -292,7 +226,13 @@ export default function AboutPage() {
                         </div>
 
                         {/* Contact - Project Buttons */}
-                        <motion.div initial={{opacity: 0, y: 16}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{delay: 0.55}} className="flex flex-wrap gap-4 items-center">
+                        <motion.div
+                            initial={{opacity: 0, y: 16}}
+                            whileInView={{opacity: 1, y: 0}}
+                            viewport={{once: true}}
+                            transition={{delay: 0.55}}
+                            className="flex flex-wrap gap-4 items-center justify-center"
+                        >
                             {/* Contact Button */}
                             <motion.a
                                 href="#contact"
