@@ -7,43 +7,10 @@ import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 import DownloadIcon from "@/components/icons/downloadIcon";
 import {printConsoleSignature} from "@/Utils/printConsoleSignature";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
+import TypingText from "@/components/TypingText";
 
 /* SUB COMPONENTS */
-
-/* Animated text cursor */
-const TextCursor = () => (
-    <motion.span className="inline-block w-0.5 h-[1em] bg-brand ml-1 align-middle" animate={{opacity: [1, 0]}} transition={{duration: 0.8, repeat: Infinity, repeatType: "reverse"}} />
-);
-
-/* Typewriter hook */
-function useTypewriter(words: string[], speed = 80, pause = 1800) {
-    const [wordIndex, setWordIndex] = useState(0);
-    const [displayed, setDisplayed] = useState("");
-    const [deleting, setDeleting] = useState(false);
-
-    useEffect(() => {
-        const word = words[wordIndex % words.length];
-        let timeout: ReturnType<typeof setTimeout>;
-
-        if (!deleting && displayed === word) {
-            timeout = setTimeout(() => setDeleting(true), pause);
-        } else if (deleting && displayed === "") {
-            setDeleting(false);
-            setWordIndex((i) => i + 1);
-        } else {
-            timeout = setTimeout(
-                () => {
-                    setDisplayed(deleting ? word.slice(0, displayed.length - 1) : word.slice(0, displayed.length + 1));
-                },
-                deleting ? speed / 2 : speed,
-            );
-        }
-        return () => clearTimeout(timeout);
-    }, [displayed, deleting, wordIndex, words, speed, pause]);
-
-    return displayed;
-}
 
 /* Grid line background */
 const GridBackground = () => (
@@ -120,9 +87,6 @@ const HomePage = () => {
     const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
     const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
-    // Typing Roles
-    const role = useTypewriter(["Full Stack Developer", "UI/UX Enthusiast", "Problem Solver"]);
-
     // Social media links
     const social = [
         {
@@ -198,9 +162,7 @@ const HomePage = () => {
 
                 {/* Typewriter role */}
                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 0.4}} className="font-mono text-brand/80 text-lg md:text-xl mb-8 h-8 flex items-center">
-                    <span className="mr-1 text-white/30">{"//"}</span>
-                    {role}
-                    <TextCursor />
+                    <TypingText />
                 </motion.div>
 
                 {/* Description */}
