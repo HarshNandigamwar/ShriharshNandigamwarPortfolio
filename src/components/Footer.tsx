@@ -7,59 +7,8 @@ import Terminal from "@/components/icons/terminalIcon";
 import GithubIcon from "@/components/icons/githubIcon";
 import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
+import SocialPill from "./UI/SocialPill";
 
-/* Data */
-const socialLinks = [
-    {id: 1, icon: GithubIcon, link: "https://github.com/HarshNandigamwar", label: "GitHub"},
-    {
-        id: 2,
-        icon: LinkedinIcon,
-        link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        label: "LinkedIn",
-    },
-    {id: 3, icon: TwitterXIcon, link: "https://x.com/Harsh477011?s=09", label: "Twitter"},
-];
-
-const navLinks = [
-    {label: "About", href: "#about"},
-    {label: "Experience", href: "#experience"},
-    {label: "Projects", href: "#projects"},
-    {label: "Certifications", href: "#certificates"},
-    {label: "Contact", href: "#contact"},
-];
-
-/* Social pill */
-function SocialPill({item, index}: {item: (typeof socialLinks)[0]; index: number}) {
-    const [hovered, setHovered] = useState(false);
-    const Icon = item.icon;
-
-    return (
-        <motion.a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{opacity: 0, y: 16}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.1 + index * 0.08, type: "spring", stiffness: 200}}
-            whileHover={{scale: 1.1, y: -3}}
-            whileTap={{scale: 0.95}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative h-11 w-11 flex items-center justify-center rounded-xl
-                 border border-white/10 bg-white/[0.04] backdrop-blur-sm
-                 hover:border-brand/50 transition-colors duration-300 overflow-hidden cursor-pointer"
-            title={item.label}
-        >
-            <motion.div animate={{opacity: hovered ? 1 : 0}} className="absolute inset-0 bg-gradient-to-br from-brand/20 via-transparent to-transparent" />
-            <motion.span animate={{color: hovered ? "#22c55e" : "rgba(255,255,255,0.4)"}} transition={{duration: 0.2}} className="relative z-10">
-                <Icon size={18} />
-            </motion.span>
-        </motion.a>
-    );
-}
-
-/* MAIN COMPONENT */
 export default function Footer() {
     const [year, setYear] = useState("");
     const [clickCount, setClickCount] = useState(0);
@@ -134,6 +83,34 @@ export default function Footer() {
             reset();
         }
     };
+
+    const social = [
+        {
+            id: 1,
+            link: "https://github.com/HarshNandigamwar",
+            logo: <GithubIcon />,
+        },
+        {
+            id: 2,
+            link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1",
+            logo: <LinkedinIcon />,
+        },
+        {
+            id: 3,
+            link: "https://x.com/Harsh477011?s=09",
+            logo: <TwitterXIcon />,
+        },
+    ];
+
+    const navLinks = [
+        {label: "About", href: "#about"},
+        {label: "Experience", href: "#experience"},
+        {label: "Certifications", href: "#certificates"},
+        {label: "Toolkit", href: "#skills"},
+        {label: "Projects", href: "#projects"},
+        {label: "Github", href: "#github"},
+        {label: "Contact", href: "#contact"},
+    ];
 
     return (
         <footer className="relative overflow-hidden border-t border-white/[0.07]">
@@ -238,8 +215,10 @@ export default function Footer() {
                             </motion.form>
                         ) : (
                             <motion.div key="socials" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="flex gap-2.5">
-                                {socialLinks.map((item, i) => (
-                                    <SocialPill key={item.id} item={item} index={i} />
+                                {social.map((item, i) => (
+                                    <SocialPill key={item.id} href={item.link} index={i}>
+                                        {item.logo}
+                                    </SocialPill>
                                 ))}
                             </motion.div>
                         )}
