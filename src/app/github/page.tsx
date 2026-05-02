@@ -4,63 +4,14 @@ import {motion, useScroll, useTransform} from "framer-motion";
 import {Github} from "lucide-react";
 import {useState, useEffect, useRef} from "react";
 import ThinkingDots from "@/components/UI/ThinkingDots";
+import GridBackground from "@/components/UI/GridBackground";
 
-/* Types */
 interface GitHubData {
     public_repos: number;
     followers: number;
     following: number;
 }
 
-/* Constants */
-const greenTheme = {
-    light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
-    dark: ["#0d1117", "#0e4429", "#006d32", "#26a641", "#39d353"],
-};
-
-const USERNAME = "HarshNandigamwar";
-
-/* Helpers */
-
-/* Animated count-up number */
-const AnimatedNumber = ({value, loading}: {value: number | string; loading: boolean}) => {
-    if (loading) return <ThinkingDots />;
-    return (
-        <motion.span initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4}} className="text-3xl font-black text-brand font-mono">
-            {value}
-        </motion.span>
-    );
-};
-
-/* Stat card */
-const StatCard = ({label, value, sub, index, loading}: {label: string; value: number | string; sub: string; index: number; loading: boolean}) => {
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <motion.div
-            initial={{opacity: 0, y: 30}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.1 + index * 0.12, duration: 0.5}}
-            whileHover={{y: -6}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative flex flex-col items-center gap-1 p-6 rounded-2xl
-                 border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden group"
-        >
-            {/* Glow */}
-            <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
-            {/* Top accent */}
-            <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.35}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
-
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/30 mb-1">{label}</p>
-            <AnimatedNumber value={value} loading={loading} />
-            <p className="text-xs text-white/25 font-mono mt-0.5">{sub}</p>
-        </motion.div>
-    );
-};
-
-/* MAIN COMPONENT */
 export default function GitHubStatsPage() {
     const [loading, setLoading] = useState(true);
     const [githubData, setGitHubData] = useState<GitHubData | null>(null);
@@ -93,9 +44,55 @@ export default function GitHubStatsPage() {
         {label: "Following", value: githubData?.following ?? "—", sub: "in the network"},
     ];
 
+    /* Constants */
+    const greenTheme = {
+        light: ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"],
+        dark: ["#0d1117", "#0e4429", "#006d32", "#26a641", "#39d353"],
+    };
+    const USERNAME = "HarshNandigamwar";
+
+    /* Animated count-up number */
+    const AnimatedNumber = ({value, loading}: {value: number | string; loading: boolean}) => {
+        if (loading) return <ThinkingDots />;
+        return (
+            <motion.span initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} transition={{duration: 0.4}} className="text-3xl font-black text-brand font-mono">
+                {value}
+            </motion.span>
+        );
+    };
+
+    /* Stat card */
+    const StatCard = ({label, value, sub, index, loading}: {label: string; value: number | string; sub: string; index: number; loading: boolean}) => {
+        const [hovered, setHovered] = useState(false);
+
+        return (
+            <motion.div
+                initial={{opacity: 0, y: 30}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: 0.1 + index * 0.12, duration: 0.5}}
+                whileHover={{y: -6}}
+                onHoverStart={() => setHovered(true)}
+                onHoverEnd={() => setHovered(false)}
+                className="relative flex flex-col items-center gap-1 p-6 rounded-2xl
+                 border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden group"
+            >
+                {/* Glow */}
+                <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
+                {/* Top accent */}
+                <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.35}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
+
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-white/30 mb-1">{label}</p>
+                <AnimatedNumber value={value} loading={loading} />
+                <p className="text-xs text-white/25 font-mono mt-0.5">{sub}</p>
+            </motion.div>
+        );
+    };
+
     return (
         <section ref={sectionRef} id="github" className="relative py-10 md:py-16 overflow-hidden">
             {/* Background */}
+            <GridBackground />
             <motion.div
                 style={{y: bgY}}
                 className="absolute -left-40 top-1/3 w-[500px] h-[500px]
@@ -116,7 +113,7 @@ export default function GitHubStatsPage() {
                 }}
             />
 
-            <div className="mx-auto px-6">
+            <div className="mx-auto px-3">
                 {/* Section Header */}
                 <motion.div initial={{opacity: 0, y: 24}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{duration: 0.6}} className="mb-20">
                     <div className="flex items-end gap-6 mb-4">
@@ -144,7 +141,7 @@ export default function GitHubStatsPage() {
                     viewport={{once: true}}
                     transition={{duration: 0.65}}
                     className="relative rounded-2xl border border-white/10 bg-white/[0.02]
-                     backdrop-blur-sm overflow-hidden p-6 md:p-10"
+                     backdrop-blur-sm overflow-hidden p-3 md:p-10"
                 >
                     {/* Card top accent */}
                     <motion.div
