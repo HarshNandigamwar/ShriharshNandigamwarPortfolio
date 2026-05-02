@@ -10,85 +10,6 @@ import SkillPill from "@/components/UI/SkillPill";
 import CertificateCard from "@/components/UI/CertificateCard";
 import ScanLines from "@/components/UI/ScanLines";
 
-/* Data */
-const certifications = [
-    {
-        name: "Web Development Fundamentals",
-        issuer: "IBM SkillsBuild",
-        date: "2023",
-        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029055/IBM_yyzqdd.png",
-        description: "Core web technologies and fundamental development principles.",
-        category: "Development",
-    },
-    {
-        name: "Accenture Developer Program",
-        issuer: "Accenture",
-        date: "2024",
-        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029046/Accenture_kcoo9d.png",
-        description: "SDLC, Testing Lifecycle, Agile, and Algorithmic Thinking simulation.",
-        category: "Software Engineering",
-    },
-    {
-        name: "AWS Solutions Architecture",
-        issuer: "Amazon Web Services",
-        date: "2024",
-        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029051/AWS_yu4vat.png",
-        description: "Focusing on scalable hosting architectures and cloud infrastructure.",
-        category: "Cloud Computing",
-    },
-    {
-        name: "Hackhazards '25",
-        issuer: "The NAMESPACE Community",
-        date: "2025",
-        image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029069/Hackathon_zfgblj.png",
-        description: "Participation in a global hackathon solving real-world challenges.",
-        category: "Hackathon",
-    },
-];
-
-const techStack = ["HTML", "CSS", "Tailwind", "JavaScript", "TypeScript", "Git", "Github", "React.js", "Redux", "Node.js", "Express", "MongoDB", "Mongoose", "Next.js", "Deployment (Vercel)"];
-
-const highlights = [
-    {
-        icon: CheckCircle2,
-        name: "Industry Standards",
-        description: "Learned from experts with 15+ years of experience.",
-    },
-    {
-        icon: Globe,
-        name: "Real-world Deploy",
-        description: "End-to-end deployment on Vercel.",
-    },
-];
-
-/* Highlight card */
-const HighlightCard = ({data, index}: {data: (typeof highlights)[0]; index: number}) => {
-    const Icon = data.icon;
-    const [hovered, setHovered] = useState(false);
-    return (
-        <motion.div
-            initial={{opacity: 0, y: 24}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.1 + index * 0.12, duration: 0.5}}
-            whileHover={{y: -4}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative p-5 rounded-2xl border border-white/10 bg-white/[0.03]
-                 backdrop-blur-sm overflow-hidden group"
-        >
-            <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
-            <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
-            <div>
-                <Icon className="text-brand mb-3 w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white/85 text-sm mb-1">{data.name}</h4>
-            <p className="text-white/40 text-xs leading-relaxed">{data.description}</p>
-        </motion.div>
-    );
-};
-
-/* MAIN COMPONENT */
 export default function CertificationsPage() {
     const sectionRef = useRef<HTMLElement>(null);
     const heroRef = useRef<HTMLDivElement>(null);
@@ -99,10 +20,87 @@ export default function CertificationsPage() {
     });
     const bgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
+    const certifications = [
+        {
+            name: "Web Development Fundamentals",
+            issuer: "IBM SkillsBuild",
+            date: "2023",
+            image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029055/IBM_yyzqdd.png",
+            description: "Core web technologies and fundamental development principles.",
+            category: "Development",
+        },
+        {
+            name: "Accenture Developer Program",
+            issuer: "Accenture",
+            date: "2024",
+            image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029046/Accenture_kcoo9d.png",
+            description: "SDLC, Testing Lifecycle, Agile, and Algorithmic Thinking simulation.",
+            category: "Software Engineering",
+        },
+        {
+            name: "AWS Solutions Architecture",
+            issuer: "Amazon Web Services",
+            date: "2024",
+            image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029051/AWS_yu4vat.png",
+            description: "Focusing on scalable hosting architectures and cloud infrastructure.",
+            category: "Cloud Computing",
+        },
+        {
+            name: "Hackhazards '25",
+            issuer: "The NAMESPACE Community",
+            date: "2025",
+            image: "https://res.cloudinary.com/darmatnf2/image/upload/f_auto,q_auto/v1761029069/Hackathon_zfgblj.png",
+            description: "Participation in a global hackathon solving real-world challenges.",
+            category: "Hackathon",
+        },
+    ];
+
+    const techStack = ["HTML", "CSS", "Tailwind", "JavaScript", "TypeScript", "Git", "Github", "React.js", "Redux", "Node.js", "Express", "MongoDB", "Mongoose", "Next.js", "Deployment (Vercel)"];
+
+    const highlights = [
+        {
+            icon: CheckCircle2,
+            name: "Industry Standards",
+            description: "Learned from experts with 15+ years of experience.",
+        },
+        {
+            icon: Globe,
+            name: "Real-world Deploy",
+            description: "End-to-end deployment on Vercel.",
+        },
+    ];
+
+    /* Highlight card */
+    const HighlightCard = ({data, index}: {data: (typeof highlights)[0]; index: number}) => {
+        const Icon = data.icon;
+        const [hovered, setHovered] = useState(false);
+        return (
+            <motion.div
+                initial={{opacity: 0, y: 24}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: 0.1 + index * 0.12, duration: 0.5}}
+                whileHover={{y: -4}}
+                onHoverStart={() => setHovered(true)}
+                onHoverEnd={() => setHovered(false)}
+                className="relative p-5 rounded-2xl border border-white/10 bg-white/[0.03]
+                 backdrop-blur-sm overflow-hidden group"
+            >
+                <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute inset-0 bg-gradient-to-br from-brand/10 via-transparent to-transparent -z-10" />
+                <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.3}} className="absolute top-0 left-0 right-0 h-px bg-brand origin-left" />
+                <div>
+                    <Icon className="text-brand mb-3 w-5 h-5" />
+                </div>
+                <h4 className="font-semibold text-white/85 text-sm mb-1">{data.name}</h4>
+                <p className="text-white/40 text-xs leading-relaxed">{data.description}</p>
+            </motion.div>
+        );
+    };
+
     return (
         <section ref={sectionRef} id="certificates" className="relative py-10 md:py-16 px-3 md:px-6 overflow-hidden">
             {/* Background atmosphere */}
-            <ScanLines/>
+            <ScanLines />
             <motion.div
                 style={{y: bgY}}
                 className="absolute -right-32 top-0 w-[500px] h-[500px]

@@ -5,144 +5,9 @@ import {useRef, useState} from "react";
 import TerminalIcon from "@/components/icons/terminalIcon";
 import StackIcon from "@/components/icons/stackIcon";
 import Cloud3Icon from "@/components/icons/cloudeIcon";
+import GridBackground from "@/components/UI/GridBackground";
+import SkillPill from "@/components/UI/SkillPill";
 
-/* Data */
-const skillCategories = [
-    {
-        title: "Frontend Development",
-        icon: StackIcon,
-        description: "Crafting responsive, high-performance user interfaces.",
-        skills: ["Next.js", "React.js", "JavaScript", "TypeScript", "Tailwind CSS", "Redux Toolkit", "HTML5", "CSS3"],
-        accentColor: "#22c55e",
-        index: 0,
-    },
-    {
-        title: "Backend & Database",
-        icon: Cloud3Icon,
-        description: "Building scalable server-side logic and managing data.",
-        skills: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Firebase", "REST APIs"],
-        accentColor: "#34d399",
-        index: 1,
-    },
-    {
-        title: "DevOps & Tools",
-        icon: Wrench,
-        description: "Streamlining development and deployment workflows.",
-        skills: ["Git", "GitHub", "Postman", "Vercel", "Netlify", "Render"],
-        accentColor: "#6ee7b7",
-        index: 2,
-    },
-];
-
-const techFeatures = [
-    {icon: TerminalIcon, text: "Clean Code"},
-    {icon: Zap, text: "Performance"},
-    {icon: Globe, text: "SEO Ready"},
-    {icon: Cpu, text: "Scalability"},
-];
-
-const duplicated = [...techFeatures, ...techFeatures, ...techFeatures];
-
-/* Helpers */
-
-/* Individual skill pill */
-const SkillPill = ({name, index}: {name: string; index: number}) => (
-    <motion.span
-        initial={{opacity: 0, scale: 0.75}}
-        whileInView={{opacity: 1, scale: 1}}
-        viewport={{once: true}}
-        transition={{delay: 0.04 * index, type: "spring", stiffness: 260}}
-        whileHover={{scale: 1.1, backgroundColor: "rgba(34,197,94,0.18)"}}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
-               border border-white/10 bg-white/[0.04] text-white/55
-               font-mono text-xs tracking-wide transition-colors duration-200"
-    >
-        <span className="w-1 h-1 rounded-full bg-brand/70" />
-        {name}
-    </motion.span>
-);
-
-/* Skill category card */
-const SkillCard = ({cat}: {cat: (typeof skillCategories)[0]}) => {
-    const [hovered, setHovered] = useState(false);
-    const Icon = cat.icon;
-
-    return (
-        <motion.div
-            initial={{opacity: 0, y: 40}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.1 + cat.index * 0.12, duration: 0.6, ease: "easeOut"}}
-            whileHover={{y: -8}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative rounded-2xl border border-white/10 bg-white/[0.03]
-                 backdrop-blur-sm overflow-hidden p-7 flex flex-col gap-5 group"
-        >
-            {/* Animated glow */}
-            <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.4}} className="absolute inset-0 bg-gradient-to-br from-brand/8 via-transparent to-transparent -z-10" />
-
-            {/* Top accent bar */}
-            <motion.div
-                animate={{scaleX: hovered ? 1 : 0}}
-                transition={{duration: 0.4}}
-                className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand/80 via-brand/40 to-transparent origin-left"
-            />
-
-            {/* Corner number */}
-            <span
-                className="absolute top-4 right-5 font-mono text-4xl font-black
-                       text-white/[0.04] select-none pointer-events-none leading-none"
-            >
-                {String(cat.index + 1).padStart(2, "0")}
-            </span>
-
-            {/* Icon box */}
-            <div
-                className="w-12 h-12 rounded-xl border border-brand/25 bg-brand/8
-                   flex items-center justify-center shrink-0"
-            >
-                <Icon className="text-brand" size={22} />
-            </div>
-
-            {/* Title + description */}
-            <div>
-                <h3 className="text-xl font-bold text-white/90 mb-1.5 tracking-tight">{cat.title}</h3>
-                <p className="text-sm text-white/40 leading-relaxed">{cat.description}</p>
-            </div>
-
-            {/* Divider */}
-            <motion.div animate={{scaleX: hovered ? 1 : 0.3, opacity: hovered ? 1 : 0.3}} transition={{duration: 0.4}} className="h-px bg-gradient-to-r from-brand/30 to-transparent origin-left" />
-
-            {/* Skill pills */}
-            <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill, i) => (
-                    <SkillPill key={skill} name={skill} index={i} />
-                ))}
-            </div>
-        </motion.div>
-    );
-};
-
-/* Marquee feature chip */
-const FeatureChip = ({item, index}: {item: (typeof techFeatures)[0]; index: number}) => {
-    const Icon = item.icon;
-    return (
-        <div
-            className="relative flex items-center gap-3 px-6 py-3.5 rounded-2xl shrink-0
-                 border border-white/10 bg-white/[0.03] backdrop-blur-sm
-                 hover:border-brand/40 transition-colors duration-300 overflow-hidden"
-        >
-            <div className="absolute inset-0 bg-gradient-to-r from-brand/8 to-transparent -z-10" />
-            <div className="text-brand shrink-0">
-                <Icon size={16} />
-            </div>
-            <span className="font-mono text-sm text-white/60 whitespace-nowrap group-hover:text-white">{item.text}</span>
-        </div>
-    );
-};
-
-/* MAIN COMPONENT */
 export default function SkillsPage() {
     const sectionRef = useRef<HTMLElement>(null);
     const {scrollYProgress} = useScroll({
@@ -152,9 +17,126 @@ export default function SkillsPage() {
     const bgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
     const bgY2 = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
 
+    const skillCategories = [
+        {
+            title: "Frontend Development",
+            icon: StackIcon,
+            description: "Crafting responsive, high-performance user interfaces.",
+            skills: ["Next.js", "React.js", "JavaScript", "TypeScript", "Tailwind CSS", "Redux Toolkit", "HTML5", "CSS3"],
+            accentColor: "#22c55e",
+            index: 0,
+        },
+        {
+            title: "Backend & Database",
+            icon: Cloud3Icon,
+            description: "Building scalable server-side logic and managing data.",
+            skills: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Firebase", "REST APIs"],
+            accentColor: "#34d399",
+            index: 1,
+        },
+        {
+            title: "DevOps & Tools",
+            icon: Wrench,
+            description: "Streamlining development and deployment workflows.",
+            skills: ["Git", "GitHub", "Postman", "Vercel", "Netlify", "Render"],
+            accentColor: "#6ee7b7",
+            index: 2,
+        },
+    ];
+
+    const techFeatures = [
+        {icon: TerminalIcon, text: "Clean Code"},
+        {icon: Zap, text: "Performance"},
+        {icon: Globe, text: "SEO Ready"},
+        {icon: Cpu, text: "Scalability"},
+    ];
+
+    const duplicated = [...techFeatures, ...techFeatures, ...techFeatures];
+
+    /* Skill category card */
+    const SkillCard = ({cat}: {cat: (typeof skillCategories)[0]}) => {
+        const [hovered, setHovered] = useState(false);
+        const Icon = cat.icon;
+
+        return (
+            <motion.div
+                initial={{opacity: 0, y: 40}}
+                whileInView={{opacity: 1, y: 0}}
+                viewport={{once: true}}
+                transition={{delay: 0.1 + cat.index * 0.12, duration: 0.6, ease: "easeOut"}}
+                whileHover={{y: -8}}
+                onHoverStart={() => setHovered(true)}
+                onHoverEnd={() => setHovered(false)}
+                className="relative rounded-2xl border border-white/10 bg-white/[0.03]
+                 backdrop-blur-sm overflow-hidden p-7 flex flex-col gap-5 group"
+            >
+                {/* Animated glow */}
+                <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.4}} className="absolute inset-0 bg-gradient-to-br from-brand/8 via-transparent to-transparent -z-10" />
+
+                {/* Top accent bar */}
+                <motion.div
+                    animate={{scaleX: hovered ? 1 : 0}}
+                    transition={{duration: 0.4}}
+                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand/80 via-brand/40 to-transparent origin-left"
+                />
+
+                {/* Corner number */}
+                <span
+                    className="absolute top-4 right-5 font-mono text-4xl font-black
+                       text-white/[0.04] select-none pointer-events-none leading-none"
+                >
+                    {String(cat.index + 1).padStart(2, "0")}
+                </span>
+
+                {/* Icon box */}
+                <div
+                    className="w-12 h-12 rounded-xl border border-brand/25 bg-brand/8
+                   flex items-center justify-center shrink-0"
+                >
+                    <Icon className="text-brand" size={22} />
+                </div>
+
+                {/* Title + description */}
+                <div>
+                    <h3 className="text-xl font-bold text-white/90 mb-1.5 tracking-tight">{cat.title}</h3>
+                    <p className="text-sm text-white/40 leading-relaxed">{cat.description}</p>
+                </div>
+
+                {/* Divider */}
+                <motion.div animate={{scaleX: hovered ? 1 : 0.3, opacity: hovered ? 1 : 0.3}} transition={{duration: 0.4}} className="h-px bg-gradient-to-r from-brand/30 to-transparent origin-left" />
+
+                {/* Skill pills */}
+                <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((skill, i) => (
+                        <SkillPill key={skill} name={skill} index={i} />
+                    ))}
+                </div>
+            </motion.div>
+        );
+    };
+
+    /* Marquee feature chip */
+    const FeatureChip = ({item, index}: {item: (typeof techFeatures)[0]; index: number}) => {
+        const Icon = item.icon;
+        return (
+            <div
+                className="relative flex items-center gap-3 px-6 py-3.5 rounded-2xl shrink-0
+                 border border-white/10 bg-white/[0.03] backdrop-blur-sm
+                 hover:border-brand/40 transition-colors duration-300 overflow-hidden"
+            >
+                <div className="absolute inset-0 bg-gradient-to-r from-brand/8 to-transparent -z-10" />
+                <div className="text-brand shrink-0">
+                    <Icon size={16} />
+                </div>
+                <span className="font-mono text-sm text-white/60 whitespace-nowrap group-hover:text-white">{item.text}</span>
+            </div>
+        );
+    };
+
     return (
         <section ref={sectionRef} id="skills" className="relative py-10 md:py-16 overflow-hidden">
             {/* Background atmosphere */}
+            <GridBackground />
             <motion.div
                 style={{y: bgY}}
                 className="absolute -left-40 top-1/3 w-[480px] h-[480px]
