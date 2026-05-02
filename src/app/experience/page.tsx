@@ -6,69 +6,9 @@ import {useRef, useState} from "react";
 import ShieldCheck from "@/components/icons/shieldIcon";
 import DownloadIcon from "@/components/icons/downloadIcon";
 import ExternalLinkIcon from "@/components/icons/linkIcon";
-
-/* Data */
-const responsibilities = [
-    "Developed and optimized responsive front-end components using HTML and CSS.",
-    "Collaborated on version control and deployment workflows using Git and Vercel.",
-    "Ensured high performance and accessibility standards across multiple devices.",
-    "The project is successfully deployed and accessible online.",
-];
-
-const techUsed = ["HTML", "CSS", "Git", "Github", "Vercel", "JavaScript"];
-
-/* Helpers */
-
-/* Animated counter for the timeline year */
-const PulsingDot = () => (
-    <div className="relative flex items-center justify-center">
-        <motion.div animate={{scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5]}} transition={{duration: 2.5, repeat: Infinity}} className="absolute w-8 h-8 rounded-full bg-brand/30" />
-        <motion.div animate={{scale: [1, 1.3, 1], opacity: [0.7, 1, 0.7]}} transition={{duration: 2, repeat: Infinity}} className="absolute w-5 h-5 rounded-full bg-brand/20" />
-        <div className="relative w-3.5 h-3.5 rounded-full bg-brand shadow-[0_0_14px_4px_rgba(34,197,94,0.6)]" />
-    </div>
-);
-
-/* Responsibility list item */
-const ResponsibilityItem = ({text, index}: {text: string; index: number}) => {
-    const [hovered, setHovered] = useState(false);
-    return (
-        <motion.li
-            initial={{opacity: 0, x: -20}}
-            whileInView={{opacity: 1, x: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.15 + index * 0.1, duration: 0.5}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="group flex items-start gap-3 "
-        >
-            <motion.span animate={{x: hovered ? 4 : 0, color: hovered ? "#22c55e" : "rgba(34,197,94,0.6)"}} transition={{duration: 0.2}} className="text-brand/60 mt-1 text-xs select-none shrink-0">
-                ▹
-            </motion.span>
-            <motion.span animate={{color: hovered ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.55)"}} transition={{duration: 0.2}} className="text-sm md:text-base leading-relaxed">
-                {text}
-            </motion.span>
-        </motion.li>
-    );
-};
-
-/* Tech pill */
-const TechPill = ({name, index}: {name: string; index: number}) => (
-    <motion.span
-        initial={{opacity: 0, scale: 0.7}}
-        whileInView={{opacity: 1, scale: 1}}
-        viewport={{once: true}}
-        transition={{delay: 0.4 + index * 0.06, type: "spring", stiffness: 260}}
-        whileHover={{scale: 1.1, backgroundColor: "rgba(34,197,94,0.15)"}}
-        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg
-               border border-white/10 bg-white/[0.04] text-white/50
-               font-mono text-xs tracking-wide transition-colors duration-200"
-    >
-        <span className="w-1 h-1 rounded-full bg-brand/70" />
-        {name}
-    </motion.span>
-);
-
-/* MAIN COMPONENT */
+import PulsingDot from "@/components/UI/PulsingDot";
+import SkillPill from "@/components/UI/SkillPill";
+import GridBackground from "@/components/UI/GridBackground";
 
 export default function ExperiencePage() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -81,10 +21,45 @@ export default function ExperiencePage() {
     const bgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
     /* Timeline line draw */
     const lineH = useTransform(scrollYProgress, [0.05, 0.6], ["0%", "100%"]);
+    const responsibilities = [
+        "Developed and optimized responsive front-end components using HTML and CSS.",
+        "Collaborated on version control and deployment workflows using Git and Vercel.",
+        "Ensured high performance and accessibility standards across multiple devices.",
+        "The project is successfully deployed and accessible online.",
+    ];
+    const techUsed = ["HTML", "CSS", "JavaScript", "Git", "Github", "Vercel"];
+
+    /* Responsibility list item */
+    const ResponsibilityItem = ({text, index}: {text: string; index: number}) => {
+        const [hovered, setHovered] = useState(false);
+        return (
+            <motion.li
+                initial={{opacity: 0, x: -20}}
+                whileInView={{opacity: 1, x: 0}}
+                viewport={{once: true}}
+                transition={{delay: 0.15 + index * 0.1, duration: 0.5}}
+                onHoverStart={() => setHovered(true)}
+                onHoverEnd={() => setHovered(false)}
+                className="group flex items-start gap-3 "
+            >
+                <motion.span
+                    animate={{x: hovered ? 4 : 0, color: hovered ? "#22c55e" : "rgba(34,197,94,0.6)"}}
+                    transition={{duration: 0.2}}
+                    className="text-brand/60 mt-1 text-xs select-none shrink-0"
+                >
+                    ▹
+                </motion.span>
+                <motion.span animate={{color: hovered ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.55)"}} transition={{duration: 0.2}} className="text-sm md:text-base leading-relaxed">
+                    {text}
+                </motion.span>
+            </motion.li>
+        );
+    };
 
     return (
         <section ref={sectionRef} id="experience" className="relative py-10 md:py-16 overflow-hidden">
             {/* Background atmosphere */}
+            <GridBackground/>
             <motion.div
                 style={{y: bgY}}
                 className="absolute right-0 top-1/4 w-[450px] h-[450px]
@@ -146,10 +121,7 @@ export default function ExperiencePage() {
                             </motion.div>
 
                             <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-1">Web Development Intern</h3>
-                            <div className="flex items-center gap-2">
-                                <motion.span animate={{scale: [1, 1.3, 1]}} transition={{duration: 2, repeat: Infinity}} className="w-1.5 h-1.5 rounded-full bg-brand" />
-                                <p className="text-brand/80 font-mono text-sm tracking-wider">SkillCraft Technology</p>
-                            </div>
+                            <p className="text-brand/80 font-mono text-sm tracking-wider">SkillCraft Technology</p>
                         </motion.div>
 
                         {/* Main card */}
@@ -196,7 +168,7 @@ export default function ExperiencePage() {
                                 <p className="font-mono text-[10px] text-white/25 uppercase tracking-[0.2em] mb-3">Technologies</p>
                                 <div className="flex flex-wrap gap-2">
                                     {techUsed.map((t, i) => (
-                                        <TechPill key={t} name={t} index={i} />
+                                        <SkillPill key={t} name={t} index={i} />
                                     ))}
                                 </div>
                             </div>
