@@ -1,9 +1,9 @@
 "use client";
 import {useState, useRef, useEffect} from "react";
 import {motion, AnimatePresence} from "framer-motion";
-import {X, Send, Bot, User, Minimize2, Maximize2, Sparkles} from "lucide-react";
-import ReactMarkdown from "react-markdown";
-import ThinkingDots from "@/components/UI/ThinkingDots";
+import {X, Send, Bot, Minimize2, Maximize2, Sparkles} from "lucide-react";
+import ChatBubble from "@/components/UI/rag_model/ChatBubble";
+import ThinkingBubble from "@/components/UI/rag_model/ThinkingBubble";
 
 /* Types */
 interface Message {
@@ -34,74 +34,6 @@ export default function RAGPage() {
     const [pulse, setPulse] = useState(false);
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-
-    /* Animated bot avatar */
-    const BotAvatar = ({size = 14}: {size?: number}) => (
-        <motion.div className="w-7 h-7 rounded-xl bg-brand/15 border border-brand/50 flex items-center justify-center shrink-0">
-            <Bot size={size} className="text-brand" />
-        </motion.div>
-    );
-
-    /* User avatar */
-    const UserAvatar = ({size = 14}: {size?: number}) => (
-        <div
-            className="w-7 h-7 rounded-xl bg-white/8 border border-white/15
-                  flex items-center justify-center shrink-0"
-        >
-            <User size={size} className="text-white/60" />
-        </div>
-    );
-
-    /* Chat bubble */
-    const ChatBubble = ({msg, index}: {msg: Message; index: number}) => {
-        const isUser = msg.role === "user";
-        return (
-            <motion.div
-                initial={{opacity: 0, y: 12, scale: 0.97}}
-                animate={{opacity: 1, y: 0, scale: 1}}
-                transition={{duration: 0.3, delay: index === 0 ? 0 : 0}}
-                className={`flex gap-2.5 ${isUser ? "flex-row-reverse" : "flex-row"}`}
-            >
-                {isUser ? <UserAvatar /> : <BotAvatar />}
-
-                <div
-                    className={`max-w-[80%] px-4 py-3 rounded-2xl text-[13px] leading-relaxed
-          ${isUser ? "bg-brand/20 border border-brand/30 text-white/85 rounded-tr-sm" : "bg-white/[0.05] border border-white/10 text-white/75 rounded-tl-sm"}`}
-                >
-                    {isUser ? (
-                        msg.content
-                    ) : (
-                        <article
-                            className="prose prose-invert prose-xs max-w-none
-                              prose-p:leading-relaxed prose-p:my-1
-                              prose-strong:text-brand
-                              prose-li:my-0 prose-ul:my-1"
-                        >
-                            <ReactMarkdown
-                                components={{
-                                    strong: ({...props}) => <span className="font-bold text-brand" {...props} />,
-                                    ul: ({...props}) => <ul className="list-disc pl-4 space-y-1 my-1.5" {...props} />,
-                                    li: ({...props}) => <li className="marker:text-brand/60" {...props} />,
-                                }}
-                            >
-                                {msg.content}
-                            </ReactMarkdown>
-                        </article>
-                    )}
-                </div>
-            </motion.div>
-        );
-    };
-
-    /* Thinking bubble */
-    const ThinkingBubble = () => (
-        <motion.div initial={{opacity: 0, y: 10}} animate={{opacity: 1, y: 0}} exit={{opacity: 0, y: -5}} className="flex gap-2.5">
-            <BotAvatar />
-            <div className="px-4 py-3 rounded-2xl rounded-tl-sm bg-white/[0.05] border border-white/10">
-                <ThinkingDots />
-            </div>
-        </motion.div>
-    );
 
     /* Auto-scroll */
     useEffect(() => {
