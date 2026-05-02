@@ -6,7 +6,7 @@ import {toast} from "sonner";
 import GithubIcon from "@/components/icons/githubIcon";
 import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
-import ThinkingDots from "@/components/ThinkingDots";
+import ThinkingDots from "@/components/UI/ThinkingDots";
 
 /* Data */
 const social = [

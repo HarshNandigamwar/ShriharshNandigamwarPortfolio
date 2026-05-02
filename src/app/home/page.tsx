@@ -1,86 +1,18 @@
 "use client";
+import {useEffect, useRef} from "react";
 import {motion, useScroll, useTransform} from "framer-motion";
 import Image from "next/image";
-import ResumeButton from "@/components/ResumeButton";
 import GithubIcon from "@/components/icons/githubIcon";
 import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 import DownloadIcon from "@/components/icons/downloadIcon";
 import {printConsoleSignature} from "@/Utils/printConsoleSignature";
-import {useEffect, useRef} from "react";
-import TypingText from "@/components/TypingText";
+import TypingText from "@/components/UI/TypingText";
+import GridBackground from "@/components/UI/GridBackground";
+import GlowOrb from "@/components/UI/GlowOrb";
+import SocialPill from "@/components/UI/SocialPill";
+import StatChip from "@/components/UI/StatChip";
 
-/* SUB COMPONENTS */
-
-/* Grid line background */
-const GridBackground = () => (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-        {/* Vertical lines */}
-        {[...Array(12)].map((_, i) => (
-            <motion.div
-                key={`v-${i}`}
-                className="absolute top-0 bottom-0 w-px bg-white/[0.03]"
-                style={{left: `${(i + 1) * (100 / 13)}%`}}
-                initial={{scaleY: 0}}
-                animate={{scaleY: 1}}
-                transition={{duration: 1.2, delay: i * 0.05, ease: "easeOut"}}
-            />
-        ))}
-        {/* Horizontal lines */}
-        {[...Array(8)].map((_, i) => (
-            <motion.div
-                key={`h-${i}`}
-                className="absolute left-0 right-0 h-px bg-white/[0.03]"
-                style={{top: `${(i + 1) * (100 / 9)}%`}}
-                initial={{scaleX: 0}}
-                animate={{scaleX: 1}}
-                transition={{duration: 1.2, delay: i * 0.06, ease: "easeOut"}}
-            />
-        ))}
-    </div>
-);
-
-/* Glow orb */
-const GlowOrb = ({className}: {className?: string}) => <div className={`absolute rounded-full blur-[120px] pointer-events-none -z-10 ${className}`} />;
-
-/* Social pill */
-const SocialPill = ({href, children, index}: {href: string; children: React.ReactNode; index: number}) => (
-    <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{opacity: 0, y: 20}}
-        animate={{opacity: 1, y: 0}}
-        transition={{delay: 0.7 + index * 0.1}}
-        whileHover={{scale: 1.1, y: -3}}
-        whileTap={{scale: 0.95}}
-        className="relative group h-12 w-12 flex items-center justify-center rounded-2xl
-               border border-white/10 bg-white/5 backdrop-blur-md
-               hover:border-brand/50 hover:bg-brand/10
-               transition-colors duration-300 overflow-hidden cursor-pointer"
-    >
-        <span
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                     bg-gradient-to-br from-brand/20 via-transparent to-transparent"
-        />
-        <span className="relative z-10 text-white/60 group-hover:text-brand transition-colors duration-300">{children}</span>
-    </motion.a>
-);
-
-/* Stat chip */
-const StatChip = ({value, label, delay}: {value: string; label: string; delay: number}) => (
-    <motion.div
-        initial={{opacity: 0, scale: 0.8}}
-        animate={{opacity: 1, scale: 1}}
-        transition={{delay, type: "spring", stiffness: 200}}
-        className="flex flex-col items-center px-5 py-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md"
-    >
-        <span className="text-2xl font-bold text-brand font-mono leading-none">{value}</span>
-        <span className="md:text-xs text-white/50 mt-0.5 tracking-wider uppercase">{label}</span>
-    </motion.div>
-);
-
-/* MAIN COMPONENT*/
 const HomePage = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const {scrollYProgress} = useScroll({target: sectionRef, offset: ["start start", "end start"]});
@@ -183,9 +115,9 @@ const HomePage = () => {
                     <StatChip value="∞" label="Curiosity" delay={0.65} />
                 </motion.div>
 
-                {/* CTA buttons */}
+                {/* Project & Contact Buttons */}
                 <motion.div initial={{opacity: 0, y: 20}} animate={{opacity: 1, y: 0}} transition={{delay: 0.6}} className="flex gap-4 flex-wrap justify-center md:justify-start mb-10">
-                    {/* Primary */}
+                    {/* Projects */}
                     <motion.a
                         href="#projects"
                         whileHover={{scale: 1.04}}
@@ -196,7 +128,7 @@ const HomePage = () => {
                         <motion.span className="absolute inset-0 bg-white/20" initial={{x: "-100%"}} whileHover={{x: "100%"}} transition={{duration: 0.4}} />
                     </motion.a>
 
-                    {/* Secondary */}
+                    {/* Contact */}
                     <motion.a
                         href="#contact"
                         whileTap={{scale: 0.97}}
@@ -207,7 +139,7 @@ const HomePage = () => {
                     </motion.a>
                 </motion.div>
 
-                {/* Socials + resume */}
+                {/* Socials & Resume Buttons */}
                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
                     {/* Social Buttons */}
                     <div className="flex gap-3">
@@ -243,11 +175,6 @@ const HomePage = () => {
                              transition-opacity duration-500 blur-sm bg-brand/10 -z-10"
                         />
                     </motion.a>
-
-                    {/* Hidden desktop resume button*/}
-                    <div className="hidden">
-                        <ResumeButton />
-                    </div>
                 </div>
             </motion.div>
 

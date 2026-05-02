@@ -3,7 +3,7 @@ import {useState, useRef, useEffect} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {X, Send, Bot, User, Minimize, Scan} from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import ThinkingDots from "@/components/ThinkingDots";
+import ThinkingDots from "@/components/UI/ThinkingDots";
 
 export default function RAGPage() {
     const [isOpen, setIsOpen] = useState(false);

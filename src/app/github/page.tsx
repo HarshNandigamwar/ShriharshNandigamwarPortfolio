@@ -3,7 +3,7 @@ import {GitHubCalendar} from "react-github-calendar";
 import {motion, useScroll, useTransform} from "framer-motion";
 import {Github} from "lucide-react";
 import {useState, useEffect, useRef} from "react";
-import ThinkingDots from "@/components/ThinkingDots";
+import ThinkingDots from "@/components/UI/ThinkingDots";
 
 /* Types */
 interface GitHubData {
