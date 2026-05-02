@@ -1,11 +1,14 @@
 "use client";
 import {motion, useScroll, useTransform, useInView} from "framer-motion";
-import {Award, Calendar, CheckCircle2, Rocket, Globe} from "lucide-react";
+import {Award, CheckCircle2, Rocket, Globe} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {useRef, useState} from "react";
 import ShieldCheck from "@/components/icons/shieldIcon";
 import ExternalLinkIcon from "@/components/icons/linkIcon";
+import SkillPill from "@/components/UI/SkillPill";
+import CertificateCard from "@/components/UI/CertificateCard";
+import ScanLines from "@/components/UI/ScanLines";
 
 /* Data */
 const certifications = [
@@ -58,33 +61,6 @@ const highlights = [
     },
 ];
 
-/* Category colour map */
-const categoryColor: Record<string, string> = {
-    Development: "text-brand border-brand/40 bg-brand/10",
-    "Software Engineering": "text-sky-400 border-sky-400/30 bg-sky-400/10",
-    "Cloud Computing": "text-orange-400 border-orange-400/30 bg-orange-400/10",
-    Hackathon: "text-purple-400 border-purple-400/30 bg-purple-400/10",
-};
-
-/* Helpers */
-
-/* Tech pill */
-const TechPill = ({name, index}: {name: string; index: number}) => (
-    <motion.span
-        initial={{opacity: 0, scale: 0.75}}
-        whileInView={{opacity: 1, scale: 1}}
-        viewport={{once: true}}
-        transition={{delay: 0.03 * index, type: "spring", stiffness: 250}}
-        whileHover={{scale: 1.08, backgroundColor: "rgba(34,197,94,0.15)"}}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg
-               border border-white/10 bg-white/[0.04] text-white/55
-               font-mono text-xs tracking-wide transition-colors duration-200"
-    >
-        <span className="w-1 h-1 rounded-full bg-brand/70" />
-        {name}
-    </motion.span>
-);
-
 /* Highlight card */
 const HighlightCard = ({data, index}: {data: (typeof highlights)[0]; index: number}) => {
     const Icon = data.icon;
@@ -112,80 +88,6 @@ const HighlightCard = ({data, index}: {data: (typeof highlights)[0]; index: numb
     );
 };
 
-/* Small certification card */
-const CertCard = ({cert, index}: {cert: (typeof certifications)[0]; index: number}) => {
-    const [hovered, setHovered] = useState(false);
-    const col = categoryColor[cert.category] ?? "text-brand border-brand/40 bg-brand/10";
-
-    return (
-        <motion.div
-            initial={{opacity: 0, y: 32}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.08 * index, duration: 0.55}}
-            whileHover={{y: -6}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative rounded-2xl border border-white/10 bg-white/[0.03]
-                 backdrop-blur-sm overflow-hidden group flex flex-col md:flex-row"
-        >
-            {/* Glow */}
-            <motion.div animate={{opacity: hovered ? 1 : 0}} transition={{duration: 0.35}} className="absolute inset-0 bg-gradient-to-br from-brand/8 via-transparent to-transparent -z-10" />
-            {/* Top accent */}
-            <motion.div animate={{scaleX: hovered ? 1 : 0}} transition={{duration: 0.35}} className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-brand/70 to-transparent origin-left" />
-
-            {/* Image */}
-            <div className="relative w-full md:w-2/5 h-44 md:h-auto overflow-hidden bg-black/30 shrink-0">
-                <Image src={cert.image} alt={cert.name} fill loading="lazy" className="object-cover group-hover:scale-105 transition-transform duration-600" />
-                {/* Hover overlay */}
-                <a
-                    href={cert.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center gap-1
-                     opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                >
-                    <ExternalLinkIcon className="text-brand" size={20} />
-                    <span className="font-mono text-[10px] text-white/60 tracking-wider">View</span>
-                </a>
-                {/* Gradient fade right edge on desktop */}
-                <div
-                    className="hidden md:block absolute inset-y-0 right-0 w-8
-                        bg-gradient-to-r from-transparent to-black/40"
-                />
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 flex flex-col p-5 md:p-6 gap-3">
-                <div className="flex justify-between items-start gap-2">
-                    <span
-                        className={`inline-flex text-[10px] uppercase tracking-[0.18em] font-bold
-                           px-2.5 py-1 rounded-full border font-mono ${col}`}
-                    >
-                        {cert.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-white/30 text-xs font-mono shrink-0">
-                        <Calendar size={10} /> {cert.date}
-                    </span>
-                </div>
-
-                <h3
-                    className="text-base md:text-lg font-bold text-white/90
-                       group-hover:text-brand transition-colors duration-300 leading-snug"
-                >
-                    {cert.name}
-                </h3>
-                <p className="text-white/45 text-xs md:text-sm leading-relaxed flex-1">{cert.description}</p>
-
-                <div className="flex items-center gap-2 pt-3 border-t border-white/[0.06]">
-                    <Award size={13} className="text-brand shrink-0" />
-                    <span className="text-xs text-white/40 font-mono">{cert.issuer}</span>
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-
 /* MAIN COMPONENT */
 export default function CertificationsPage() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -200,6 +102,7 @@ export default function CertificationsPage() {
     return (
         <section ref={sectionRef} id="certificates" className="relative py-10 md:py-16 px-3 md:px-6 overflow-hidden">
             {/* Background atmosphere */}
+            <ScanLines/>
             <motion.div
                 style={{y: bgY}}
                 className="absolute -right-32 top-0 w-[500px] h-[500px]
@@ -317,7 +220,7 @@ export default function CertificationsPage() {
                             </div>
                             <div className="flex flex-wrap gap-2">
                                 {techStack.map((tech, i) => (
-                                    <TechPill key={tech} name={tech} index={i} />
+                                    <SkillPill key={tech} name={tech} index={i} />
                                 ))}
                             </div>
                         </div>
@@ -353,7 +256,7 @@ export default function CertificationsPage() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                     {certifications.map((cert, idx) => (
-                        <CertCard key={idx} cert={cert} index={idx} />
+                        <CertificateCard key={idx} cert={cert} index={idx} />
                     ))}
                 </div>
             </div>
