@@ -7,129 +7,9 @@ import GithubIcon from "@/components/icons/githubIcon";
 import LinkedinIcon from "@/components/icons/linkedinIcon";
 import TwitterXIcon from "@/components/icons/twitterIcon";
 import ThinkingDots from "@/components/UI/ThinkingDots";
+import ScanLines from "@/components/UI/ScanLines";
+import SocialPill from "@/components/UI/SocialPill";
 
-/* Data */
-const social = [
-    {
-        id: 1,
-        link: "https://github.com/HarshNandigamwar",
-        logo: <GithubIcon />,
-        label: "GitHub",
-    },
-    {
-        id: 2,
-        link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        logo: <LinkedinIcon />,
-        label: "LinkedIn",
-    },
-    {
-        id: 3,
-        link: "https://x.com/Harsh477011?s=09",
-        logo: <TwitterXIcon />,
-        label: "Twitter",
-    },
-];
-
-const placeholders = [
-    "Tell me about your project...",
-    "What are we building together?",
-    "Need help with a new design?",
-    "Got a big idea to share?",
-    "Let's start a conversation...",
-    "What's on your mind?",
-];
-
-/* Helpers */
-
-/* Animated input field */
-function InputGroup({label, name, type, placeholder, disabled, index}: {label: string; name: string; type: string; placeholder: string; disabled: boolean; index: number}) {
-    const [focused, setFocused] = useState(false);
-
-    return (
-        <motion.div initial={{opacity: 0, y: 16}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{delay: 0.1 + index * 0.08}} className="flex flex-col gap-2">
-            <label className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-0.5">{label}</label>
-            <div className="relative">
-                <input
-                    required
-                    disabled={disabled}
-                    type={type}
-                    name={name}
-                    placeholder={placeholder}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5
-                     text-white/80 placeholder:text-white/20 font-mono text-sm
-                     focus:outline-none focus:border-brand/50 focus:bg-brand/5
-                     disabled:opacity-50 disabled:cursor-not-allowed
-                     transition-all duration-300"
-                />
-            </div>
-        </motion.div>
-    );
-}
-
-/* Contact info row */
-function ContactInfo({icon, label, value, href, index}: {icon: React.ReactNode; label: string; value: string; href: string; index: number}) {
-    const [hovered, setHovered] = useState(false);
-    return (
-        <motion.div
-            initial={{opacity: 0, x: -20}}
-            whileInView={{opacity: 1, x: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.2 + index * 0.1}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="flex items-center gap-4 group"
-        >
-            <motion.div
-                animate={{
-                    backgroundColor: hovered ? "rgba(34,197,94,0.2)" : "rgba(34,197,94,0.08)",
-                    borderColor: hovered ? "rgba(34,197,94,0.5)" : "rgba(34,197,94,0.2)",
-                }}
-                transition={{duration: 0.3}}
-                className="p-3 rounded-xl border text-brand shrink-0"
-            >
-                {icon}
-            </motion.div>
-            <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/25 mb-0.5">{label}</p>
-                <a href={href} className="text-sm font-medium text-white/70 group-hover:text-brand transition-colors duration-300">
-                    {value}
-                </a>
-            </div>
-        </motion.div>
-    );
-}
-
-/* Social pill */
-function SocialPill({item, index}: {item: (typeof social)[0]; index: number}) {
-    const [hovered, setHovered] = useState(false);
-    return (
-        <motion.a
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{opacity: 0, y: 20}}
-            whileInView={{opacity: 1, y: 0}}
-            viewport={{once: true}}
-            transition={{delay: 0.3 + index * 0.08, type: "spring", stiffness: 200}}
-            whileHover={{scale: 1.1, y: -3}}
-            whileTap={{scale: 0.95}}
-            onHoverStart={() => setHovered(true)}
-            onHoverEnd={() => setHovered(false)}
-            className="relative h-12 w-12 flex items-center justify-center rounded-2xl
-                 border border-white/10 bg-white/[0.04] backdrop-blur-md
-                 hover:border-brand/50 transition-colors duration-300 overflow-hidden cursor-pointer"
-        >
-            <motion.div animate={{opacity: hovered ? 1 : 0}} className="absolute inset-0 bg-gradient-to-br from-brand/20 via-transparent to-transparent" />
-            <motion.span animate={{color: hovered ? "#22c55e" : "rgba(255,255,255,0.45)"}} transition={{duration: 0.2}} className="relative z-10">
-                {item.logo}
-            </motion.span>
-        </motion.a>
-    );
-}
-
-/* MAIN COMPONENT */
 export default function ContactPage() {
     const sectionRef = useRef<HTMLElement>(null);
     const [phIndex, setPhIndex] = useState(0);
@@ -142,14 +22,101 @@ export default function ContactPage() {
     });
     const bgY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
     const bgY2 = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
+    const social = [
+        {
+            id: 1,
+            link: "https://github.com/HarshNandigamwar",
+            logo: <GithubIcon />,
+            label: "GitHub",
+        },
+        {
+            id: 2,
+            link: "https://www.linkedin.com/in/shriharsh-nandigamwar-b106702b1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            logo: <LinkedinIcon />,
+            label: "LinkedIn",
+        },
+        {
+            id: 3,
+            link: "https://x.com/Harsh477011?s=09",
+            logo: <TwitterXIcon />,
+            label: "Twitter",
+        },
+    ];
+    const placeholders = [
+        "Tell me about your project...",
+        "What are we building together?",
+        "Need help with a new design?",
+        "Got a big idea to share?",
+        "Let's start a conversation...",
+        "What's on your mind?",
+    ];
 
     /* Cycle placeholder */
     useEffect(() => {
         const id = setInterval(() => setPhIndex((p) => (p + 1) % placeholders.length), 4000);
         return () => clearInterval(id);
     }, []);
-
     const showPlaceholder = !focused && msgVal === "";
+
+    /* Animated input field */
+    function InputGroup({label, name, type, placeholder, disabled, index}: {label: string; name: string; type: string; placeholder: string; disabled: boolean; index: number}) {
+        const [focused, setFocused] = useState(false);
+
+        return (
+            <motion.div initial={{opacity: 0, y: 16}} whileInView={{opacity: 1, y: 0}} viewport={{once: true}} transition={{delay: 0.1 + index * 0.08}} className="flex flex-col gap-2">
+                <label className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-0.5">{label}</label>
+                <div className="relative">
+                    <input
+                        required
+                        disabled={disabled}
+                        type={type}
+                        name={name}
+                        placeholder={placeholder}
+                        onFocus={() => setFocused(true)}
+                        onBlur={() => setFocused(false)}
+                        className="w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3.5
+                     text-white/80 placeholder:text-white/20 font-mono text-sm
+                     focus:outline-none focus:border-brand/50 focus:bg-brand/5
+                     disabled:opacity-50 disabled:cursor-not-allowed
+                     transition-all duration-300"
+                    />
+                </div>
+            </motion.div>
+        );
+    }
+
+    /* Contact info row */
+    function ContactInfo({icon, label, value, href, index}: {icon: React.ReactNode; label: string; value: string; href: string; index: number}) {
+        const [hovered, setHovered] = useState(false);
+        return (
+            <motion.div
+                initial={{opacity: 0, x: -20}}
+                whileInView={{opacity: 1, x: 0}}
+                viewport={{once: true}}
+                transition={{delay: 0.2 + index * 0.1}}
+                onHoverStart={() => setHovered(true)}
+                onHoverEnd={() => setHovered(false)}
+                className="flex items-center gap-4 group"
+            >
+                <motion.div
+                    animate={{
+                        backgroundColor: hovered ? "rgba(34,197,94,0.2)" : "rgba(34,197,94,0.08)",
+                        borderColor: hovered ? "rgba(34,197,94,0.5)" : "rgba(34,197,94,0.2)",
+                    }}
+                    transition={{duration: 0.3}}
+                    className="p-3 rounded-xl border text-brand shrink-0"
+                >
+                    {icon}
+                </motion.div>
+                <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/25 mb-0.5">{label}</p>
+                    <a href={href} className="text-sm font-medium text-white/70 group-hover:text-brand transition-colors duration-300">
+                        {value}
+                    </a>
+                </div>
+            </motion.div>
+        );
+    }
 
     /* Submit */
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -176,6 +143,7 @@ export default function ContactPage() {
     return (
         <section ref={sectionRef} id="contact" className="relative py-10 md:py-16 overflow-hidden">
             {/* Backgroun */}
+            <ScanLines />
             <motion.div
                 style={{y: bgY}}
                 className="absolute -left-40 top-1/3 w-[500px] h-[500px]
@@ -240,7 +208,9 @@ export default function ContactPage() {
                             <p className="font-mono text-[10px] text-white/25 uppercase tracking-[0.2em] mb-4">Find me on</p>
                             <div className="flex gap-3">
                                 {social.map((item, i) => (
-                                    <SocialPill key={item.id} item={item} index={i} />
+                                    <SocialPill key={item.id} href={item.link} index={i}>
+                                        {item.logo}
+                                    </SocialPill>
                                 ))}
                             </div>
                         </div>
