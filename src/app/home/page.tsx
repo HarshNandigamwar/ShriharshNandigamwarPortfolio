@@ -19,6 +19,11 @@ const HomePage = () => {
     const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
     const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
+    // Scroll on top
+    const scrollToTop = () => {
+        window.scrollTo({top: 0, behavior: "smooth"});
+    };
+
     // Social media links
     const social = [
         {
@@ -43,6 +48,7 @@ const HomePage = () => {
         printConsoleSignature();
     }, []);
 
+    scrollToTop();
     return (
         <section ref={sectionRef} id="home" className="relative flex flex-col md:flex-row md:items-center justify-between gap-12 overflow-hidden py-5 md:py-0 md:p-3">
             {/*Background layers*/}

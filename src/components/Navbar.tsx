@@ -7,15 +7,16 @@ import TerminalIcon from "./icons/terminalIcon";
 /* Nav links */
 const navLinks = [
     {label: "About", href: "#about"},
-    {label: "Skills", href: "#skills"},
+    {label: "Experience", href: "#experience"},
+    {label: "Certifications", href: "#certificates"},
+    {label: "Toolkit", href: "#skills"},
     {label: "Projects", href: "#projects"},
+    {label: "Github", href: "#github"},
     {label: "Contact", href: "#contact"},
 ];
 
-/* MAIN COMPONENT */
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
-    const [activeSection, setActiveSection] = useState("");
     const [mobileOpen, setMobileOpen] = useState(false);
 
     /* Track scroll for glass effect */
@@ -25,27 +26,7 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-    /* Highlight active section via IntersectionObserver */
-    useEffect(() => {
-        const ids = navLinks.map((l) => l.href.replace("#", ""));
-        const observers: IntersectionObserver[] = [];
-
-        ids.forEach((id) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            const obs = new IntersectionObserver(
-                ([entry]) => {
-                    if (entry.isIntersecting) setActiveSection(id);
-                },
-                {rootMargin: "-40% 0px -55% 0px"},
-            );
-            obs.observe(el);
-            observers.push(obs);
-        });
-
-        return () => observers.forEach((o) => o.disconnect());
-    }, []);
-
+    // Scroll on top
     const scrollToTop = () => {
         window.scrollTo({top: 0, behavior: "smooth"});
         setMobileOpen(false);
@@ -78,36 +59,6 @@ export default function Navbar() {
                             Shriharsh.dev
                         </span>
                     </motion.button>
-
-                    {/*Desktop nav links*/}
-                    <nav className="hidden md:flex items-center gap-1">
-                        {navLinks.map((link, i) => {
-                            const isActive = activeSection === link.href.replace("#", "");
-                            return (
-                                <motion.a
-                                    key={link.label}
-                                    href={link.href}
-                                    initial={{opacity: 0, y: -10}}
-                                    animate={{opacity: 1, y: 0}}
-                                    transition={{delay: 0.1 + i * 0.07}}
-                                    className="relative px-4 py-2 rounded-lg font-mono text-xs uppercase
-                             tracking-[0.15em] transition-colors duration-200 cursor-pointer
-                             hover:text-brand group"
-                                    style={{color: isActive ? "#22c55e" : "rgba(255,255,255,0.4)"}}
-                                >
-                                    {/* Active pill */}
-                                    {isActive && (
-                                        <motion.span
-                                            layoutId="nav-active"
-                                            className="absolute inset-0 rounded-lg bg-brand/10 border border-brand/20"
-                                            transition={{type: "spring", stiffness: 300, damping: 30}}
-                                        />
-                                    )}
-                                    <span className="relative z-10">{link.label}</span>
-                                </motion.a>
-                            );
-                        })}
-                    </nav>
 
                     {/* Right side: Resume + hamburger */}
                     <div className="flex items-center gap-3">
@@ -182,7 +133,6 @@ export default function Navbar() {
                         >
                             <div className="p-5 flex flex-col gap-1">
                                 {navLinks.map((link, i) => {
-                                    const isActive = activeSection === link.href.replace("#", "");
                                     return (
                                         <motion.a
                                             key={link.label}
@@ -193,10 +143,10 @@ export default function Navbar() {
                                             onClick={() => setMobileOpen(false)}
                                             className={`flex items-center gap-3 px-4 py-3 rounded-xl
                                   font-mono text-sm uppercase tracking-[0.12em]
-                                  transition-colors duration-200 cursor-pointer
-                                  ${isActive ? "text-brand bg-brand/10 border border-brand/20" : "text-white/50 hover:text-brand hover:bg-white/[0.04]"}`}
+                                  transition-colors duration-200 cursor-pointer text-white/50 hover:text-brand hover:bg-white/[0.04]
+                                  `}
                                         >
-                                            <span className={`w-1 h-1 rounded-full ${isActive ? "bg-brand" : "bg-white/20"}`} />
+                                            <span className={`w-1 h-1 rounded-full bg-white/20`} />
                                             {link.label}
                                         </motion.a>
                                     );
