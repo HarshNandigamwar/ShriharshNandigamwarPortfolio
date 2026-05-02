@@ -12,6 +12,7 @@ import GridBackground from "@/components/UI/GridBackground";
 import GlowOrb from "@/components/UI/GlowOrb";
 import SocialPill from "@/components/UI/SocialPill";
 import StatChip from "@/components/UI/StatChip";
+import {useCallback} from "react";
 
 const HomePage = () => {
     const sectionRef = useRef<HTMLElement>(null);
@@ -20,9 +21,11 @@ const HomePage = () => {
     const imageOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
     // Scroll on top
-    const scrollToTop = () => {
+
+    const scrollToTop = useCallback(() => {
+        if (typeof window === "undefined") return;
         window.scrollTo({top: 0, behavior: "smooth"});
-    };
+    }, []);
 
     // Social media links
     const social = [
