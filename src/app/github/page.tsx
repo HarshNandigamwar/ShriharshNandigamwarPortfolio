@@ -30,7 +30,7 @@ export default function GitHubStatsPage() {
                 if (!res.ok) throw new Error(`${res.status}`);
                 setGitHubData(await res.json());
             } catch (e) {
-                console.error(e);
+                console.error(e, "While Fetching User:", USERNAME);
             } finally {
                 setLoading(false);
             }

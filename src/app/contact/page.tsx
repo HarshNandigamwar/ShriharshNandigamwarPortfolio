@@ -133,8 +133,9 @@ export default function ContactPage() {
             } else {
                 toast.warning("Something went wrong. Please try again.");
             }
-        } catch {
+        } catch (error) {
             toast.error("Network error. Please check your connection.");
+            console.log(error, "Happened While Submitting Request.");
         } finally {
             setIsSubmitting(false);
         }
