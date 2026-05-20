@@ -145,7 +145,7 @@ export default function RAGPage() {
                         exit={{opacity: 0, scale: 0.92, y: 24}}
                         transition={{duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94]}}
                         className={`fixed z-[9998] flex flex-col overflow-hidden bg-black/90 backdrop-blur-2xl border border-white/10
-              shadow-[0_24px_80px_rgba(0,0,0,0.7)] ${fullscreen ? "inset-0 rounded-none" : "bottom-6 right-6 w-[360px] h-[540px] rounded-2xl"}`}
+              shadow-[0_24px_80px_rgba(0,0,0,0.7)] ${fullscreen ? "inset-0 rounded-none" : "bottom-6 right-3 w-[360px] h-[540px] rounded-2xl"}`}
                     >
                         {/* Header */}
                         <div
