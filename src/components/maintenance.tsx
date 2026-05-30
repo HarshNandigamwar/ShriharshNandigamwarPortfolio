@@ -213,7 +213,7 @@ export default function MaintenancePage() {
   const [glitch, setGlitch]       = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("status");
   const [bootStep, setBootStep]   = useState(0);
-  const logsEndRef = useRef<HTMLDivElement>(null);
+  const logsEndRef = useRef<HTMLDivElement>(null!);
 
   /* ── Inject global CSS ── */
   useEffect(() => {
