@@ -589,7 +589,8 @@ function MaintenanceScreen({
 
   /* — Info tiles — */
   const tilesRow: CSSProperties = { display: "flex", gap: "6px", flexWrap: "wrap" };
-  const tile = (label: string, value: string, cls: string, bgColor: string): JSX.Element => (
+  const tile = (label: string, value: string, cls: string, bgColor: string): React.ReactNode => (
+
     <div style={{ border: `1px solid ${C.green4}`, background: bgColor, padding: "6px 12px", flex: "1 1 120px", minWidth: "100px" }}>
       <div style={{ color: C.dim, fontSize: "0.82em" }}>{label}</div>
       <div className={cls} style={{ color: cls === "am" ? C.amber : cls === "re" ? C.red : C.green, fontFamily: "'VT323', monospace", fontSize: "clamp(16px, 2.2vw, 20px)" }}>
