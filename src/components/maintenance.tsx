@@ -38,7 +38,7 @@ interface LogEntry {
 ══════════════════════════════════════════════════════════════ */
 
 const HARDWARE_CHECKS: HardwareCheck[] = [
-  { id: "cpu",  label: "Processor       ", value: "PORTFOLIO-CORE i9  5.2GHz  64-bit", detail: "x86_64 / 24 cores", status: "pending", final: "ok" },
+  { id: "cpu",  label: "Processor       ", value: "PORTFOLIO-CORE i5  5.2GHz  64-bit", detail: "x86_64 / 24 cores", status: "pending", final: "ok" },
   { id: "ram",  label: "System Memory   ", value: "32768 MB DDR5-6000  ECC   Dual Ch.", detail: "No errors detected", status: "pending", final: "ok" },
   { id: "gpu",  label: "Display Adapter ", value: "WebGL 3.0 Accel.   16 GB  Enabled", detail: "Hardware acceleration on", status: "pending", final: "ok" },
   { id: "stor", label: "NVMe Storage    ", value: "2048 GB PCIe 5.0   Active  R/W OK", detail: "S.M.A.R.T status: OK", status: "pending", final: "ok" },
@@ -225,21 +225,21 @@ export default function MaintenancePage() {
 
   /* ── Clock ── */
   useEffect(() => {
-    const t = setInterval(() => setClockTime(getTime()), 1000);
+    const t = setInterval(() => setClockTime(getTime()), 10000);
     return () => clearInterval(t);
   }, []);
 
   /* ── Uptime ── */
   useEffect(() => {
     if (phase !== "maintenance") return;
-    const t = setInterval(() => setUptime(u => u + 1), 1000);
+    const t = setInterval(() => setUptime(u => u + 1), 10000);
     return () => clearInterval(t);
   }, [phase]);
 
   /* ── Random glitch ── */
   useEffect(() => {
     const schedule = () => {
-      const delay = 4000 + Math.random() * 10000;
+      const delay = 4000 + Math.random() * 100000;
       return setTimeout(() => {
         setGlitch(true);
         setTimeout(() => setGlitch(false), 160);
@@ -263,12 +263,12 @@ export default function MaintenancePage() {
       if (count >= MEM_TARGET) clearInterval(memInterval);
     }, TICK_MS);
 
-    const t1 = setTimeout(() => setBootStep(1), 200);
-    const t2 = setTimeout(() => setBootStep(2), 500);
-    const t3 = setTimeout(() => setBootStep(3), (MEM_TARGET / TICK_STEP) * TICK_MS + 200);
-    const t4 = setTimeout(() => setBootStep(4), (MEM_TARGET / TICK_STEP) * TICK_MS + 700);
-    const t5 = setTimeout(() => setBootStep(5), (MEM_TARGET / TICK_STEP) * TICK_MS + 1400);
-    const toPost = setTimeout(() => setPhase("post"), (MEM_TARGET / TICK_STEP) * TICK_MS + 2000);
+    const t1 = setTimeout(() => setBootStep(1), 2000);
+    const t2 = setTimeout(() => setBootStep(2), 5000);
+    const t3 = setTimeout(() => setBootStep(3), (MEM_TARGET / TICK_STEP) * TICK_MS + 2000);
+    const t4 = setTimeout(() => setBootStep(4), (MEM_TARGET / TICK_STEP) * TICK_MS + 7000);
+    const t5 = setTimeout(() => setBootStep(5), (MEM_TARGET / TICK_STEP) * TICK_MS + 14000);
+    const toPost = setTimeout(() => setPhase("post"), (MEM_TARGET / TICK_STEP) * TICK_MS + 20000);
     return () => {
       clearInterval(memInterval);
       [t1, t2, t3, t4, t5, toPost].forEach(clearTimeout);
@@ -281,20 +281,20 @@ export default function MaintenancePage() {
     let idx = 0;
     const run = () => {
       if (idx >= HARDWARE_CHECKS.length) {
-        setTimeout(() => setPhase("maintenance"), 500);
+        setTimeout(() => setPhase("maintenance"), 7000);
         return;
       }
       setChecks(prev => prev.map((c, i) => i === idx ? { ...c, status: "checking" } : c));
-      const delay = 200 + Math.random() * 350;
+      const delay = 200 + Math.random() * 3500;
       setTimeout(() => {
         setChecks(prev => prev.map((c, i) =>
           i === idx ? { ...c, status: c.final } : c
         ));
         idx++;
-        setTimeout(run, 80);
+        setTimeout(run, 800);
       }, delay);
     };
-    const init = setTimeout(run, 300);
+    const init = setTimeout(run, 3000);
     return () => clearTimeout(init);
   }, [phase]);
 
@@ -305,7 +305,7 @@ export default function MaintenancePage() {
     const addLog = () => {
       if (li >= MAINT_LOGS.length) return;
       setLogs(prev => [...prev, MAINT_LOGS[li++]]);
-      setTimeout(addLog, 600 + Math.random() * 600);
+      setTimeout(addLog, 600 + Math.random() * 6000);
     };
     addLog();
     let p = 0;
@@ -435,7 +435,7 @@ function BiosHeader({ clockTime, getDate }: { clockTime: string; getDate: () => 
       <span className="g" style={{ fontFamily: "'VT323', monospace", fontSize: "clamp(16px, 2.5vw, 22px)", letterSpacing: "0.08em", color: C.green }}>
         ▸ DEVBIOS  v3.7.2-MAINT
       </span>
-      <span style={{ color: C.green3 }}>Copyright (C) 2024 Anthropic Systems Inc. All Rights Reserved.</span>
+      <span style={{ color: C.green3 }}>Copyright (C) 2026 Shriharsh.dev Systems Inc. All Rights Reserved.</span>
       <span className="g" style={{ color: C.green2, marginLeft: "auto" }}>
         {getDate()}  <span style={{ color: C.green }}>{clockTime}</span>
       </span>
@@ -649,12 +649,12 @@ function MaintenanceScreen({
             </span>
             <div>
               <div className="am" style={{ color: C.amber, fontWeight: "bold" }}>SERVICE UNAVAILABLE</div>
-              <div style={{ color: C.dim, fontSize: "0.85em" }}>HTTP/1.1 — Maintenance Mode Active</div>
+              <div style={{ color: C.dim, fontSize: "0.85em" }}>HTTPS/3.1 — Maintenance Mode Active</div>
             </div>
           </div>
           <div style={{ borderTop: `1px solid ${C.amber}44`, paddingTop: "6px" }}>
             <div style={{ color: C.green2, marginBottom: "2px" }}>
-              ▸ <span style={{ color: C.green }}>portfolio.dev</span> is currently being upgraded.
+              ▸ <span style={{ color: C.green }}>Shriharsh.dev</span> is currently under maintenance.
             </div>
             <div style={{ color: C.dim }}>
               ▸ Estimated completion: <span className="blink" style={{ color: C.green }}>calculating...</span>
@@ -670,7 +670,7 @@ function MaintenanceScreen({
           <div style={tilesRow}>
             {tile("STATUS CODE", "503", "am", "#100800")}
             {tile("UPTIME", formatUptime(uptime), "g", C.green5)}
-            {tile("VERSION", "v2.1.0", "g", C.green5)}
+            {tile("VERSION", "v3.1.0", "g", C.green5)}
           </div>
           <div style={tilesRow}>
             {tile("POST WARNINGS", `${checks.filter(c => c.final === "warning").length} / ${checks.length}`, "am", "#100800")}
@@ -685,11 +685,11 @@ function MaintenanceScreen({
         <div className="marquee-inner">
           &nbsp;&nbsp;&nbsp;
           ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503 SERVICE UNAVAILABLE &nbsp;|&nbsp;
-          portfolio.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
-          All user data is safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress &nbsp;|&nbsp;
+          Shriharsh.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
+          All data is safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress &nbsp;|&nbsp;
           BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK: PENDING &nbsp;|&nbsp;
           ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503 SERVICE UNAVAILABLE &nbsp;|&nbsp;
-          portfolio.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
+          Shriharsh.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
           All user data is safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress &nbsp;|&nbsp;
           BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK: PENDING &nbsp;&nbsp;&nbsp;
         </div>
@@ -785,7 +785,7 @@ function MaintenanceScreen({
             <motion.div key="help" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={panelBase}>
               <div style={{ color: C.dim, marginBottom: "10px", fontSize: "0.85em" }}>BIOS MAINTENANCE REFERENCE</div>
               {[
-                ["What is this?",      "Your portfolio website is undergoing a scheduled upgrade. During this time all public-facing routes return HTTP 503."],
+                ["What is this?",      "Portfolio website is undergoing a scheduled upgrade. During this time all public-facing routes return HTTP 503."],
                 ["How long?",          "Deployments typically complete within 5–20 minutes. If this page persists beyond 30 min, the upgrade may have stalled."],
                 ["Is data safe?",      "Yes. Maintenance mode is read-only. No user data is modified during this phase."],
                 ["Status codes",       "503 → Service unavailable. 307 → Temporary redirect to /maintenance. 200 → Normal operation restored."],
