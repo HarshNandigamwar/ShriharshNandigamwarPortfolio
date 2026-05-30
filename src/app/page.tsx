@@ -6,7 +6,7 @@ import SkillsPage from "./skills/page";
 import ProjectsPage from "./projects/page";
 import GitHubStatsPage from "./github/page";
 import ContactPage from "./contact/page";
-import MaintenancePage from "@/components/MaintenancePage";
+import MaintenancePage from "@/components/maintenance";
 
 export default function Home() {
     return (
