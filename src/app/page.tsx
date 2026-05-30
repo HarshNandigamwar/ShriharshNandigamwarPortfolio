@@ -10,17 +10,19 @@ import MaintenancePage from "@/components/MaintenancePage";
 
 export default function Home() {
     return (
-        <MaintenancePage />
-        {/*<main className="mx-auto py-20 overflow-x-hidden ">
+        <>
             <MaintenancePage />
-            <HomePage />
-                 <AboutPage />
-                    <ExperiencePage />
-                        <CertificationsPage />
-                            <SkillsPage />
-                                <ProjectsPage />
-            <GitHubStatsPage />
-            <ContactPage />
-        </main>*/}
+            {/* <main className="mx-auto py-20 overflow-x-hidden ">
+                <MaintenancePage />
+                <HomePage />
+                <AboutPage />
+                <ExperiencePage />
+                <CertificationsPage />
+                <SkillsPage />
+                <ProjectsPage />
+                <GitHubStatsPage />
+                <ContactPage />
+            </main> */}
+        </>
     )
 }
