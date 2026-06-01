@@ -31,11 +31,11 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 <ThemeProvider attribute="class" defaultTheme="dark">
                     <SmoothScroll>
                         <CustomCursor />
-                        {/*  <Navbar />*/}
+                          <Navbar />
                         {children}
                         <Toaster position="top-right" richColors theme="dark" />
-                        {/* <RAGPage /> */}
-                        {/* <Footer /> */}
+                        <RAGPage /> 
+                         <Footer /> 
                     </SmoothScroll>
                 </ThemeProvider>
             </body>
