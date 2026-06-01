@@ -13,7 +13,7 @@ export default function Home() {
         
             
             <main className="mx-auto py-20 overflow-x-hidden ">
-                <MaintenancePage />
+                {/* <MaintenancePage />*/}
                 <HomePage />
                 <AboutPage />
                 <ExperiencePage />
