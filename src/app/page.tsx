@@ -6,18 +6,23 @@ import SkillsPage from "./skills/page";
 import ProjectsPage from "./projects/page";
 import GitHubStatsPage from "./github/page";
 import ContactPage from "./contact/page";
+import MaintenancePage from "@/components/maintenance";
 
 export default function Home() {
     return (
-        <main className="mx-auto py-20 overflow-x-hidden ">
-            <HomePage />
-            <AboutPage />
-            <ExperiencePage />
-            <CertificationsPage />
-            <SkillsPage />
-            <ProjectsPage />
-            <GitHubStatsPage />
-            <ContactPage />
-        </main>
-    );
+        
+            
+            <main className="mx-auto py-20 overflow-x-hidden ">
+                {/* <MaintenancePage />*/}
+                <HomePage />
+                <AboutPage />
+                <ExperiencePage />
+                <CertificationsPage />
+                <SkillsPage />
+                <ProjectsPage />
+                <GitHubStatsPage />
+                <ContactPage />
+            </main> 
+        
+    )
 }
