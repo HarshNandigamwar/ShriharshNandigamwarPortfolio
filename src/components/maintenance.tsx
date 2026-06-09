@@ -38,29 +38,97 @@ interface LogEntry {
 ══════════════════════════════════════════════════════════════ */
 
 const HARDWARE_CHECKS: HardwareCheck[] = [
-  { id: "cpu",  label: "Processor       ", value: "PORTFOLIO-CORE i5  5.2GHz  64-bit", detail: "x86_64 / 24 cores", status: "pending", final: "ok" },
-  { id: "ram",  label: "System Memory   ", value: "32768 MB DDR5-6000  ECC   Dual Ch.", detail: "No errors detected", status: "pending", final: "ok" },
-  { id: "gpu",  label: "Display Adapter ", value: "WebGL 3.0 Accel.   16 GB  Enabled", detail: "Hardware acceleration on", status: "pending", final: "ok" },
-  { id: "stor", label: "NVMe Storage    ", value: "2048 GB PCIe 5.0   Active  R/W OK", detail: "S.M.A.R.T status: OK", status: "pending", final: "ok" },
-  { id: "net",  label: "Network Card    ", value: "10 GbE Fiber       MAINT  Restrict", detail: "Maintenance firewall active", status: "pending", final: "warning" },
-  { id: "sec",  label: "Security Module ", value: "TPM 3.1            Auth.  Active", detail: "Secure Boot: enforced", status: "pending", final: "ok" },
-  { id: "rtc",  label: "System Clock    ", value: "RTC Battery OK     Sync   NTP+UTC", detail: "Last sync: 00:00:07 ago", status: "pending", final: "ok" },
-  { id: "boot", label: "Boot Partition  ", value: "MAINT PART #503    R/O    Mounted", detail: "Normal boot suspended", status: "pending", final: "warning" },
+  {
+    id: "cpu",
+    label: "Processor       ",
+    value: "PORTFOLIO-CORE i5  5.2GHz  64-bit",
+    detail: "x86_64 / 24 cores",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "ram",
+    label: "System Memory   ",
+    value: "32768 MB DDR5-6000  ECC   Dual Ch.",
+    detail: "No errors detected",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "gpu",
+    label: "Display Adapter ",
+    value: "WebGL 3.0 Accel.   16 GB  Enabled",
+    detail: "Hardware acceleration on",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "stor",
+    label: "NVMe Storage    ",
+    value: "2048 GB PCIe 5.0   Active  R/W OK",
+    detail: "S.M.A.R.T status: OK",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "net",
+    label: "Network Card    ",
+    value: "10 GbE Fiber       MAINT  Restrict",
+    detail: "Maintenance firewall active",
+    status: "pending",
+    final: "warning",
+  },
+  {
+    id: "sec",
+    label: "Security Module ",
+    value: "TPM 3.1            Auth.  Active",
+    detail: "Secure Boot: enforced",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "rtc",
+    label: "System Clock    ",
+    value: "RTC Battery OK     Sync   NTP+UTC",
+    detail: "Last sync: 00:00:07 ago",
+    status: "pending",
+    final: "ok",
+  },
+  {
+    id: "boot",
+    label: "Boot Partition  ",
+    value: "MAINT PART #503    R/O    Mounted",
+    detail: "Normal boot suspended",
+    status: "pending",
+    final: "warning",
+  },
 ];
 
 const MAINT_LOGS: LogEntry[] = [
   { type: "INFO", msg: "Entering maintenance mode — public access suspended" },
   { type: "INFO", msg: "Mounting overlay filesystem at /mnt/maintenance" },
   { type: "INFO", msg: "Loading upgrade manifest: portfolio v2.0.0 → v2.1.0" },
-  { type: "INFO", msg: "Verifying package checksums... SHA-256 OK (187 packages)" },
-  { type: "WARN", msg: "Dependency conflict detected in node_modules — resolving" },
+  {
+    type: "INFO",
+    msg: "Verifying package checksums... SHA-256 OK (187 packages)",
+  },
+  {
+    type: "WARN",
+    msg: "Dependency conflict detected in node_modules — resolving",
+  },
   { type: "INFO", msg: "Resolved: upgraded next@16.1.6 → next@16.2.0" },
   { type: "INFO", msg: "Applying 3 pending database schema migrations" },
   { type: "INFO", msg: "Migration 001_add_projects_table ............... OK" },
   { type: "INFO", msg: "Migration 002_index_timestamps ................. OK" },
   { type: "INFO", msg: "Migration 003_update_metadata_schema ........... OK" },
-  { type: "INFO", msg: "Running Next.js production build (this may take a while)" },
-  { type: "WARN", msg: "Build cache partially invalidated — full rebuild required" },
+  {
+    type: "INFO",
+    msg: "Running Next.js production build (this may take a while)",
+  },
+  {
+    type: "WARN",
+    msg: "Build cache partially invalidated — full rebuild required",
+  },
   { type: "INFO", msg: "Compiled 247 modules in 18.4s" },
   { type: "INFO", msg: "Optimizing 247 image assets via sharp pipeline" },
   { type: "INFO", msg: "Running integration test suite (94 tests)..." },
@@ -73,7 +141,8 @@ const MAINT_LOGS: LogEntry[] = [
 ══════════════════════════════════════════════════════════════ */
 
 const pbar = (pct: number, w = 26): string =>
-  "▓".repeat(Math.round((pct / 100) * w)) + "░".repeat(w - Math.round((pct / 100) * w));
+  "▓".repeat(Math.round((pct / 100) * w)) +
+  "░".repeat(w - Math.round((pct / 100) * w));
 
 const formatUptime = (s: number): string => {
   const h = String(Math.floor(s / 3600)).padStart(2, "0");
@@ -83,42 +152,52 @@ const formatUptime = (s: number): string => {
 };
 
 const getTime = (): string =>
-  new Date().toLocaleTimeString("en-US", { hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  new Date().toLocaleTimeString("en-US", {
+    hour12: false,
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
 
 const getDate = (): string =>
-  new Date().toLocaleDateString("en-US", { weekday: "short", year: "numeric", month: "short", day: "2-digit" });
+  new Date().toLocaleDateString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
 
 /* ══════════════════════════════════════════════════════════════
    THEME
 ══════════════════════════════════════════════════════════════ */
 
 const C = {
-  green:   "#00ff41",
-  green2:  "#00cc33",
-  green3:  "#007a1f",
-  green4:  "#003d10",
-  green5:  "#001a07",
-  amber:   "#ffaa00",
-  red:     "#ff3333",
-  blue:    "#00bbff",
-  dim:     "#2d5e3a",
-  bg:      "#000000",
+  green: "#00ff41",
+  green2: "#00cc33",
+  green3: "#007a1f",
+  green4: "#003d10",
+  green5: "#001a07",
+  amber: "#ffaa00",
+  red: "#ff3333",
+  blue: "#00bbff",
+  dim: "#2d5e3a",
+  bg: "#000000",
 };
 
 const statusColor: Record<CheckStatus, string> = {
-  pending:  C.dim,
+  pending: C.dim,
   checking: C.blue,
-  ok:       C.green,
-  warning:  C.amber,
-  error:    C.red,
+  ok: C.green,
+  warning: C.amber,
+  error: C.red,
 };
 
 const statusTag: Record<CheckStatus, string> = {
-  pending:  "         ",
+  pending: "         ",
   checking: " ░░░░░░░ ",
-  ok:       "  [ OK ] ",
-  warning:  " [WARN!] ",
-  error:    " [ERROR] ",
+  ok: "  [ OK ] ",
+  warning: " [WARN!] ",
+  error: " [ERROR] ",
 };
 
 /* ══════════════════════════════════════════════════════════════
@@ -203,16 +282,16 @@ const GLOBAL_CSS = `
 ══════════════════════════════════════════════════════════════ */
 
 export default function MaintenancePage() {
-  const [phase, setPhase]         = useState<Phase>("boot");
-  const [memCount, setMemCount]   = useState(0);
-  const [checks, setChecks]       = useState<HardwareCheck[]>(HARDWARE_CHECKS);
-  const [logs, setLogs]           = useState<LogEntry[]>([]);
-  const [progress, setProgress]   = useState(0);
-  const [uptime, setUptime]       = useState(0);
+  const [phase, setPhase] = useState<Phase>("boot");
+  const [memCount, setMemCount] = useState(0);
+  const [checks, setChecks] = useState<HardwareCheck[]>(HARDWARE_CHECKS);
+  const [logs, setLogs] = useState<LogEntry[]>([]);
+  const [progress, setProgress] = useState(0);
+  const [uptime, setUptime] = useState(0);
   const [clockTime, setClockTime] = useState(getTime());
-  const [glitch, setGlitch]       = useState(false);
+  const [glitch, setGlitch] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("status");
-  const [bootStep, setBootStep]   = useState(0);
+  const [bootStep, setBootStep] = useState(0);
   const logsEndRef = useRef<HTMLDivElement>(null!);
 
   /* ── Inject global CSS ── */
@@ -220,7 +299,9 @@ export default function MaintenancePage() {
     const style = document.createElement("style");
     style.textContent = GLOBAL_CSS;
     document.head.appendChild(style);
-    return () => { document.head.removeChild(style); };
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   /* ── Clock ── */
@@ -232,7 +313,7 @@ export default function MaintenancePage() {
   /* ── Uptime ── */
   useEffect(() => {
     if (phase !== "maintenance") return;
-    const t = setInterval(() => setUptime(u => u + 1), 10000);
+    const t = setInterval(() => setUptime((u) => u + 1), 10000);
     return () => clearInterval(t);
   }, [phase]);
 
@@ -265,10 +346,22 @@ export default function MaintenancePage() {
 
     const t1 = setTimeout(() => setBootStep(1), 2000);
     const t2 = setTimeout(() => setBootStep(2), 5000);
-    const t3 = setTimeout(() => setBootStep(3), (MEM_TARGET / TICK_STEP) * TICK_MS + 2000);
-    const t4 = setTimeout(() => setBootStep(4), (MEM_TARGET / TICK_STEP) * TICK_MS + 7000);
-    const t5 = setTimeout(() => setBootStep(5), (MEM_TARGET / TICK_STEP) * TICK_MS + 14000);
-    const toPost = setTimeout(() => setPhase("post"), (MEM_TARGET / TICK_STEP) * TICK_MS + 20000);
+    const t3 = setTimeout(
+      () => setBootStep(3),
+      (MEM_TARGET / TICK_STEP) * TICK_MS + 2000,
+    );
+    const t4 = setTimeout(
+      () => setBootStep(4),
+      (MEM_TARGET / TICK_STEP) * TICK_MS + 7000,
+    );
+    const t5 = setTimeout(
+      () => setBootStep(5),
+      (MEM_TARGET / TICK_STEP) * TICK_MS + 14000,
+    );
+    const toPost = setTimeout(
+      () => setPhase("post"),
+      (MEM_TARGET / TICK_STEP) * TICK_MS + 20000,
+    );
     return () => {
       clearInterval(memInterval);
       [t1, t2, t3, t4, t5, toPost].forEach(clearTimeout);
@@ -284,12 +377,14 @@ export default function MaintenancePage() {
         setTimeout(() => setPhase("maintenance"), 7000);
         return;
       }
-      setChecks(prev => prev.map((c, i) => i === idx ? { ...c, status: "checking" } : c));
+      setChecks((prev) =>
+        prev.map((c, i) => (i === idx ? { ...c, status: "checking" } : c)),
+      );
       const delay = 200 + Math.random() * 3500;
       setTimeout(() => {
-        setChecks(prev => prev.map((c, i) =>
-          i === idx ? { ...c, status: c.final } : c
-        ));
+        setChecks((prev) =>
+          prev.map((c, i) => (i === idx ? { ...c, status: c.final } : c)),
+        );
         idx++;
         setTimeout(run, 800);
       }, delay);
@@ -304,7 +399,7 @@ export default function MaintenancePage() {
     let li = 0;
     const addLog = () => {
       if (li >= MAINT_LOGS.length) return;
-      setLogs(prev => [...prev, MAINT_LOGS[li++]]);
+      setLogs((prev) => [...prev, MAINT_LOGS[li++]]);
       setTimeout(addLog, 600 + Math.random() * 6000);
     };
     addLog();
@@ -325,9 +420,18 @@ export default function MaintenancePage() {
   /* ── F-key shortcuts ── */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "F1") { e.preventDefault(); setActiveTab("help"); }
-      if (e.key === "F2") { e.preventDefault(); setActiveTab("status"); }
-      if (e.key === "F3") { e.preventDefault(); setActiveTab("log"); }
+      if (e.key === "F1") {
+        e.preventDefault();
+        setActiveTab("help");
+      }
+      if (e.key === "F2") {
+        e.preventDefault();
+        setActiveTab("status");
+      }
+      if (e.key === "F3") {
+        e.preventDefault();
+        setActiveTab("log");
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -354,22 +458,38 @@ export default function MaintenancePage() {
   return (
     <div style={root}>
       {/* CRT scanlines overlay */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 15, pointerEvents: "none",
-        backgroundImage:
-          "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.25) 3px,rgba(0,0,0,0.25) 4px)",
-      }} />
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 15,
+          pointerEvents: "none",
+          backgroundImage:
+            "repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.25) 3px,rgba(0,0,0,0.25) 4px)",
+        }}
+      />
       {/* Vignette */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 14, pointerEvents: "none",
-        background: "radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.75) 100%)",
-      }} />
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 14,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0,0,0,0.75) 100%)",
+        }}
+      />
       {/* Moving scan beam */}
       <div className="scan-beam" />
 
       <motion.div
         className={`flicker${glitch ? " glitch-anim" : ""}`}
-        style={{ width: "100%", maxWidth: "920px", position: "relative", zIndex: 2 }}
+        style={{
+          width: "100%",
+          maxWidth: "920px",
+          position: "relative",
+          zIndex: 2,
+        }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.15 }}
@@ -379,22 +499,33 @@ export default function MaintenancePage() {
         {/* ─── BOOT ─── */}
         <AnimatePresence mode="wait">
           {phase === "boot" && (
-            <motion.div key="boot"
-              initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
+            <motion.div
+              key="boot"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
               <BootScreen memCount={memCount} step={bootStep} />
             </motion.div>
           )}
           {phase === "post" && (
-            <motion.div key="post"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}>
+            <motion.div
+              key="post"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
               <PostScreen checks={checks} />
             </motion.div>
           )}
           {phase === "maintenance" && (
-            <motion.div key="maint"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}>
+            <motion.div
+              key="maint"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
               <MaintenanceScreen
                 checks={checks}
                 logs={logs}
@@ -408,7 +539,11 @@ export default function MaintenancePage() {
           )}
         </AnimatePresence>
 
-        <BiosFooter phase={phase} activeTab={activeTab} setActiveTab={setActiveTab} />
+        <BiosFooter
+          phase={phase}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
       </motion.div>
     </div>
   );
@@ -418,7 +553,13 @@ export default function MaintenancePage() {
    BIOS HEADER
 ══════════════════════════════════════════════════════════════ */
 
-function BiosHeader({ clockTime, getDate }: { clockTime: string; getDate: () => string }) {
+function BiosHeader({
+  clockTime,
+  getDate,
+}: {
+  clockTime: string;
+  getDate: () => string;
+}) {
   const box: CSSProperties = {
     border: `1px solid ${C.green3}`,
     background: C.green5,
@@ -432,12 +573,22 @@ function BiosHeader({ clockTime, getDate }: { clockTime: string; getDate: () => 
   };
   return (
     <div style={box}>
-      <span className="g" style={{ fontFamily: "'VT323', monospace", fontSize: "clamp(16px, 2.5vw, 22px)", letterSpacing: "0.08em", color: C.green }}>
-        ▸ DEVBIOS  v3.7.2-MAINT
+      <span
+        className="g"
+        style={{
+          fontFamily: "'VT323', monospace",
+          fontSize: "clamp(16px, 2.5vw, 22px)",
+          letterSpacing: "0.08em",
+          color: C.green,
+        }}
+      >
+        ▸ DEVBIOS v3.7.2-MAINT
       </span>
-      <span style={{ color: C.green3 }}>Copyright (C) 2026 Shriharsh.dev Systems Inc. All Rights Reserved.</span>
+      <span style={{ color: C.green3 }}>
+        Copyright (C) 2026 Shriharsh.dev Systems Inc. All Rights Reserved.
+      </span>
       <span className="g" style={{ color: C.green2, marginLeft: "auto" }}>
-        {getDate()}  <span style={{ color: C.green }}>{clockTime}</span>
+        {getDate()} <span style={{ color: C.green }}>{clockTime}</span>
       </span>
     </div>
   );
@@ -465,15 +616,17 @@ function BootScreen({ memCount, step }: { memCount: number; step: number }) {
     <div style={panel}>
       {line(
         <span className="g" style={{ color: C.green }}>
-          DEVBIOS v3.7.2  —  UEFI Firmware Initialization
+          DEVBIOS v3.7.2 — UEFI Firmware Initialization
         </span>,
-        step >= 0, "l0"
+        step >= 0,
+        "l0",
       )}
       {line(
         <span style={{ color: C.green2 }}>
-          CPU: PORTFOLIO-CORE i9 @ 5.2GHz (24 Cores / 48 Threads)  [64-bit]
+          CPU: PORTFOLIO-CORE i9 @ 5.2GHz (24 Cores / 48 Threads) [64-bit]
         </span>,
-        step >= 1, "l1"
+        step >= 1,
+        "l1",
       )}
       {line(
         <span style={{ color: C.green2 }}>
@@ -482,28 +635,48 @@ function BootScreen({ memCount, step }: { memCount: number; step: number }) {
             {memCount.toLocaleString()} KB
           </span>
           {memCount < 32768 ? (
-            <span className="spin" style={{ marginLeft: 8, color: C.blue }}>◌</span>
+            <span className="spin" style={{ marginLeft: 8, color: C.blue }}>
+              ◌
+            </span>
           ) : (
-            <span className="g" style={{ color: C.green, marginLeft: 8 }}>OK</span>
+            <span className="g" style={{ color: C.green, marginLeft: 8 }}>
+              OK
+            </span>
           )}
         </span>,
-        step >= 2, "l2"
+        step >= 2,
+        "l2",
       )}
       {line(
-        <span style={{ color: C.green2 }}>Memory: 32768 MB DDR5-6000 ECC  →  <span className="g" style={{ color: C.green }}>PASSED</span></span>,
-        step >= 3, "l3"
+        <span style={{ color: C.green2 }}>
+          Memory: 32768 MB DDR5-6000 ECC →{" "}
+          <span className="g" style={{ color: C.green }}>
+            PASSED
+          </span>
+        </span>,
+        step >= 3,
+        "l3",
       )}
       {line(
-        <span style={{ color: C.green2 }}>Detecting storage devices... NVMe(0) found  <span className="g" style={{ color: C.green }}>OK</span></span>,
-        step >= 4, "l4"
+        <span style={{ color: C.green2 }}>
+          Detecting storage devices... NVMe(0) found{" "}
+          <span className="g" style={{ color: C.green }}>
+            OK
+          </span>
+        </span>,
+        step >= 4,
+        "l4",
       )}
       {line(
         <span style={{ color: C.amber }} className="am">
-          ⚠  MAINTENANCE FLAG DETECTED — Suspending normal boot sequence...
+          ⚠ MAINTENANCE FLAG DETECTED — Suspending normal boot sequence...
         </span>,
-        step >= 5, "l5"
+        step >= 5,
+        "l5",
       )}
-      <span className="blink" style={{ color: C.green2 }}>_</span>
+      <span className="blink" style={{ color: C.green2 }}>
+        _
+      </span>
     </div>
   );
 }
@@ -544,13 +717,34 @@ function PostScreen({ checks }: { checks: HardwareCheck[] }) {
             gap: 4,
           }}
         >
-          <span style={{ color: C.dim, minWidth: "22px", textAlign: "right" }}>{String(i + 1).padStart(2, "0")}.</span>
+          <span style={{ color: C.dim, minWidth: "22px", textAlign: "right" }}>
+            {String(i + 1).padStart(2, "0")}.
+          </span>
           <span style={{ color: statusColor[c.status], minWidth: "90px" }}>
             {statusTag[c.status]}
           </span>
           <span style={{ color: C.green2, minWidth: "160px" }}>{c.label}</span>
-          <span style={{ color: c.status === "pending" ? C.dim : C.green, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{c.value}</span>
-          <span style={{ color: C.dim, fontSize: "0.85em", minWidth: "160px", textAlign: "right" }}>{c.status !== "pending" ? c.detail : ""}</span>
+          <span
+            style={{
+              color: c.status === "pending" ? C.dim : C.green,
+              flex: 1,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {c.value}
+          </span>
+          <span
+            style={{
+              color: C.dim,
+              fontSize: "0.85em",
+              minWidth: "160px",
+              textAlign: "right",
+            }}
+          >
+            {c.status !== "pending" ? c.detail : ""}
+          </span>
         </motion.div>
       ))}
     </div>
@@ -562,21 +756,34 @@ function PostScreen({ checks }: { checks: HardwareCheck[] }) {
 ══════════════════════════════════════════════════════════════ */
 
 interface MaintProps {
-  checks:      HardwareCheck[];
-  logs:        LogEntry[];
-  progress:    number;
-  uptime:      number;
-  activeTab:   Tab;
+  checks: HardwareCheck[];
+  logs: LogEntry[];
+  progress: number;
+  uptime: number;
+  activeTab: Tab;
   setActiveTab: Dispatch<SetStateAction<Tab>>;
-  logsEndRef:  React.RefObject<HTMLDivElement>;
+  logsEndRef: React.RefObject<HTMLDivElement>;
 }
 
 function MaintenanceScreen({
-  checks, logs, progress, uptime, activeTab, setActiveTab, logsEndRef,
+  checks,
+  logs,
+  progress,
+  uptime,
+  activeTab,
+  setActiveTab,
+  logsEndRef,
 }: MaintProps) {
-
-  const outer: CSSProperties = { display: "flex", flexDirection: "column", gap: "6px" };
-  const topRow: CSSProperties = { display: "flex", gap: "6px", flexWrap: "wrap" };
+  const outer: CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    gap: "6px",
+  };
+  const topRow: CSSProperties = {
+    display: "flex",
+    gap: "6px",
+    flexWrap: "wrap",
+  };
 
   /* — Status code banner — */
   const bannerBox: CSSProperties = {
@@ -588,12 +795,35 @@ function MaintenanceScreen({
   };
 
   /* — Info tiles — */
-  const tilesRow: CSSProperties = { display: "flex", gap: "6px", flexWrap: "wrap" };
-  const tile = (label: string, value: string, cls: string, bgColor: string): React.ReactNode => (
-
-    <div style={{ border: `1px solid ${C.green4}`, background: bgColor, padding: "6px 12px", flex: "1 1 120px", minWidth: "100px" }}>
+  const tilesRow: CSSProperties = {
+    display: "flex",
+    gap: "6px",
+    flexWrap: "wrap",
+  };
+  const tile = (
+    label: string,
+    value: string,
+    cls: string,
+    bgColor: string,
+  ): React.ReactNode => (
+    <div
+      style={{
+        border: `1px solid ${C.green4}`,
+        background: bgColor,
+        padding: "6px 12px",
+        flex: "1 1 120px",
+        minWidth: "100px",
+      }}
+    >
       <div style={{ color: C.dim, fontSize: "0.82em" }}>{label}</div>
-      <div className={cls} style={{ color: cls === "am" ? C.amber : cls === "re" ? C.red : C.green, fontFamily: "'VT323', monospace", fontSize: "clamp(16px, 2.2vw, 20px)" }}>
+      <div
+        className={cls}
+        style={{
+          color: cls === "am" ? C.amber : cls === "re" ? C.red : C.green,
+          fontFamily: "'VT323', monospace",
+          fontSize: "clamp(16px, 2.2vw, 20px)",
+        }}
+      >
         {value}
       </div>
     </div>
@@ -643,21 +873,49 @@ function MaintenanceScreen({
       <div style={topRow}>
         {/* Status code banner */}
         <div style={bannerBox} className="pulse-border">
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
-            <span className="am" style={{ fontFamily: "'VT323', monospace", fontSize: "clamp(28px,5vw,42px)", color: C.amber, lineHeight: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              marginBottom: "6px",
+            }}
+          >
+            <span
+              className="am"
+              style={{
+                fontFamily: "'VT323', monospace",
+                fontSize: "clamp(28px,5vw,42px)",
+                color: C.amber,
+                lineHeight: 1,
+              }}
+            >
               503
             </span>
             <div>
-              <div className="am" style={{ color: C.amber, fontWeight: "bold" }}>SERVICE UNAVAILABLE</div>
-              <div style={{ color: C.dim, fontSize: "0.85em" }}>HTTPS/3.1 — Maintenance Mode Active</div>
+              <div
+                className="am"
+                style={{ color: C.amber, fontWeight: "bold" }}
+              >
+                SERVICE UNAVAILABLE
+              </div>
+              <div style={{ color: C.dim, fontSize: "0.85em" }}>
+                HTTPS/3.1 — Maintenance Mode Active
+              </div>
             </div>
           </div>
-          <div style={{ borderTop: `1px solid ${C.amber}44`, paddingTop: "6px" }}>
+          <div
+            style={{ borderTop: `1px solid ${C.amber}44`, paddingTop: "6px" }}
+          >
             <div style={{ color: C.green2, marginBottom: "2px" }}>
-              ▸ <span style={{ color: C.green }}>Shriharsh.dev</span> is currently under maintenance.
+              ▸ <span style={{ color: C.green }}>Shriharsh.dev</span> is
+              currently under maintenance.
             </div>
             <div style={{ color: C.dim }}>
-              ▸ Estimated completion: <span className="blink" style={{ color: C.green }}>calculating...</span>
+              ▸ Estimated completion:{" "}
+              <span className="blink" style={{ color: C.green }}>
+                calculating...
+              </span>
             </div>
             <div style={{ color: C.dim, marginTop: "4px" }}>
               ▸ All data is safe. Services will resume automatically.
@@ -666,63 +924,136 @@ function MaintenanceScreen({
         </div>
 
         {/* Info tiles */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "6px", flex: "1 1 260px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "6px",
+            flex: "1 1 260px",
+          }}
+        >
           <div style={tilesRow}>
             {tile("STATUS CODE", "503", "am", "#100800")}
             {tile("UPTIME", formatUptime(uptime), "g", C.green5)}
             {tile("VERSION", "v3.1.0", "g", C.green5)}
           </div>
           <div style={tilesRow}>
-            {tile("POST WARNINGS", `${checks.filter(c => c.final === "warning").length} / ${checks.length}`, "am", "#100800")}
-            {tile("POST ERRORS", `${checks.filter(c => c.final === "error").length} / ${checks.length}`, checks.some(c => c.final === "error") ? "re" : "g", C.green5)}
+            {tile(
+              "POST WARNINGS",
+              `${checks.filter((c) => c.final === "warning").length} / ${checks.length}`,
+              "am",
+              "#100800",
+            )}
+            {tile(
+              "POST ERRORS",
+              `${checks.filter((c) => c.final === "error").length} / ${checks.length}`,
+              checks.some((c) => c.final === "error") ? "re" : "g",
+              C.green5,
+            )}
             {tile("LOG EVENTS", String(logs.length), "g", C.green5)}
           </div>
         </div>
       </div>
 
       {/* ─── Marquee ticker ─── */}
-      <div style={{ overflow: "hidden", border: `1px solid ${C.green4}`, padding: "3px 0", background: C.green5, fontSize: "0.85em", color: C.green3 }}>
+      <div
+        style={{
+          overflow: "hidden",
+          border: `1px solid ${C.green4}`,
+          padding: "3px 0",
+          background: C.green5,
+          fontSize: "0.85em",
+          color: C.green3,
+        }}
+      >
         <div className="marquee-inner">
-          &nbsp;&nbsp;&nbsp;
-          ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503 SERVICE UNAVAILABLE &nbsp;|&nbsp;
-          Shriharsh.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
-          All data is safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress &nbsp;|&nbsp;
-          BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK: PENDING &nbsp;|&nbsp;
-          ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503 SERVICE UNAVAILABLE &nbsp;|&nbsp;
-          Shriharsh.dev is being upgraded &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp;
-          All user data is safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress &nbsp;|&nbsp;
-          BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK: PENDING &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp; ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503 SERVICE
+          UNAVAILABLE &nbsp;|&nbsp; Shriharsh.dev is being upgraded
+          &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp; All data is safe
+          and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress
+          &nbsp;|&nbsp; BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK:
+          PENDING &nbsp;|&nbsp; ▸ MAINTENANCE MODE ACTIVE &nbsp;|&nbsp; 503
+          SERVICE UNAVAILABLE &nbsp;|&nbsp; Shriharsh.dev is being upgraded
+          &nbsp;|&nbsp; Please check back soon &nbsp;|&nbsp; All user data is
+          safe and preserved &nbsp;|&nbsp; Next.js v2.1.0 deployment in progress
+          &nbsp;|&nbsp; BUILD STATUS: IN PROGRESS &nbsp;|&nbsp; HEALTH CHECK:
+          PENDING &nbsp;&nbsp;&nbsp;
         </div>
       </div>
 
       {/* ─── Progress ─── */}
       <div style={progressBlock}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px", flexWrap: "wrap", gap: "4px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "4px",
+            flexWrap: "wrap",
+            gap: "4px",
+          }}
+        >
           <span style={{ color: C.green2 }}>Upgrade Progress</span>
           <span className="am" style={{ color: C.amber }}>
             ⚠ Build cache invalidated — rebuild required
           </span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-          <span className="g" style={{ color: C.green, fontFamily: "'VT323', monospace", fontSize: "clamp(13px, 1.8vw, 15px)", letterSpacing: "0.05em", flex: 1, minWidth: "200px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            flexWrap: "wrap",
+          }}
+        >
+          <span
+            className="g"
+            style={{
+              color: C.green,
+              fontFamily: "'VT323', monospace",
+              fontSize: "clamp(13px, 1.8vw, 15px)",
+              letterSpacing: "0.05em",
+              flex: 1,
+              minWidth: "200px",
+            }}
+          >
             [{pbar(progress)}]
           </span>
-          <span className="g" style={{ color: C.green, minWidth: "46px", textAlign: "right" }}>
+          <span
+            className="g"
+            style={{ color: C.green, minWidth: "46px", textAlign: "right" }}
+          >
             {progress.toFixed(1)}%
           </span>
           <span style={{ color: C.dim }}>STALLED</span>
-          <span className="blink" style={{ color: C.amber }}>▌</span>
+          <span className="blink" style={{ color: C.amber }}>
+            ▌
+          </span>
         </div>
         {/* Sub-tasks */}
-        <div style={{ display: "flex", gap: "6px", marginTop: "6px", flexWrap: "wrap", fontSize: "0.82em" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "6px",
+            marginTop: "6px",
+            flexWrap: "wrap",
+            fontSize: "0.82em",
+          }}
+        >
           {[
-            { label: "Migrations",   done: true  },
-            { label: "Asset build",  done: true  },
-            { label: "Tests",        done: false },
+            { label: "Migrations", done: true },
+            { label: "Asset build", done: true },
+            { label: "Tests", done: false },
             { label: "Health check", done: false },
-            { label: "DNS switch",   done: false },
-          ].map(t => (
-            <span key={t.label} style={{ color: t.done ? C.green : C.dim, padding: "1px 6px", border: `1px solid ${t.done ? C.green4 : C.green4 + "66"}` }}>
+            { label: "DNS switch", done: false },
+          ].map((t) => (
+            <span
+              key={t.label}
+              style={{
+                color: t.done ? C.green : C.dim,
+                padding: "1px 6px",
+                border: `1px solid ${t.done ? C.green4 : C.green4 + "66"}`,
+              }}
+            >
               {t.done ? "✓" : "○"} {t.label}
             </span>
           ))}
@@ -732,41 +1063,125 @@ function MaintenanceScreen({
       {/* ─── Tabbed panel ─── */}
       <div>
         <div style={tabBar}>
-          {(["status", "log", "help"] as Tab[]).map(t => (
+          {(["status", "log", "help"] as Tab[]).map((t) => (
             <button key={t} style={tabStyle(t)} onClick={() => setActiveTab(t)}>
-              {t === "status" ? "[F2] SYSTEM STATUS" : t === "log" ? "[F3] ACTIVITY LOG" : "[F1] HELP"}
+              {t === "status"
+                ? "[F2] SYSTEM STATUS"
+                : t === "log"
+                  ? "[F3] ACTIVITY LOG"
+                  : "[F1] HELP"}
             </button>
           ))}
         </div>
 
         <AnimatePresence mode="wait">
           {activeTab === "status" && (
-            <motion.div key="status" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={panelBase}>
-              <div style={{ color: C.dim, marginBottom: "6px", fontSize: "0.85em" }}>
+            <motion.div
+              key="status"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={panelBase}
+            >
+              <div
+                style={{
+                  color: C.dim,
+                  marginBottom: "6px",
+                  fontSize: "0.85em",
+                }}
+              >
                 POST HARDWARE DIAGNOSTIC RESULTS
               </div>
-              {checks.map(c => (
-                <div key={c.id} style={{ display: "flex", gap: "4px", padding: "2px 0", borderBottom: `1px solid ${C.green4}22`, flexWrap: "wrap" }}>
-                  <span style={{ color: statusColor[c.final], minWidth: "80px" }}>{statusTag[c.final]}</span>
-                  <span style={{ color: C.green2, minWidth: "150px" }}>{c.label}</span>
-                  <span style={{ color: c.final === "warning" ? C.amber : C.green, flex: 1, fontSize: "0.9em" }}>{c.value}</span>
+              {checks.map((c) => (
+                <div
+                  key={c.id}
+                  style={{
+                    display: "flex",
+                    gap: "4px",
+                    padding: "2px 0",
+                    borderBottom: `1px solid ${C.green4}22`,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <span
+                    style={{ color: statusColor[c.final], minWidth: "80px" }}
+                  >
+                    {statusTag[c.final]}
+                  </span>
+                  <span style={{ color: C.green2, minWidth: "150px" }}>
+                    {c.label}
+                  </span>
+                  <span
+                    style={{
+                      color: c.final === "warning" ? C.amber : C.green,
+                      flex: 1,
+                      fontSize: "0.9em",
+                    }}
+                  >
+                    {c.value}
+                  </span>
                 </div>
               ))}
-              <div style={{ marginTop: "10px", color: C.dim, fontSize: "0.82em" }}>
-                ▸ {checks.filter(c => c.final === "ok").length} passed  ▸ {checks.filter(c => c.final === "warning").length} warnings  ▸ {checks.filter(c => c.final === "error").length} errors
+              <div
+                style={{ marginTop: "10px", color: C.dim, fontSize: "0.82em" }}
+              >
+                ▸ {checks.filter((c) => c.final === "ok").length} passed ▸{" "}
+                {checks.filter((c) => c.final === "warning").length} warnings ▸{" "}
+                {checks.filter((c) => c.final === "error").length} errors
               </div>
             </motion.div>
           )}
 
           {activeTab === "log" && (
-            <motion.div key="log" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={panelBase}>
-              <div style={{ color: C.dim, marginBottom: "6px", fontSize: "0.85em" }}>
-                MAINTENANCE ACTIVITY LOG  [{logs.length} entries]
+            <motion.div
+              key="log"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={panelBase}
+            >
+              <div
+                style={{
+                  color: C.dim,
+                  marginBottom: "6px",
+                  fontSize: "0.85em",
+                }}
+              >
+                MAINTENANCE ACTIVITY LOG [{logs.length} entries]
               </div>
               {logs.map((entry, i) => (
-                <div key={i} className="fade-in" style={{ display: "flex", gap: "8px", marginBottom: "2px", fontSize: "0.88em" }}>
-                  <span style={{ color: C.dim, minWidth: "56px" }}>[{String(i + 1).padStart(3, "0")}:{String(i * 7).padStart(2, "0")}]</span>
-                  <span style={{ color: entry.type === "WARN" ? C.amber : entry.type === "ERR " ? C.red : C.blue, minWidth: "36px" }} className={entry.type === "WARN" ? "am" : entry.type === "ERR " ? "re" : "bl"}>
+                <div
+                  key={i}
+                  className="fade-in"
+                  style={{
+                    display: "flex",
+                    gap: "8px",
+                    marginBottom: "2px",
+                    fontSize: "0.88em",
+                  }}
+                >
+                  <span style={{ color: C.dim, minWidth: "56px" }}>
+                    [{String(i + 1).padStart(3, "0")}:
+                    {String(i * 7).padStart(2, "0")}]
+                  </span>
+                  <span
+                    style={{
+                      color:
+                        entry.type === "WARN"
+                          ? C.amber
+                          : entry.type === "ERR "
+                            ? C.red
+                            : C.blue,
+                      minWidth: "36px",
+                    }}
+                    className={
+                      entry.type === "WARN"
+                        ? "am"
+                        : entry.type === "ERR "
+                          ? "re"
+                          : "bl"
+                    }
+                  >
                     {entry.type}
                   </span>
                   <span style={{ color: C.green2 }}>{entry.msg}</span>
@@ -774,7 +1189,10 @@ function MaintenanceScreen({
               ))}
               {logs.length < MAINT_LOGS.length && (
                 <div style={{ color: C.dim, marginTop: "4px" }}>
-                  <span className="spin" style={{ color: C.blue }}>◌</span>  waiting for next event...
+                  <span className="spin" style={{ color: C.blue }}>
+                    ◌
+                  </span>{" "}
+                  waiting for next event...
                 </div>
               )}
               <div ref={logsEndRef} />
@@ -782,18 +1200,58 @@ function MaintenanceScreen({
           )}
 
           {activeTab === "help" && (
-            <motion.div key="help" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={panelBase}>
-              <div style={{ color: C.dim, marginBottom: "10px", fontSize: "0.85em" }}>BIOS MAINTENANCE REFERENCE</div>
+            <motion.div
+              key="help"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={panelBase}
+            >
+              <div
+                style={{
+                  color: C.dim,
+                  marginBottom: "10px",
+                  fontSize: "0.85em",
+                }}
+              >
+                BIOS MAINTENANCE REFERENCE
+              </div>
               {[
-                ["What is this?",      "Portfolio website is undergoing a scheduled upgrade. During this time all public-facing routes return HTTP 503."],
-                ["How long?",          "Deployments typically complete within 5–20 minutes. If this page persists beyond 30 min, the upgrade may have stalled."],
-                ["Is data safe?",      "Yes. Maintenance mode is read-only. No user data is modified during this phase."],
-                ["Status codes",       "503 → Service unavailable. 307 → Temporary redirect to /maintenance. 200 → Normal operation restored."],
-                ["What happens next?", "Once health checks pass, the DNS record will switch and this page will automatically redirect to the live site."],
+                [
+                  "What is this?",
+                  "Portfolio website is undergoing a scheduled upgrade. During this time all public-facing routes return HTTP 503.",
+                ],
+                [
+                  "How long?",
+                  "Deployments typically complete within 5–20 minutes. If this page persists beyond 30 min, the upgrade may have stalled.",
+                ],
+                [
+                  "Is data safe?",
+                  "Yes. Maintenance mode is read-only. No user data is modified during this phase.",
+                ],
+                [
+                  "Status codes",
+                  "503 → Service unavailable. 307 → Temporary redirect to /maintenance. 200 → Normal operation restored.",
+                ],
+                [
+                  "What happens next?",
+                  "Once health checks pass, the DNS record will switch and this page will automatically redirect to the live site.",
+                ],
               ].map(([q, a]) => (
                 <div key={q} style={{ marginBottom: "10px" }}>
-                  <div className="g" style={{ color: C.green }}>▸ {q}</div>
-                  <div style={{ color: C.dim, paddingLeft: "12px", fontSize: "0.9em", marginTop: "2px" }}>{a}</div>
+                  <div className="g" style={{ color: C.green }}>
+                    ▸ {q}
+                  </div>
+                  <div
+                    style={{
+                      color: C.dim,
+                      paddingLeft: "12px",
+                      fontSize: "0.9em",
+                      marginTop: "2px",
+                    }}
+                  >
+                    {a}
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -809,8 +1267,8 @@ function MaintenanceScreen({
 ══════════════════════════════════════════════════════════════ */
 
 interface FooterProps {
-  phase:        Phase;
-  activeTab:    Tab;
+  phase: Phase;
+  activeTab: Tab;
   setActiveTab: Dispatch<SetStateAction<Tab>>;
 }
 
@@ -827,7 +1285,15 @@ function BiosFooter({ phase, activeTab, setActiveTab }: FooterProps) {
   };
   const sep = <span style={{ color: C.green4, margin: "0 2px" }}>│</span>;
 
-  const Fkey = ({ label, action, tab }: { label: string; action?: () => void; tab?: Tab }) => (
+  const Fkey = ({
+    label,
+    action,
+    tab,
+  }: {
+    label: string;
+    action?: () => void;
+    tab?: Tab;
+  }) => (
     <button
       className={`btn-fkey${tab && activeTab === tab ? " active" : ""}`}
       onClick={action ?? (tab ? () => setActiveTab(tab) : undefined)}
@@ -854,7 +1320,7 @@ function BiosFooter({ phase, activeTab, setActiveTab }: FooterProps) {
         ⚠ MAINTENANCE MODE
       </span>
       <span style={{ marginLeft: "auto", color: C.dim, fontSize: "0.82em" }}>
-        ESC = suspend  │  DEL = setup  │  F12 = boot menu
+        ESC = suspend │ DEL = setup │ F12 = boot menu
       </span>
     </div>
   );
